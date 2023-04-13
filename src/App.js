@@ -9,7 +9,7 @@ function App() {
 
   function getAllAccounts() {
     const PORT = process.env.PORT || 3001;
-    fetch('http://localhost:{PORT}')
+    fetch(`http://localhost:${PORT}`)
       .then(response => {
         console.log('connected');
         return response.text();

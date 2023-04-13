@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-var fs = require("fs");
+// var fs = require("fs");
 
 const { Pool } = require('pg');
 

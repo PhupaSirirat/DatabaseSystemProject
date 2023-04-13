@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 
 function App() {
-
+  
   const [accounts, setAccountState] = useState(false);
   useEffect(() => {
     getAllAccounts();
   }, []);
 
   function getAllAccounts() {
-    fetch('http://localhost:3001')
+    const PORT = process.env.PORT || 3001;
+    fetch(`http://localhost:${PORT}`)
       .then(response => {
         console.log('connected');
         return response.text();
@@ -20,7 +21,6 @@ function App() {
 
   return (
     <div>
-      {/* {merchants ? merchants : 'There is no merchant data available'} */}
       {accounts ? accounts : 'There is no accounts data'}
 
     </div>

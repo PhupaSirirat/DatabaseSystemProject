@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 
 function App() {
+
+  const [accounts, setAccountState] = useState(false);
+  useEffect(() => {
+    getAllAccounts();
+  }, []);
+
+  function getAllAccounts() {
+    fetch('http://localhost:3001')
+      .then(response => {
+        console.log('connected');
+        return response.text();
+      })
+      .then(data => {
+        setAccountState(data);
+      })
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* {merchants ? merchants : 'There is no merchant data available'} */}
+      {accounts ? accounts : 'There is no accounts data'}
+
     </div>
   );
 }
-
 export default App;

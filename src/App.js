@@ -8,7 +8,7 @@ function App() {
   }, []);
 
   function getAllAccounts() {
-    fetch('https://workable-drink-production.up.railway.app/listUsers')
+    fetch('http://localhost:3001')
       .then(response => {
         console.log('connected');
         return response.text();

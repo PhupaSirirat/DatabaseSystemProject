@@ -42,6 +42,7 @@ app.use(function (req, res, next) {
 //   })
 // })
 
+/*
 app.get('/', (req, res) => {
     db.getAllAccount()
         .then(response => {
@@ -51,6 +52,7 @@ app.get('/', (req, res) => {
             res.status(500).send(error);
         })
 })
+*/
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

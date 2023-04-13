@@ -2,16 +2,14 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   
-  const FETCH_TARGET = "http://localhost";
-  const FETCH_PORT = process.env.PORT || 3001;
-
   const [accounts, setAccountState] = useState(false);
   useEffect(() => {
     getAllAccounts();
   }, []);
 
   function getAllAccounts() {
-    fetch(FETCH_TARGET.concat(FETCH_PORT))
+    const FETCH_PORT = process.env.PORT || 3001;
+    fetch('http://localhost:{PORT}')
       .then(response => {
         console.log('connected');
         return response.text();

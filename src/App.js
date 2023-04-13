@@ -1,17 +1,14 @@
-//import React, { useState, useEffect } from 'react';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 function App() {
   
-  <div>You should see this unless visiting /listUsers</div>
-  
-  /* const [accounts, setAccountState] = useState(false);
+  const [accounts, setAccountState] = useState(false);
   useEffect(() => {
     getAllAccounts();
   }, []);
 
   function getAllAccounts() {
-    fetch('https://workable-drink-production.up.railway.app/listUsers')
+    fetch(window.location.href)
       .then(response => {
         console.log('connected');
         return response.text();
@@ -26,6 +23,6 @@ function App() {
       {accounts ? accounts : 'There is no accounts data'}
 
     </div>
-  ); */
+  );
 }
 export default App;

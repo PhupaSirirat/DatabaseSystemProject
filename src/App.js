@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 
 function App() {
   
-  //const [accounts, setAccountState] = useState(false);
-  //useEffect(() => {
-    //getAllAccounts();
-  //}, []);
+  const [accounts, setAccountState] = useState(false);
+  useEffect(() => {
+    getAllAccounts();
+  }, []);
 
-  //function getAllAccounts() {
-      return ( <div>Hello World</div> );
+  function getAllAccounts() {
+      return ( <div>You should see this unless visiting /listUsers</div> );
     //fetch('https://workable-drink-production.up.railway.app/listUsers')
       //.then(response => {
         //console.log('connected');
@@ -17,7 +17,7 @@ function App() {
       //.then(data => {
         //setAccountState(data);
       //})
-  //}
+  }
 
   //return (
     //<div>

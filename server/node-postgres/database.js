@@ -20,33 +20,23 @@ const query = async (sql, values) => {
   }
 };
 
-// query test
-// pool.query(`Select * from account`, (err, res) => {
-//   if (!err) {
-//     console.log(res.rows);
-//   } else {
-//     console.log(err.message);
-//   }
-//   pool.end();
-// })
-
 // Example CRUD operations
 
 // Create a new record in the database
-const setAccount = async (data) => {
-  const { accountid, username, email, password, gameaccountid, accountregisterdate } = data;
-  const sql = 'INSERT INTO users (accountid, username, email, password, gameaccountid, accountregisterdate) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
-  const values = [accountid, username, email, password, gameaccountid, accountregisterdate];
-  const result = await query(sql, values);
-  return result[0];
-};
+//const setAccount = async (data) => {
+  //const { accountid, username, email, password, gameaccountid, accountregisterdate } = data;
+  //const sql = 'INSERT INTO users (accountid, username, email, password, gameaccountid, accountregisterdate) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *';
+  //const values = [accountid, username, email, password, gameaccountid, accountregisterdate];
+  //const result = await query(sql, values);
+  //return result[0];
+//};
 
 // Read records from the database
-const getAllAccount = async () => {
-  const sql = 'Select * from account';
-  const result = await query(sql);
-  return result;
-};
+//const getAllAccount = async () => {
+  //const sql = 'Select * from account';
+  //const result = await query(sql);
+  //return result;
+//};
 
 // Update a record in the database
 // const updateRecord = async (id, data) => {
@@ -66,9 +56,6 @@ const getAllAccount = async () => {
 // };
 
 module.exports = {
-  setAccount,
-  getAllAccount,
-  // readRecords,
-  // updateRecord,
-  // deleteRecord,
+  pool,
+  query
 };

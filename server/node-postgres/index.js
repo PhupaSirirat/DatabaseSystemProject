@@ -12,47 +12,20 @@ app.use(function (req, res, next) {
     next();
 });
 
-// app.get('/', (req, res) => {
-//   merchant_model.getMerchants()
-//   .then(response => {
-//     res.status(200).send(response);
-//   })
-//   .catch(error => {
-//     res.status(500).send(error);
-//   })
-// })
-
-// app.post('/merchants', (req, res) => {
-//   merchant_model.createMerchant(req.body)
-//   .then(response => {
-//     res.status(200).send(response);
-//   })
-//   .catch(error => {
-//     res.status(500).send(error);
-//   })
-// })
-
-// app.delete('/merchants/:id', (req, res) => {
-//   merchant_model.deleteMerchant(req.params.id)
-//   .then(response => {
-//     res.status(200).send(response);
-//   })
-//   .catch(error => {
-//     res.status(500).send(error);
-//   })
-// })
-
-/*
-app.get('/', (req, res) => {
-    db.getAllAccount()
-        .then(response => {
-            res.status(200).send(response);
-        })
-        .catch(error => {
-            res.status(500).send(error);
-        })
+app.get('/', async (req, res) => {
+    res.send({message: 'If you see this when visiting the landing page. Then it works! OTHER END POINTS: /listUsers should return all accounts. You can filter results with ?<field>&<value>= ex: /listUsers?field=username&value=user3 returns account with username of user3'})
 })
-*/
+
+
+app.get('/listUsers', async (req, res) => {
+    const params = new URLSearchParams(req.query);
+    let sql = 'SELECT * FROM account';
+    if (params.get('field') && params.get('value')) {
+      sql = `SELECT * FROM account WHERE ${params.get('field')} = '${params.get('value')}'`;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+  });  // !!VULNERABLE TO SQL INJECTION!!
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

@@ -21,6 +21,10 @@ Example: `/api/get-data?table=game&field=gameid&value=3`
 
 ---
 
-Since this is a monorepo, we need to keep frontend and backend separate for the webservice to start correctly.
+`/api/query?sql=xxx`
 
-Keep backend within  `/server/node-postgres` and frontend within `/src`
+Return a JSON of the results by directly inputing SQL command into the database. Use `+` instead of spaces, `-` instead of equal signs, and `.` instead of ticks.
+
+:warning: The route handler does not sanitize user input.
+
+Example: `/api/query?sql=select+gamename+from+game+where+genre-.platformer.`

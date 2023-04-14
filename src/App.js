@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './Style/GameCard.css';
 import { Link } from 'react-router-dom';
+import './Style/GameCard.css';
 import axios from 'axios';
 
 function App() {

@@ -41,6 +41,19 @@
   margin-bottom: 1.5rem;
 }
 
+.nice_dark_butt_on {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  background-image: linear-gradient(to right, #303244, #291baf);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-image 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
 .nice_butt_on:hover {
   background-image: linear-gradient(to right, #ff8e53, #ff6b6b);
 }

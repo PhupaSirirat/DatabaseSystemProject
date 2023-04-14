@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import App from '../App';
 import GameDetail from '../GameDetail';
+import AddGame from '../components/AddGame';
 
 const Routers = () => {
     return (
@@ -10,6 +11,7 @@ const Routers = () => {
             <Routes>
                 <Route path="/" element={<App/>}/>
                 <Route path="/game-detail/:slug" element={<GameDetail />}/>
+                <Route path="/addgame" element={<AddGame/>}/>
             </Routes>
         </BrowserRouter>
     )

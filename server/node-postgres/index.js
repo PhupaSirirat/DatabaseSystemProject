@@ -37,7 +37,7 @@ app.get('/api/get-data', async (req, res) => {
     const params = new URLSearchParams(req.query);
     let sql = '';
     if (params.get('sql')) {
-      sql = params.get('sql').replace('_', ' ');
+      sql = params.get('sql').replace(/\+/g, ' ');
     }
     if (!sql) {
       return;

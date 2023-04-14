@@ -16,6 +16,7 @@ app.get('/', async (req, res) => {
     res.send({message: 'If you see this when visiting the landing page. Then it works! OTHER END POINTS: /listUsers should return all accounts. You can filter results with ?<field>&<value>= ex: /listUsers?field=username&value=user3 returns account with username of user3'})
 })
 
+
 app.get('/listUsers', async (req, res) => {
     const params = new URLSearchParams(req.query);
     let sql = 'SELECT * FROM account';

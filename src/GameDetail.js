@@ -1,30 +1,31 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
+import './Style/GameDetail.css';
 
 const GameDetail = () => {
     const { slug } = useParams(); // Access the 'slug' parameter from the URL
     const [gameData, setGameData] = useState([]);
 
     const fetchData = () => {
-        axios.get(`http://localhost:3001/api/get-data?table=game&field=gameid&value=${slug}`)
-        // if fetching successfully
-        .then(response => {
-            setGameData(response.data);
-        })
-        .catch(err => alert(err));
+        axios.get(`http://localhost:3001/api/query?sql=select+*+from+game+where+gameid-${slug}`)
+            // if fetching successfully
+            .then(response => {
+                setGameData(response.data);
+            })
+            .catch(err => alert(err));
     }
 
     useEffect(() => {
         fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
         <main>
             <h1>Game Detail Page: game_id = {slug}</h1>
-            <div>
+            <div className="game-item">
                 {gameData.length > 0 ? (
                     // Render data if available
                     gameData.map(item => (
@@ -39,10 +40,31 @@ const GameDetail = () => {
                         </div>
                     ))
                 ) : (
-                // Render message if no data available
-                <p>Fetching data...</p>
+                    // Render message if no data available
+                    <p>Fetching data...</p>
                 )}
             </div>
+
+            {/* All server available for this game */}
+            <div className="game-item">
+                <p>Game Server</p>
+                <p>Server ID: 1 (demo)</p>
+                <p>Server ID: 2 (demo)</p>
+                <p>Server ID: 3 (demo)</p>
+            </div>
+
+            {/* All players who play this game */}
+            <div className="game-item">
+                <p>Player</p>
+                <p>Player ID: 1 (demo)</p>
+                <p>Player ID: 2 (demo)</p>
+                <p>Player ID: 3 (demo)</p>
+            </div>
+
+            <button className='nice_dark_butt_on'>Delete this game</button>
+            <Link to={"/"}>
+                <button className='nice_butt_on'>Back</button>
+            </Link>
         </main>
     )
 }

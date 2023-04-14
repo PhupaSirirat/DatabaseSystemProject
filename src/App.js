@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   const getAllGames = () => {
-    axios.get(`http://localhost:3001/api/get-data?table=game`)
+    axios.get(`http://localhost:3001/api/query?sql=select+*+from+game`)
       .then(response => {
         console.log('connected');
         setData(response.data); // Update state with fetched data
@@ -24,7 +24,11 @@ function App() {
   return (
     <main>
       <h1>All Game Page</h1>
-      <button className='nice_butt_on'>Add Game</button>
+
+      <Link to={"/addgame"}>
+        <button className='nice_butt_on'>Add Game</button>
+      </Link>
+
       <div className="allGames">
         {data.length > 0 ? (
           // Render data if available

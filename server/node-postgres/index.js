@@ -26,12 +26,19 @@ app.get('/api/get-data', async (req, res) => {
     else if (params.get('table') && params.get('field') && params.get('value')) {
       sql = `SELECT * FROM ${params.get('table')} WHERE ${params.get('field')} = '${params.get('value')}'`;
     }
+    if (!sql) {
+      return;
+    }
     const result = await db.query(sql);
     res.json(result);
   });
   
-  app.get('/api/sql-query', async (req, res) => {
-    let sql = new URLSearchParams(req.query).toString();
+  app.get('/api/query', async (req, res) => {
+    const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (params.get('sql')) {
+      sql = params.get('sql').replace('_', ' ');
+    }
     if (!sql) {
       return;
     }

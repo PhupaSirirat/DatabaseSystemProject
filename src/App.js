@@ -1,43 +1,51 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState, useEffect } from 'react';
+import './Style/GameCard.css';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 function App() {
-  const [accounts, setAccounts] = useState([]); // Initialize state for accounts data
+  const [data, setData] = useState([]); // Initialize state for accounts data
 
   useEffect(() => {
-    getAllAccounts();
+    getAllGames();
   }, []);
 
-  function getAllAccounts() {
-    fetch(`http://localhost:3001/getData?table=game`)
+  const getAllGames = () => {
+    axios.get(`http://localhost:3001/api/get-data?table=game`)
       .then(response => {
         console.log('connected');
-        return response.json();
+        setData(response.data); // Update state with fetched data
       })
-      .then(data => {
-        setAccounts(data); // Update state with fetched data
-        console.log(typeof (data));
-        console.log(data);
-      })
+      .catch(err => alert(err));
   }
 
   return (
-    <div>
-      {accounts.length > 0 ? (
-        // Render data if available
-        accounts.map(item => (
-          <div key={item.gameid}>
-            <p>GameID: {item.gameid}</p>
-            <p>Game: {item.gamename}</p>
-            <p>Desc: {item.description}</p>
-            <p>Release: {item.releasedate}</p>
-            <br></br>
-          </div>
-        ))
-      ) : (
-        // Render message if no data available
-        <p>There is no account data</p>
-      )}
-    </div>
+    <main>
+      <h1>All Game Page</h1>
+      <button className='nice_butt_on'>Add Game</button>
+      <div className="allGames">
+        {data.length > 0 ? (
+          // Render data if available
+          data.map(item => (
+            <Link to={`/game-detail/${item.gameid}`}>
+              <div key={item.gameid} className="GameCard">
+                <p>Game: {item.gamename}</p>
+                {/* <p>GameID: {item.gameid}</p> */}
+                <p>Genre: {item.genre}</p>
+                <p>Version: {item.version}</p>
+                {/* <p>Desc: {item.description}</p> */}
+                {/* <p>Release Date: {item.releasedate}</p> */}
+                {/* <p>Systems: {item.systems}</p> */}
+              </div>
+            </Link>
+          ))
+        ) : (
+          // Render message if no data available
+          <p>Fetching data...</p>
+        )}
+      </div>
+    </main>
   );
 }
 

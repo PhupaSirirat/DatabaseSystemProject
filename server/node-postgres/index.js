@@ -20,7 +20,7 @@ app.get('/', async (req, res) => {
 app.get('/getData', async (req, res) => {
     const params = new URLSearchParams(req.query);
     let sql = '';
-    if (params.get('table')) {
+    if (params.get('table') && !params.get('field') && !params.get('value')) {
       sql = 'SELECT * FROM ' + params.get('table');
     }
     else if (params.get('table') && params.get('field') && params.get('value')) {

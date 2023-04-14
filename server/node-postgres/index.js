@@ -32,7 +32,7 @@ app.get('/api/get-data', async (req, res) => {
     const result = await db.query(sql);
     res.json(result);
   });
-  
+ 
   app.get('/api/query', async (req, res) => {
     const params = new URLSearchParams(req.query);
     let sql = '';

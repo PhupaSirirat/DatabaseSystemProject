@@ -38,7 +38,7 @@ app.get('/api/get-data', async (req, res) => {
     let sql = '';
     if (params.get('sql')) {
       sql = params.get('sql').replace(/\+/g, ' ');
-      sql = params.get('sql').replace(/-/g, '=');
+      sql = params.get('sql').replace(/\-/g, '=');
       sql = params.get('sql').replace(/\./g, "'");
     }
     if (!sql) {

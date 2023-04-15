@@ -153,6 +153,21 @@ app.get('/api/get-topplayer', async (req, res, next) => {
     res.json(result);
 });
 
+app.post('/api/add-server', async (req, res, next) => {
+  try {
+    const { gameid, serverlocationid, ipaddress, hostname, port, maxplayercount} = req.body;
+    if (!gameid || !serverlocationid || !ipaddress || !hostname || !port || !maxplayercount) {
+      return res.status(400).json({ error: 'All fields not provided' });
+    }
+    const sql = `INSERT INTO game_server (gameid, serverlocationid, ipaddress, hostname, port, maxplayercount) VALUES (${gameid}, ${serverlocationid}, '${ipaddress}', '${hostname}', '${port}', ${maxplayercount})`
+    const result = await db.query(sql);
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+  }
+});
+
 app.post('/api/register-account', async (req, res, next) => {
   try {
     const { username, email, password } = req.body;

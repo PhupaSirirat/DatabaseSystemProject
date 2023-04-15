@@ -7,7 +7,7 @@ const db = require('./database')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(cors());
+app.use(cors({origin: true, credentials: true}));
 
 app.get('/', async (req, res, next) => {
     res.send({message: 'If you see this when visiting the landing page. Then it works! Documentation is available on Github - https://github.com/PhupaSirirat/DatabaseSystemProject'})

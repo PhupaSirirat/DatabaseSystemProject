@@ -90,14 +90,20 @@ app.get('/api/get-playerdetails', async (req, res, next) => {
 app.get('/api/get-playerlist', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';
-    if (!params.get('gameid') && !params.get('count')) {
+    if (!params.get('gameid') && !params.get('accountid') && !params.get('count')) {
       sql = 'SELECT * FROM ingame_account';
     }
-    else if (params.get('gameid') && !params.get('count')) {
+    else if (params.get('gameid') && !params.get('accountid') && !params.get('count')) {
       sql = `SELECT * FROM ingame_account WHERE gameid = ${params.get('gameid')}`;
     }
-    else if (params.get('gameid') && params.get('count')) {
+    else if (params.get('gameid') && !params.get('accountid') && params.get('count')) {
       sql = `SELECT * FROM ingame_account WHERE gameid = ${params.get('gameid')} LIMIT ${params.get('count')}`;
+    }
+    else if (!params.get('gameid') && params.get('accountid') && !params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE accountid = ${params.get('accountid')}`;
+    }
+    else if (!params.get('gameid') && params.get('accountid') && params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE accountid = ${params.get('accountid')} LIMIT ${params.get('count')}`;
     }
     if (!sql) {
       return;

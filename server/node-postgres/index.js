@@ -64,6 +64,25 @@ app.get('/api/get-playerlist', async (req, res, next) => {
     res.json(result);
 });
 
+app.get('/api/get-topplayer', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (!params.get('gameid') && !params.get('count')) {
+      sql = 'SELECT * FROM ingame_account ORDER BY accountlevel DESC';
+    }
+    else if (params.get('gameid') && !params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE gameid = ${params.get('gameid')} ORDER BY accountlevel DESC`;
+    }
+    else if (params.get('gameid') && params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE gameid = ${params.get('gameid')} ORDER BY accountlevel DESC LIMIT ${params.get('count')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
   app.post('/api/execute-query', async (req, res, next) => {
     try {
       const { sql } = req.body;

@@ -40,7 +40,6 @@ app.get('/api/get-data', async (req, res) => {
       sql = params.get('sql').replace(/\+/g, ' ');
       sql = sql.replace(/\-/g, '=');
       sql = sql.replace(/\./g, "'");
-      sql = sql.replace(/\~/g, "&");
     }
     if (!sql) {
       return;

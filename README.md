@@ -31,6 +31,30 @@ axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql 
 
 ---
 
+`GET` `/api/get-serverdetails`
+
+Return details of the specified server in JSON format.
+
+Example: `/api/get-serverdetails?gameid=3`
+
+---
+
+`GET` `/api/get-serverlist`
+
+Return a list of servers in JSON format. You can filter it further with `gameid` and limit results with `count`.
+
+Example: `/api/get-data?gameid=1&count=5`
+
+---
+
+`GET` `/api/get-topplayer`
+
+Return a list of players sorted by `accountlevel` descendingly in JSON format. You can filter it further with `gameid` and limit results with `count`.
+
+Example: `/api/get-topplayer?gameid=1&count=3`
+
+---
+
 :wastebasket: `DEPRECATED` `GET` `/api/get-data?table=xxx`
 
 Return a JSON of the queried table from the database. You can filter it further with `field` and `value`.

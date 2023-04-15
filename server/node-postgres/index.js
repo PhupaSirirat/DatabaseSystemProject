@@ -13,6 +13,35 @@ app.get('/', async (req, res, next) => {
     res.send({message: 'If you see this when visiting the landing page. Then it works! Documentation is available on Github - https://github.com/PhupaSirirat/DatabaseSystemProject'})
 })
 
+app.get('/api/get-accountlist', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (!params.get('count')) {
+      sql = 'SELECT * FROM account';
+    }
+    else if (params.get('count')) {
+      sql = `SELECT * FROM account LIMIT ${params.get('count')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
+app.get('/api/get-accountdetails', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (params.get('accountid')) {
+      sql = `SELECT * FROM account WHERE accountid = ${params.get('accountid')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
 app.get('/api/get-serverlist', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';
@@ -31,7 +60,77 @@ app.get('/api/get-serverlist', async (req, res, next) => {
     const result = await db.query(sql);
     res.json(result);
 });
-  
+
+app.get('/api/get-serverdetails', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (params.get('gameserverid')) {
+      sql = `SELECT * FROM game_server WHERE gameserverid = ${params.get('gameserverid')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
+app.get('/api/get-playerdetails', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (params.get('gameaccountid')) {
+      sql = `SELECT * FROM ingame_account WHERE gameaccountid = ${params.get('gameaccountid')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
+app.get('/api/get-playerlist', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (!params.get('gameid') && !params.get('accountid') && !params.get('count')) {
+      sql = 'SELECT * FROM ingame_account';
+    }
+    else if (params.get('gameid') && !params.get('accountid') && !params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE gameid = ${params.get('gameid')}`;
+    }
+    else if (params.get('gameid') && !params.get('accountid') && params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE gameid = ${params.get('gameid')} LIMIT ${params.get('count')}`;
+    }
+    else if (!params.get('gameid') && params.get('accountid') && !params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE accountid = ${params.get('accountid')}`;
+    }
+    else if (!params.get('gameid') && params.get('accountid') && params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE accountid = ${params.get('accountid')} LIMIT ${params.get('count')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
+app.get('/api/get-topplayer', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (!params.get('gameid') && !params.get('count')) {
+      sql = 'SELECT * FROM ingame_account ORDER BY accountlevel DESC';
+    }
+    else if (params.get('gameid') && !params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE gameid = ${params.get('gameid')} ORDER BY accountlevel DESC`;
+    }
+    else if (params.get('gameid') && params.get('count')) {
+      sql = `SELECT * FROM ingame_account WHERE gameid = ${params.get('gameid')} ORDER BY accountlevel DESC LIMIT ${params.get('count')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
   app.post('/api/execute-query', async (req, res, next) => {
     try {
       const { sql } = req.body;

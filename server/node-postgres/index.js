@@ -7,7 +7,7 @@ const db = require('./database')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(cors({origin: true, credentials: true}));
+app.use(cors());
 
 app.get('/', async (req, res, next) => {
     res.send({message: 'If you see this when visiting the landing page. Then it works! Documentation is available on Github - https://github.com/PhupaSirirat/DatabaseSystemProject'})
@@ -35,7 +35,7 @@ app.post('/api/execute-query', async (req, res, next) => {
     return;
   }
   const result = await db.query(sql);
-  res.json(result ? result : `Query ran ${sql}`);
+  res.json(result);
 });
 
 

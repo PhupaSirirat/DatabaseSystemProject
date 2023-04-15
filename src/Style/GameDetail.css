@@ -9,19 +9,23 @@
 }
 
 .game-item p {
-  margin: 0;
+  margin: 5;
   padding: 0;
   font-size: 16px;
 }
 
-.game-item p:first-child {
+/* .game-item p:first-child {
   font-weight: bold;
   margin-bottom: 5px;
+} */
+
+.bold {
+  font-weight: bold;
 }
 
-.game-item p:not(:last-child) {
+/* .game-item p:not(:last-child) {
   margin-bottom: 5px;
-}
+} */
 
 /* CSS for the game item container */
 .game-item-container {

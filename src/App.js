@@ -46,6 +46,10 @@ function App() {
         <button className='nice_butt_on'>Add Game</button>
       </Link>
 
+      <Link to={"/accounts"}>
+        <button className='nice_dark_butt_on'>Accounts</button>
+      </Link>
+
       <div className="allGames">
         {data.length > 0 ? (
           // Render data if available

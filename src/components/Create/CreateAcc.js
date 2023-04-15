@@ -6,27 +6,27 @@ export default function CreateAcc() {
 
     const handleSubmit = (event) => {
         event.preventDefault(); // Prevent form submission
-    
+
         // Collect input values
         const username = event.target.username.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-    
+
         // Display input values in an alert
         alert(`Data to create.\nUsername: ${username}\nEmail: ${email}\nPassword: ${password}`);
-    
-        axios.post(`https://gamedb-api-service.up.railway.app/api/register-account`, {username: username, email: email, password: password})
-          .then(Response => {
-            alert("Create account successfully")
-            window.location = '/accounts';
-          })
-          .catch(error => alert(error));
-      };
+
+        axios.post(`https://gamedb-api-service.up.railway.app/api/register-account`, { username: username, email: email, password: password })
+            .then(Response => {
+                alert("Create account successfully")
+                window.location = '/accounts';
+            })
+            .catch(error => alert(error));
+    };
 
 
     return (
         <main>
-            <h1>Create Account</h1>
+            <h1>Create New Account</h1>
 
             <form onSubmit={handleSubmit}>
 

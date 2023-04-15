@@ -23,6 +23,18 @@ export default function AccountDetail() {
             .catch(err => alert(err));
     }
 
+    const deleteAccount = (e) => {
+        e.preventDefault();
+        const sql = `delete from account where accountid=${slug}`;
+        axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+            // if delete successfully
+            .then(response => {
+                alert("This account has been deleted successfully")
+                window.location = "/allservers";
+            })
+            .catch(error => alert(error));
+    }
+
     return (
         <main>
             <h1>Account Detail: Account ID = {slug}</h1>
@@ -45,10 +57,13 @@ export default function AccountDetail() {
                 )}
             </div>
 
+
             <Link to={`/edit-account/${slug}`}>
                 <button className='nice_dark_butt_on'>Edit account details</button>
             </Link>
-
+            <Link to={`/accounts`} onClick={deleteAccount}>
+                <button className='nice_dark_butt_on'>Delete account</button>
+            </Link>
             <Link to={`/accounts`}>
                 <button className='nice_butt_on'>Back</button>
             </Link>

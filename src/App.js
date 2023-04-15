@@ -13,7 +13,7 @@ function App() {
   }, []);
 
   const getAllGames = () => {
-    axios.get(`http://gamedb-api-service.up.railway.app/api/query?sql=select+*+from+game`)
+    axios.get(`https://gamedb-api-service.up.railway.app/api/query?sql=select+*+from+game`)
       .then(response => {
         console.log('connected');
         setData(response.data); // Update state with fetched data

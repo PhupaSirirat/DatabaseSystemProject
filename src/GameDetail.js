@@ -14,8 +14,10 @@ const GameDetail = () => {
             // if fetching successfully
             .then(response => {
                 setGameData(response.data);
+                
             })
             .catch(err => alert(err));
+        console.log(gameData);
     }
 
     useEffect(() => {
@@ -37,7 +39,11 @@ const GameDetail = () => {
 
     return (
         <main>
-            <h1>Game Detail Page: game_id = {slug}</h1>
+            <h1>Game Detail Page: Game ID = {slug}</h1>
+
+            <img height={"450px"} src={gameData[0] ? gameData[0].thumbnail_link  : <span>Fetch thumbnail...</span> } alt="fetch thumbnail..."/>
+            <br/>
+
             <div className="game-item">
                 {gameData.length > 0 ? (
                     // Render data if available
@@ -47,9 +53,10 @@ const GameDetail = () => {
                             <p>GameID: {item.gameid}</p>
                             <p>Genre: {item.genre}</p>
                             <p>Version: {item.version}</p>
-                            <p>Desc: {item.description}</p>
-                            <p>Release Date: {item.releasedate}</p>
+                            <p>Description: {item.description}</p>
+                            <p>Release Date: {item.releasedate.substring(0, item.releasedate.indexOf("T"))}</p>
                             <p>Systems: {item.systems}</p>
+                            <p>Age Rating: {item.agerating}</p>
                         </div>
                     ))
                 ) : (
@@ -74,6 +81,9 @@ const GameDetail = () => {
                 <p>Player ID: 3 (demo)</p>
             </div>
 
+            <Link to={`/editgame/${slug}`}>
+                <button className='nice_dark_butt_on'>Edit game details</button>
+            </Link>
             <button className='nice_dark_butt_on' onClick={deleteData}>Delete this game</button>
             <Link to={"/"}>
                 <button className='nice_butt_on'>Back</button>

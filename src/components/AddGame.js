@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../Style/AddGame.css';
+import axios from 'axios';
 
 function AddGame() {
   const formRef = useRef(null);
@@ -16,9 +17,19 @@ function AddGame() {
     const description = event.target.description.value;
     const releasedate = event.target.releasedate.value;
     const systems = event.target.systems.value;
+    const agerating = event.target.agerating.value;
+    const thumbnail = event.target.thumbnail.value;
 
     // Display input values in an alert
-    alert(`Game: ${gamename}\nGameID: ${gameid}\nGenre: ${genre}\nVersion: ${version}\nDescription: ${description}\nRelease Date: ${releasedate}\nSystems: ${systems}`);
+    alert(`Data to insert.\nGame: ${gamename}\nGameID: ${gameid}\nGenre: ${genre}\nVersion: ${version}\nDescription: ${description}\nRelease Date: ${releasedate}\nSystems: ${systems}\nAge Rating: ${agerating}\nThumbnail Link: ${thumbnail}`);
+
+    const sql = `insert into game values (${gameid},'${gamename}','${description}','${releasedate}','${systems}','${version}','${genre}','${agerating}','${thumbnail}')`;
+    axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+      .then(Response => {
+        alert("Insert successfully")
+        window.location = '/';
+      })
+      .catch(error => alert(error));
 
     // Reset the form
     formRef.current.reset();
@@ -55,6 +66,10 @@ function AddGame() {
 
         <label htmlFor="systems">Systems</label>
         <input type="text" id="systems" name="systems" required />
+        <br />
+
+        <label htmlFor="agerating">Age Rating</label>
+        <input type="text" id="agerating" name="agerating" required />
         <br />
 
         <label htmlFor="thumbnail">Thumbnail Link:</label>

@@ -7,25 +7,31 @@ function Home() {
         <main>
             <div className='content'>
                 <div className='title'>
-                    <h1 className='title'>Content management system</h1>
+                    <h1 className='title'>Game management system</h1>
                 </div>
                 <hr></hr>
                 <div className='boxcontain'>
-                    <div className='box'>
-                        <b className='boxtitle'>
-                            <Link className='link' to={"/App"}>All games</Link>
-                        </b>
-                    </div>
-                    <div className='box'>
-                        <b className='boxtitle'>
-                            <Link className='link' to={"/"}>All servers</Link>
-                        </b>
-                    </div>
-                    <div className='box'>
-                        <b className='boxtitle'>
-                            <Link className='link' to={"/"}>All players</Link>
-                        </b>
-                    </div>
+                    <Link className='link' to={"/App"}>
+                        <div className='box'>
+                            <b className='boxtitle'>
+                                All games
+                            </b>
+                        </div>
+                    </Link>
+                    <Link className='link' to={"/"}>
+                        <div className='box'>
+                            <b className='boxtitle'>
+                                All servers
+                            </b>
+                        </div>
+                    </Link>
+                    <Link className='link' to={"/"}>
+                        <div className='box'>
+                            <b className='boxtitle'>
+                                All accounts
+                            </b>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </main>

@@ -131,6 +131,21 @@ app.get('/api/get-topplayer', async (req, res, next) => {
     res.json(result);
 });
 
+app.post('/api/register-account', async (req, res, next) => {
+  try {
+    const { username, email, password } = req.body;
+    if (!username || !email || !password) {
+      return res.status(400).json({ error: 'All fields not provided' });
+    }
+    const sql = `INSERT INTO account (username, email, password, accountregisterdate) VALUES (${username}, ${email}, ${password}, NOW())`
+    const result = await db.query(sql);
+    res.json(result);
+  } catch (error) {
+    console.error(err);
+      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+  }
+});
+
   app.post('/api/execute-query', async (req, res, next) => {
     try {
       const { sql } = req.body;

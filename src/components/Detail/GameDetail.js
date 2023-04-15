@@ -2,11 +2,14 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import './Style/GameDetail.css';
+import '../../Style/GameDetail.css';
 
 const GameDetail = () => {
     const { slug } = useParams(); // Access the 'slug' parameter from the URL
+
     const [gameData, setGameData] = useState([]);
+    const [serverData, setServerData] = useState([]);
+    const [playerData, setPlayerData] = useState([]);
 
     const fetchData = () => {
         const sql = `select * from game where gameid=${slug}`
@@ -14,16 +17,38 @@ const GameDetail = () => {
             // if fetching successfully
             .then(response => {
                 setGameData(response.data);
-                
             })
             .catch(err => alert(err));
-        console.log(gameData);
+    }
+
+    const fetchServerData = () => {
+        // const sql = `select * from game_server where gameid=${slug}`
+        axios.get(`https://gamedb-api-service.up.railway.app/api/get-serverlist?gameid=${slug}`)
+            // if fetching game server successfully
+            .then(response => {
+                setServerData(response.data);
+            })
+            .catch(err => alert(err));
+    }
+
+    const fetchPlayer = () => {
+        // const sql = `select * from game_server where gameid=${slug}`
+        axios.get(`https://gamedb-api-service.up.railway.app/api/get-topplayer?gameid=${slug}&count=5`)
+            // if fetching game server successfully
+            .then(response => {
+                setPlayerData(response.data);
+            })
+            .catch(err => alert(err));
     }
 
     useEffect(() => {
         fetchData();
+        fetchServerData();
+        fetchPlayer();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+
+
 
     const deleteData = (e) => {
         e.preventDefault();
@@ -41,15 +66,15 @@ const GameDetail = () => {
         <main>
             <h1>Game Detail Page: Game ID = {slug}</h1>
 
-            <img height={"450px"} src={gameData[0] ? gameData[0].thumbnail_link  : <span>Fetch thumbnail...</span> } alt="fetch thumbnail..."/>
-            <br/>
+            <img height={"450px"} src={gameData[0] ? gameData[0].thumbnail_link : <span>Fetch thumbnail...</span>} alt="fetch thumbnail..." />
+            <br />
 
             <div className="game-item">
                 {gameData.length > 0 ? (
                     // Render data if available
                     gameData.map(item => (
                         <div key={item.gameid}>
-                            <p>Game: {item.gamename}</p>
+                            <p className="bold">Game: {item.gamename}</p>
                             <p>GameID: {item.gameid}</p>
                             <p>Genre: {item.genre}</p>
                             <p>Version: {item.version}</p>
@@ -67,18 +92,40 @@ const GameDetail = () => {
 
             {/* All server available for this game */}
             <div className="game-item">
-                <p>Game Server</p>
-                <p>Server ID: 1 (demo)</p>
-                <p>Server ID: 2 (demo)</p>
-                <p>Server ID: 3 (demo)</p>
+                <p className="bold">Game Server(s)</p>
+                {serverData.length > 0 ? (
+                    // Render if server available
+                    serverData.map(item => (
+                        <div key={item.gameserverid}>
+                            <p>Server: &nbsp;
+                                <Link to={`/server-detail/${item.gameserverid}`}>{item.hostname}</Link>
+                            </p>
+                        </div>
+                    ))
+                ) : (
+                    // Render message if no data available
+                    <p>Data Fetching...</p>
+                )}
             </div>
 
-            {/* All players who play this game */}
+            {/* Top 5 players of this game */}
             <div className="game-item">
-                <p>Player</p>
-                <p>Player ID: 1 (demo)</p>
-                <p>Player ID: 2 (demo)</p>
-                <p>Player ID: 3 (demo)</p>
+
+                <Link to={`top-player`}>
+                    <p className="bold">Top Player(s)</p>
+                </Link>
+                
+                {playerData.length > 0 ? (
+                    // Render if server available
+                    playerData.map(item => (
+                        <div key={item.gameaccountid}>
+                            <p>{item.ingamename} : {item.accountlevel}</p>
+                        </div>
+                    ))
+                ) : (
+                    // Render message if no data available
+                    <p>Data Fetching...</p>
+                )}
             </div>
 
             <Link to={`/editgame/${slug}`}>

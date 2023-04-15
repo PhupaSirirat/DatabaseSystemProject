@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import '../Style/AddGame.css';
+import '../../Style/AddGame.css';
 import axios from 'axios';
 
 function AddGame() {

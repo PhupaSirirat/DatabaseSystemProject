@@ -13,21 +13,24 @@ app.get('/', async (req, res, next) => {
     res.send({message: 'If you see this when visiting the landing page. Then it works! Documentation is available on Github - https://github.com/PhupaSirirat/DatabaseSystemProject'})
 })
 
-app.get('/api/get-data', async (req, res, next) => {
-    const params = new URLSearchParams(req.query);
+app.get('/api/get-serverlist', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
     let sql = '';
-    if (params.get('table') && !params.get('field') && !params.get('value')) {
-      sql = 'SELECT * FROM ' + params.get('table');
+    if (!params.get('gameid') && !params.get('count')) {
+      sql = 'SELECT * FROM game_server';
     }
-    else if (params.get('table') && params.get('field') && params.get('value')) {
-      sql = `SELECT * FROM ${params.get('table')} WHERE ${params.get('field')} = '${params.get('value')}'`;
+    else if (params.get('gameid') && !params.get('count')) {
+      sql = `SELECT * FROM game_server WHERE gameid = ${params.get('gameid')}`;
+    }
+    else if (params.get('gameid') && params.get('count')) {
+      sql = `SELECT * FROM game_server WHERE gameid = ${params.get('gameid')} LIMIT ${params.get('count')}`;
     }
     if (!sql) {
       return;
     }
     const result = await db.query(sql);
     res.json(result);
-  });
+});
   
   app.post('/api/execute-query', async (req, res, next) => {
     try {
@@ -46,6 +49,22 @@ app.get('/api/get-data', async (req, res, next) => {
 
 
   // DEPRACATED ROUTES - USABLE BUT NO LONGER MAINTAINED
+
+  app.get('/api/get-data', async (req, res, next) => {
+    const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (params.get('table') && !params.get('field') && !params.get('value')) {
+      sql = 'SELECT * FROM ' + params.get('table');
+    }
+    else if (params.get('table') && params.get('field') && params.get('value')) {
+      sql = `SELECT * FROM ${params.get('table')} WHERE ${params.get('field')} = '${params.get('value')}'`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+  });
 
   app.post('/api/post-data', async (req, res, next) => {
     const params = new URLSearchParams(req.query);

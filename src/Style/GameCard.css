@@ -6,10 +6,6 @@
   margin-bottom: 10px;
   background-color: #f8f8f8;
   width: auto;
-  margin: 10px;
-  min-width: 150px;
-  max-width: 250px;
-  height: 100px;
 }
 
 .GameCard p {
@@ -26,7 +22,6 @@
 
 .allGames {
   width: 30rem;
-
 }
 
 .allGames a {

@@ -33,9 +33,11 @@ function App() {
   }
 
   return (
-    <main>
-      <h1>All Game Page</h1>
-
+    <main className='content'>
+      <div className='title'>
+        <h1>All Game Page</h1>
+      </div>
+      <hr></hr>
       <form onSubmit={handleSubmit}>
         <label htmlFor="sql">Execute SQL query:</label>
         <input type="text" id="sql" name="sql" value={sql} onChange={(e) => setSql(e.target.value)} />

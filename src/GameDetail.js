@@ -22,6 +22,16 @@ const GameDetail = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
+    const deleteData = () => {
+        axios.get(`https://gamedb-api-service.up.railway.app/api/query?sql=delete+from+game+where+gameid-${slug}`)
+            // if delete successfully
+            .then(response => {
+                alert("This game has been deleted successfully")
+                window.location = "/";
+            })
+            .catch(error => alert(error));
+    }
+
     return (
         <main>
             <h1>Game Detail Page: game_id = {slug}</h1>
@@ -60,8 +70,8 @@ const GameDetail = () => {
                 <p>Player ID: 2 (demo)</p>
                 <p>Player ID: 3 (demo)</p>
             </div>
-
-            <button className='nice_dark_butt_on'>Delete this game</button>
+                
+            <button className='nice_dark_butt_on' onClick={deleteData}>Delete this game</button>
             <Link to={"/"}>
                 <button className='nice_butt_on'>Back</button>
             </Link>

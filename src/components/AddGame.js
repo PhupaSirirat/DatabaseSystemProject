@@ -57,6 +57,10 @@ function AddGame() {
         <input type="text" id="systems" name="systems" required />
         <br />
 
+        <label htmlFor="thumbnail">Thumbnail Link:</label>
+        <input type="text" id="thumbnail" name="thumbnail" required />
+        <br />
+
         <input type="submit" value="Submit" />
       </form>
 

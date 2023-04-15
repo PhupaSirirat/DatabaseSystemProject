@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
 const port = process.env.PORT || 3001
 
@@ -6,18 +7,13 @@ const db = require('./database')
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
-app.use(function (req, res, next) {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-    next();
-});
+app.use(cors());
 
-app.get('/', async (req, res) => {
+app.get('/', async (req, res, next) => {
     res.send({message: 'If you see this when visiting the landing page. Then it works! Documentation is available on Github - https://github.com/PhupaSirirat/DatabaseSystemProject'})
 })
 
-app.get('/api/get-data', async (req, res) => {
+app.get('/api/get-data', async (req, res, next) => {
     const params = new URLSearchParams(req.query);
     let sql = '';
     if (params.get('table') && !params.get('field') && !params.get('value')) {
@@ -33,7 +29,7 @@ app.get('/api/get-data', async (req, res) => {
     res.json(result);
   });
   
-app.post('/api/execute-query', async (req, res) => {
+app.post('/api/execute-query', async (req, res, next) => {
   const { sql } = req.body;
   if (!sql) {
     return;
@@ -45,7 +41,7 @@ app.post('/api/execute-query', async (req, res) => {
 
   // DEPRACATED ROUTES - USABLE BUT NO LONGER MAINTAINED
 
-  app.post('/api/post-data', async (req, res) => {
+  app.post('/api/post-data', async (req, res, next) => {
     const params = new URLSearchParams(req.query);
     let sql = '';
     if (params.get('table') && params.get('columns') && params.get('values')) {
@@ -64,7 +60,7 @@ app.post('/api/execute-query', async (req, res) => {
     res.json(result);
   });
   
-  app.post('/api/post-data-fill', async (req, res) => {
+  app.post('/api/post-data-fill', async (req, res, next) => {
     const params = new URLSearchParams(req.query);
     let sql = '';
     if (params.get('table') && params.get('values')) {
@@ -80,7 +76,7 @@ app.post('/api/execute-query', async (req, res) => {
     res.json(result);
   });
 
-  app.get('/api/query', async (req, res) => {
+  app.get('/api/query', async (req, res, next) => {
     const params = new URLSearchParams(req.query);
     let sql = '';
     if (params.get('sql')) {

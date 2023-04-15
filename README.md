@@ -13,6 +13,62 @@
 
 ---
 
+`GET` `/api/get-accountlist`
+
+Return a list of accounts in JSON format. You can limit results with `count`.
+
+Example: `/api/get-accountlist?count=3`
+
+---
+
+`GET` `/api/get-accountdetails?accountid=xxx`
+
+Return details of the specified account in JSON format.
+
+Example: `/api/get-accountdetails?accountid=3`
+
+---
+
+`GET` `/api/get-serverlist`
+
+Return a list of servers in JSON format. You can filter it further with `gameid` and limit results with `count`.
+
+Example: `/api/get-serverlist?gameid=1&count=5`
+
+---
+
+`GET` `/api/get-serverdetails`
+
+Return details of the specified server in JSON format.
+
+Example: `/api/get-serverdetails?gameid=3`
+
+---
+
+`GET` `/api/get-playerlist`
+
+Return a list of players in JSON format. You can filter it further with `gameid` or `accountid`, and limit results with `count`.
+
+Example: `/api/get-playerlist?accountid=2&count=5`
+
+---
+
+`GET` `/api/get-playerdetails?gameaccountid=xxx`
+
+Return details of the specified player (ingame_account) in JSON format .
+
+Example: `/api/get-playerdetails?gameaccountid=5`
+
+---
+
+`GET` `/api/get-topplayer`
+
+Return a list of players sorted by `accountlevel` descendingly in JSON format. You can filter it further with `gameid` and limit results with `count`.
+
+Example: `/api/get-topplayer?gameid=1&count=3`
+
+---
+
 `POST` `/api/execute-query`
 
 Directly run SQL code in the request body on the database.
@@ -28,30 +84,6 @@ axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql 
 ```
 
 :warning: The route handler does not sanitize user input.
-
----
-
-`GET` `/api/get-serverdetails`
-
-Return details of the specified server in JSON format.
-
-Example: `/api/get-serverdetails?gameid=3`
-
----
-
-`GET` `/api/get-serverlist`
-
-Return a list of servers in JSON format. You can filter it further with `gameid` and limit results with `count`.
-
-Example: `/api/get-data?gameid=1&count=5`
-
----
-
-`GET` `/api/get-topplayer`
-
-Return a list of players sorted by `accountlevel` descendingly in JSON format. You can filter it further with `gameid` and limit results with `count`.
-
-Example: `/api/get-topplayer?gameid=1&count=3`
 
 ---
 

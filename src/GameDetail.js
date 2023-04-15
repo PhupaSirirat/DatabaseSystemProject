@@ -9,7 +9,8 @@ const GameDetail = () => {
     const [gameData, setGameData] = useState([]);
 
     const fetchData = () => {
-        axios.get(`https://gamedb-api-service.up.railway.app/api/query?sql=select+*+from+game+where+gameid-${slug}`)
+        const sql = `select * from game where gameid=${slug}`
+        axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             // if fetching successfully
             .then(response => {
                 setGameData(response.data);
@@ -22,8 +23,10 @@ const GameDetail = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
-    const deleteData = () => {
-        axios.get(`https://gamedb-api-service.up.railway.app/api/query?sql=delete+from+game+where+gameid-${slug}`)
+    const deleteData = (e) => {
+        e.preventDefault();
+        const sql = `delete from game where gameid=${slug}`;
+        axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             // if delete successfully
             .then(response => {
                 alert("This game has been deleted successfully")
@@ -51,7 +54,7 @@ const GameDetail = () => {
                     ))
                 ) : (
                     // Render message if no data available
-                    <p>Fetching data...</p>
+                    <p>Data Fetching...</p>
                 )}
             </div>
 
@@ -70,7 +73,7 @@ const GameDetail = () => {
                 <p>Player ID: 2 (demo)</p>
                 <p>Player ID: 3 (demo)</p>
             </div>
-                
+
             <button className='nice_dark_butt_on' onClick={deleteData}>Delete this game</button>
             <Link to={"/"}>
                 <button className='nice_butt_on'>Back</button>

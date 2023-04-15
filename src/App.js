@@ -13,7 +13,8 @@ function App() {
   }, []);
 
   const getAllGames = () => {
-    axios.get(`https://gamedb-api-service.up.railway.app/api/query?sql=select+*+from+game`)
+    const sql = `select * from game`;
+    axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
       .then(response => {
         console.log('connected');
         setData(response.data); // Update state with fetched data
@@ -63,7 +64,7 @@ function App() {
           ))
         ) : (
           // Render message if no data available
-          <p>Fetching data...</p>
+          <p>Data fetching...</p>
         )}
       </div>
     </main>

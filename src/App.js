@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Style/GameCard.css';
 import { Link } from 'react-router-dom';
-import './Style/GameCard.css';
+import './Style/AllGames.css'
 import axios from 'axios';
 
 function App() {
@@ -33,11 +33,10 @@ function App() {
   }
 
   return (
-    <main className='content'>
+    <main>
       <div className='title'>
         <h1>All Game Page</h1>
       </div>
-      <hr></hr>
       <form onSubmit={handleSubmit}>
         <label htmlFor="sql">Execute SQL query:</label>
         <input type="text" id="sql" name="sql" value={sql} onChange={(e) => setSql(e.target.value)} />
@@ -52,6 +51,10 @@ function App() {
         <button className='nice_dark_butt_on'>Accounts</button>
       </Link>
 
+      <Link to={"/"}>
+        <button className='nice_butt_on'>Back</button>
+      </Link>
+
       <div className="allGames">
         {data.length > 0 ? (
           // Render data if available
@@ -59,12 +62,8 @@ function App() {
             <Link to={`/game-detail/${item.gameid}`}>
               <div key={item.gameid} className="GameCard">
                 <p>Game: {item.gamename}</p>
-                {/* <p>GameID: {item.gameid}</p> */}
                 <p>Genre: {item.genre}</p>
                 <p>Version: {item.version}</p>
-                {/* <p>Desc: {item.description}</p> */}
-                {/* <p>Release Date: {item.releasedate}</p> */}
-                {/* <p>Systems: {item.systems}</p> */}
               </div>
             </Link>
           ))

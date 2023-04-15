@@ -46,7 +46,7 @@ input[type="submit"]:hover {
   background-color: #0056b3;
 }
 
-.addgame main {
+main {
   display: flex;
   flex-direction: column;
   justify-content: center;

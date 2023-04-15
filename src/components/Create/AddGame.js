@@ -79,7 +79,7 @@ function AddGame() {
         <input type="submit" value="Submit" />
       </form>
 
-      <Link to={"/"}>
+      <Link to={"/App"}>
         <button className='nice_butt_on'>Back</button>
       </Link>
     </main>

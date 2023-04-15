@@ -114,7 +114,7 @@ const GameDetail = () => {
                 <Link to={`top-player`}>
                     <p className="bold">Top Player(s)</p>
                 </Link>
-                
+
                 {playerData.length > 0 ? (
                     // Render if server available
                     playerData.map(item => (
@@ -131,8 +131,10 @@ const GameDetail = () => {
             <Link to={`/editgame/${slug}`}>
                 <button className='nice_dark_butt_on'>Edit game details</button>
             </Link>
+            <br />
             <button className='nice_dark_butt_on' onClick={deleteData}>Delete this game</button>
-            <Link to={"/"}>
+            <br />
+            <Link to={"/App"}>
                 <button className='nice_butt_on'>Back</button>
             </Link>
         </main>

@@ -21,6 +21,14 @@ export default function Accounts() {
         <main>
             <h1>Accounts</h1>
 
+            <Link to={`create-account`}>
+                <button className='nice_dark_butt_on'>Create account</button>
+            </Link>
+
+            <Link to={`/App`}>
+                <button className='nice_butt_on'>Back</button>
+            </Link>
+
             {accounts.length > 0 ? (
                 // Render if server available
                 accounts.map(item => (
@@ -35,15 +43,6 @@ export default function Accounts() {
                 // Render message if no data available
                 <p>Data Fetching...</p>
             )}
-            
-
-            <Link to={`create-account`}>
-                <button className='nice_dark_butt_on'>Create account</button>
-            </Link>
-
-            <Link to={`/`}>
-                <button className='nice_butt_on'>Back</button>
-            </Link>
         </main>
     )
 }

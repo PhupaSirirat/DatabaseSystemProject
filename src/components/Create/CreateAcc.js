@@ -13,16 +13,14 @@ export default function CreateAcc() {
         const password = event.target.password.value;
     
         // Display input values in an alert
-        // alert(`Data to insert.\nGame: ${gamename}\nGameID: ${gameid}\nGenre: ${genre}\nVersion: ${version}\nDescription: ${description}\nRelease Date: ${releasedate}\nSystems: ${systems}\nAge Rating: ${agerating}\nThumbnail Link: ${thumbnail}`);
+        alert(`Data to create.\nUsername: ${username}\nEmail: ${email}\nPassword: ${password}`);
     
-        // const sql = `insert into game values (${gameid},'${gamename}','${description}','${releasedate}','${systems}','${version}','${genre}','${agerating}','${thumbnail}')`;
-        // axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-        //   .then(Response => {
-        //     alert("Insert successfully")
-        //     window.location = '/';
-        //   })
-        //   .catch(error => alert(error));
-
+        axios.post(`https://gamedb-api-service.up.railway.app/api/register-account`, {username: username, email: email, password: password})
+          .then(Response => {
+            alert("Create account successfully")
+            window.location = '/accounts';
+          })
+          .catch(error => alert(error));
       };
 
 

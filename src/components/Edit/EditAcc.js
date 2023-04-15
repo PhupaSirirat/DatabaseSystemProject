@@ -24,15 +24,15 @@ export default function EditAcc() {
         const password = event.target.password.value;
 
         // Display input values in an alert
-        // alert(`Data to Update.\nGame: ${gamename}\nGameID: ${gameid}\nGenre: ${genre}\nVersion: ${version}\nDescription: ${description}\nRelease Date: ${releasedate}\nSystems: ${systems}\nAge Rating: ${agerating}\nThumbnail Link: ${thumbnail}`);
+        alert(`Data to Update.\nUsername: ${username}\nEmail: ${email}\nPassword: ${password}`);
 
-        // const sql = `update game set gamename='${gamename}', description='${description}',releasedate='${releasedate}',systems='${systems}',version='${version}',genre='${genre}',agerating='${agerating}',thumbnail_link='${thumbnail}' where gameid='${gameid}'`;
-        // axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-        //     .then(Response => {
-        //         alert("Update successfully")
-        //         window.location = `/game-detail/${slug}`;
-        //     })
-        //     .catch(error => alert(error));
+        const sql = `update account set username='${username}', email='${email}', password='${password}' where accountid='${slug}'`;
+        axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+            .then(Response => {
+                alert("Update successfully")
+                window.location = `/accounts`;
+            })
+            .catch(error => alert(error));
     };
 
     const fetchData = () => {
@@ -45,49 +45,25 @@ export default function EditAcc() {
 
     return (
         <main>
-            <h1>Edit Game Page: Game ID = {slug}</h1>
+            <h1>Edit Game Page: Account ID = {slug}</h1>
 
             <form onSubmit={handleSubmit}>
-                <label htmlFor="gamename">Game:</label>
-                <input type="text" id="gamename" name="gamename" defaultValue={data.gamename} required />
+                <label htmlFor="username">Username: </label>
+                <input type="text" id="username" name="username" defaultValue={data.length > 0 ? data[0].username: ""} required />
                 <br />
 
-                <label htmlFor="gameid">GameID:</label>
-                <input type="text" id="gameid" name="gameid" defaultValue={data.gameid} readOnly />
+                <label htmlFor="email">Email: </label>
+                <input type="text" id="email" name="email" defaultValue={data.length > 0 ? data[0].email: ""} required />
                 <br />
 
-                <label htmlFor="genre">Genre:</label>
-                <input type="text" id="genre" name="genre" defaultValue={data.genre} required />
+                <label htmlFor="password">Password: </label>
+                <input type="text" id="password" name="password" defaultValue={data.length > 0 ? data[0].password: ""} required />
                 <br />
 
-                <label htmlFor="version">Version:</label>
-                <input type="text" id="version" name="version" defaultValue={data.version} required />
-                <br />
-
-                <label htmlFor="description">Description</label>
-                <input type="text" id="description" name="description" defaultValue={data.description} required />
-                <br />
-
-                <label htmlFor="releasedate">Release Date</label>
-                <input type="text" id="releasedate" name="releasedate" defaultValue={data.releasedate} required />
-                <br />
-
-                <label htmlFor="systems">Systems</label>
-                <input type="text" id="systems" name="systems" defaultValue={data.systems} required />
-                <br />
-
-                <label htmlFor="agerating">Age Rating</label>
-                <input type="text" id="agerating" name="agerating" defaultValue={data.agerating} required />
-                <br />
-
-                <label htmlFor="thumbnail">Thumbnail Link:</label>
-                <input type="text" id="thumbnail" name="thumbnail" defaultValue={data.thumbnail_link} required />
-                <br />
-
-                <input type="submit" value="Submit Edit" />
+                <input type="submit" value="Submit" />
             </form>
 
-            <Link to={`/game-detail/${slug}`}>
+            <Link to={`/accounts`}>
                 <button className='nice_butt_on'>Back</button>
             </Link>
         </main>

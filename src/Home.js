@@ -1,6 +1,5 @@
 import './Style/Home.css';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 function Home() {
     return (

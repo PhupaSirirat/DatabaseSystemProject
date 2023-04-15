@@ -9,7 +9,7 @@ const GameDetail = () => {
     const [gameData, setGameData] = useState([]);
 
     const fetchData = () => {
-        axios.get(`http://localhost:3001/api/query?sql=select+*+from+game+where+gameid-${slug}`)
+        axios.get(`http://gamedb-api-service.up.railway.app/api/query?sql=select+*+from+game+where+gameid-${slug}`)
             // if fetching successfully
             .then(response => {
                 setGameData(response.data);

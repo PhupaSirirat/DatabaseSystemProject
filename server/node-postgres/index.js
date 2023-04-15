@@ -59,7 +59,7 @@ app.get('/api/post-data-fill', async (req, res) => {
     let new_values = params.get('values').replace(/\~/g, ', ')
     new_values = new_values.replace(/\./g, "'")
     new_values = new_values.replace(/\+/g, " ")
-    sql = `INSERT INTO ${params.get('table')} VALUES (${new_cols})`
+    sql = `INSERT INTO ${params.get('table')} VALUES (${new_values})`
   }
   if (!sql) {
     return;

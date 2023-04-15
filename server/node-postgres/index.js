@@ -84,10 +84,10 @@ app.get('/api/get-serverlocation', async (req, res, next) => {
       sql = `SELECT * FROM server_location WHERE serverlocationid = ${params.get('serverlocationid')}`;
     }
     else if (!params.get('serverlocationid') && params.get('region') && !params.get('colocation_country')) {
-      sql = `SELECT * FROM server_location WHERE region = ${params.get('region')}`;
+      sql = `SELECT * FROM server_location WHERE region = '${params.get('region').replace(/\+/g, " ")}'`;
     }
     else if (!params.get('serverlocationid') && !params.get('region') && params.get('colocation_country')) {
-      sql = `SELECT * FROM server_location WHERE colocation_country = ${params.get('colocation_country')}`;
+      sql = `SELECT * FROM server_location WHERE colocation_country = '${params.get('colocation_country').replace(/\+/g, " ")}'`;
     }
     if (!sql) {
       return;

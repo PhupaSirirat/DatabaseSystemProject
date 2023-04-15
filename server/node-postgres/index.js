@@ -96,6 +96,19 @@ app.get('/api/get-serverlocation', async (req, res, next) => {
     res.json(result);
 });
 
+app.get('/api/get-serverlocationid', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (params.get('gameserverid')) {
+      sql = `SELECT serverlocationid FROM game_server WHERE gameserverid = ${params.get('gameserverid')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
 app.get('/api/get-playerdetails', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';

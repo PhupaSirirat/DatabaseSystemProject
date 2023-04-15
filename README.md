@@ -23,7 +23,6 @@ Example:
 axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
       .then(response => {
         console.log(response.data);
-        getAllGames(); // Fetch updated data
       })
       .catch(err => alert(err));
 ```

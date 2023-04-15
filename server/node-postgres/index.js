@@ -105,8 +105,7 @@ app.get('/api/get-serverlocationfromgameserverid', async (req, res, next) => {
     if (!sql) {
       return;
     }
-    let result = await db.query(sql);
-    result = JSON.stringify(result);
+    const result = await db.query(sql);
     sql = `SELECT * FROM server_location WHERE serverlocationid = ${result}`
     const finalResult = await db.query(sql);
     res.json(finalResult);

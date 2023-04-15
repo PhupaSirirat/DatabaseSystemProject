@@ -45,6 +45,19 @@ app.get('/api/get-serverdetails', async (req, res, next) => {
     res.json(result);
 });
 
+app.get('/api/get-playerdetails', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (params.get('gameaccountid')) {
+      sql = `SELECT * FROM ingame_account WHERE gameaccountid = ${params.get('gameaccountid')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
 app.get('/api/get-playerlist', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';

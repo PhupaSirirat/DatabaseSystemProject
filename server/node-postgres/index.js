@@ -74,6 +74,28 @@ app.get('/api/get-serverdetails', async (req, res, next) => {
     res.json(result);
 });
 
+app.get('/api/get-serverlocation', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (!params.get('serverlocationid') && !params.get('region') && !params.get('colocation_country')) {
+      sql = `SELECT * FROM server_location`;
+    }
+    else if (params.get('serverlocationid') && !params.get('region') && !params.get('colocation_country')) {
+      sql = `SELECT * FROM server_location WHERE serverlocationid = ${params.get('serverlocationid')}`;
+    }
+    else if (!params.get('serverlocationid') && params.get('region') && !params.get('colocation_country')) {
+      sql = `SELECT * FROM server_location WHERE region = ${params.get('region')}`;
+    }
+    else if (!params.get('serverlocationid') && !params.get('region') && params.get('colocation_country')) {
+      sql = `SELECT * FROM server_location WHERE colocation_country = ${params.get('colocation_country')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
 app.get('/api/get-playerdetails', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';

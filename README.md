@@ -41,7 +41,15 @@ Example: `/api/get-serverlist?gameid=1&count=5`
 
 Return details of the specified server in JSON format.
 
-Example: `/api/get-serverdetails?gameid=3`
+Example: `/api/get-serverdetails?gameserverid=3`
+
+---
+
+`GET` `/api/get-serverlocation`
+
+Return details of the specified server_location in JSON format. You can filter it further with `serverlocationid` or `region` or `colocation_country`. Use `+` instead of spaces.
+
+Example: `/api/get-serverlocation?region=Asia`
 
 ---
 
@@ -69,9 +77,45 @@ Example: `/api/get-topplayer?gameid=1&count=3`
 
 ---
 
+`POST` `/api/add-server`
+
+Insert a new row into `game_server` table with `gameid`, `serverlocationid`, `ipaddress`,  `hostname`, `port`, `maxplayercount`.
+
+Example:
+
+```
+axios.post(`https://gamedb-api-service.up.railway.app/api/add-server`, {gameid: gameid, serverlocationid: serverlocationid, ipaddress: ipaddress, hostname: hostname, port: port, maxplayercount: maxplayercount})
+          .then(Response => {
+            console.log(response.data);
+          })
+          .catch(err => alert(err));
+```
+
+:warning: The route handler does not sanitize user input.
+
+---
+
+`POST` `/api/register-account`
+
+Insert a new row into `account` table with `username`, `email`, `password`, and current date.
+
+Example:
+
+```
+axios.post(`https://gamedb-api-service.up.railway.app/api/register-account`, {username: username, email: email, password: password})
+          .then(Response => {
+            console.log(response.data);
+          })
+          .catch(err => alert(err));
+```
+
+:warning: The route handler does not sanitize user input.
+
+---
+
 `POST` `/api/execute-query`
 
-Directly run SQL code in the request body on the database.
+Directly run SQL query in the request body on the database.
 
 Example:
 

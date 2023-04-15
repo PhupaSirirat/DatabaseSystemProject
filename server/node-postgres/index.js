@@ -16,14 +16,11 @@ app.get('/', async (req, res, next) => {
 app.get('/api/get-accountlist', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';
-    if (!params.get('gameaccountid') && !params.get('count')) {
+    if (!params.get('count')) {
       sql = 'SELECT * FROM account';
     }
-    else if (params.get('gameaccountid') && !params.get('count')) {
-      sql = `SELECT * FROM account WHERE gameaccountid = ${params.get('gameaccountid')}`;
-    }
-    else if (params.get('gameaccountid') && params.get('count')) {
-      sql = `SELECT * FROM account WHERE gameaccountid = ${params.get('gameaccountid')} LIMIT ${params.get('count')}`;
+    else if (params.get('count')) {
+      sql = `SELECT * FROM account LIMIT ${params.get('count')}`;
     }
     if (!sql) {
       return;

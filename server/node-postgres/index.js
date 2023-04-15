@@ -96,7 +96,7 @@ app.get('/api/get-serverlocation', async (req, res, next) => {
     res.json(result);
 });
 
-app.get('/api/get-serverlocationid', async (req, res, next) => {
+app.get('/api/get-serverlocationfromgameserverid', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';
     if (params.get('gameserverid')) {
@@ -106,7 +106,9 @@ app.get('/api/get-serverlocationid', async (req, res, next) => {
       return;
     }
     const result = await db.query(sql);
-    res.json(result);
+    sql = `SELECT * FROM server_location WHERE serverlocationid = ${result}`
+    const finalResult = await db.query(sql);
+    res.json(finalResult);
 });
 
 app.get('/api/get-playerdetails', async (req, res, next) => {

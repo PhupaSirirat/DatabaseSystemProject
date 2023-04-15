@@ -12,6 +12,7 @@ import PlayerDetail from '../components/Detail/PlayerDetail';
 import Accounts from '../components/Accounts';
 import CreateAcc from '../components/Create/CreateAcc';
 import AccountDetail from '../components/Detail/AccountDetail';
+import EditAccount from '../components/Edit/EditAcc';
 
 const Routers = () => {
     return (
@@ -28,6 +29,7 @@ const Routers = () => {
                 <Route path="/accounts" element={<Accounts />}/>
                 <Route path="/accounts/create-account" element={<CreateAcc />}/>
                 <Route path="/accounts/account-detail/:slug" element={<AccountDetail />}/>
+                <Route path="/edit-account/:slug" element={<EditAccount />}/>
             </Routes>
         </BrowserRouter>
     )

@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function AccountDetail() {
+
+    // slug -> accountid
     const { slug } = useParams();
     const [playerData, setPlayerData] = useState([]);
 
@@ -43,7 +45,7 @@ export default function AccountDetail() {
                 )}
             </div>
 
-            <Link to={`/`}>
+            <Link to={`/edit-account/${slug}`}>
                 <button className='nice_dark_butt_on'>Edit account details</button>
             </Link>
 

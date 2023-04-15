@@ -36,8 +36,8 @@ function AddGame() {
   };
 
   return (
-    <main>
-      <h1>Add Game Page</h1>
+    <main className='addgame'>
+      <h1 className='addgame'>Add Game Page</h1>
 
       <form ref={formRef} onSubmit={handleSubmit}>
         <label htmlFor="gamename">Game:</label>

@@ -44,15 +44,11 @@ function App() {
       </form>
 
       <Link to={"/addgame"}>
-        <button className='nice_butt_on'>Add Game</button>
-      </Link>
-
-      <Link to={"/accounts"}>
-        <button className='nice_dark_butt_on'>Accounts</button>
+        <button className='nice_dark_butt_on'>Add new game</button>
       </Link>
 
       <Link to={"/"}>
-        <button className='nice_butt_on'>Back</button>
+        <button className='nice_butt_on'>Home</button>
       </Link>
 
       <div className="allGames">

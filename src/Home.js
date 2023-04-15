@@ -12,21 +12,35 @@ function Home() {
                 <Link className='link' to={"/App"}>
                     <div className='box'>
                         <b className='boxtitle'>
-                            All games
+                            Games
                         </b>
                     </div>
                 </Link>
-                <Link className='link' to={"/"}>
+                <Link className='link' to={"/allservers"}>
                     <div className='box'>
                         <b className='boxtitle'>
-                            All servers
+                            Servers
                         </b>
                     </div>
                 </Link>
                 <Link className='link' to={"/accounts"}>
                     <div className='box'>
                         <b className='boxtitle'>
-                            All accounts
+                            Accounts
+                        </b>
+                    </div>
+                </Link>
+                <Link className='link' to={"/server-locations"}>
+                    <div className='box'>
+                        <b className='boxtitle'>
+                            Server Locations
+                        </b>
+                    </div>
+                </Link>
+                <Link className='link' to={"/players"}>
+                    <div className='box'>
+                        <b className='boxtitle'>
+                            Players
                         </b>
                     </div>
                 </Link>

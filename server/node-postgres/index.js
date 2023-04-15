@@ -16,14 +16,14 @@ app.get('/', async (req, res, next) => {
 app.get('/api/get-serverlist', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';
-    if (!params.get('gameserverid') && !params.get('count')) {
+    if (!params.get('gameid') && !params.get('count')) {
       sql = 'SELECT * FROM game_server';
     }
-    else if (params.get('gameserverid') && !params.get('count')) {
-      sql = `SELECT * FROM game_server WHERE gameserverid = ${params.get('gameserverid')}`;
+    else if (params.get('gameid') && !params.get('count')) {
+      sql = `SELECT * FROM game_server WHERE gameid = ${params.get('gameid')}`;
     }
-    else if (params.get('gameserverid') && params.get('count')) {
-      sql = `SELECT * FROM game_server WHERE gameserverid = ${params.get('gameserverid')} LIMIT ${params.get('count')}`;
+    else if (params.get('gameid') && params.get('count')) {
+      sql = `SELECT * FROM game_server WHERE gameid = ${params.get('gameid')} LIMIT ${params.get('count')}`;
     }
     if (!sql) {
       return;

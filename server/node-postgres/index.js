@@ -181,6 +181,21 @@ app.post('/api/add-server', async (req, res, next) => {
   }
 });
 
+app.post('/api/create-serverlocatiom', async (req, res, next) => {
+  try {
+    const { region, colocation_country, colocation_company } = req.body;
+    if (!region || !colocation_country || !colocation_company) {
+      return res.status(400).json({ error: 'All fields not provided' });
+    }
+    const sql = `INSERT INTO server_location (region, colocation_country, colocation_company) VALUES ('${region}', '${colocation_country}', '${colocation_company}')`
+    const result = await db.query(sql);
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+  }
+});
+
 app.post('/api/register-account', async (req, res, next) => {
   try {
     const { username, email, password } = req.body;

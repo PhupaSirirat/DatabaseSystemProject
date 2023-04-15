@@ -4,7 +4,7 @@
 
 # Documentation #
 
-**Site URL** : `🚧 WIP`
+**Site URL** : `https://gamedb.up.railway.app/`
 
 **Backend API** : `gamedb-api-service.up.railway.app`
 
@@ -18,6 +18,24 @@
 Return a JSON of the queried table from the database. You can filter it further with `field` and `value`.
 
 Example: `/api/get-data?table=game&field=gameid&value=3`
+
+---
+
+`/api/post-data?table=xxx&columns=xxx&values=xxx`
+
+Insert a row into the specified table with the specified `values` in the respective `columns`. Use `~` to separate column names and values. (`~` decodes to `, `) Use `+` instead of spaces and `.` instead of ticks.
+
+Example: `/api/post-data?table=game_server&columns=gameserverid~hostname~port&values=1~.us001.~5003`
+
+---
+
+`/api/post-data-fill?table=xxx&values=xxx`
+
+Insert a row into the specified table and fill all columns with the respective `values`. You do not need to specify the column names. However, make sure the order of the values is in the same order as the columns in the table. Use `~` to separate values. (`~` decodes to `, `) Use `+` instead of spaces and `.` instead of ticks.
+
+:construction: The current implementation is very limiting in terms of characters it accepts. A beter one should be implemented in the future.
+
+Example: `/api/post-data-fill?table=game&values=69~.League+of+Legoland.~.Insanity+simulator.~.1999-01-08.~.PC.~.1.~.MOBA.~.M.~.LINK.`
 
 ---
 

@@ -13,6 +13,38 @@ app.get('/', async (req, res, next) => {
     res.send({message: 'If you see this when visiting the landing page. Then it works! Documentation is available on Github - https://github.com/PhupaSirirat/DatabaseSystemProject'})
 })
 
+app.get('/api/get-accountlist', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (!params.get('gameaccountid') && !params.get('count')) {
+      sql = 'SELECT * FROM account';
+    }
+    else if (params.get('gameaccountid') && !params.get('count')) {
+      sql = `SELECT * FROM account WHERE gameaccountid = ${params.get('gameaccountid')}`;
+    }
+    else if (params.get('gameaccountid') && params.get('count')) {
+      sql = `SELECT * FROM account WHERE gameaccountid = ${params.get('gameaccountid')} LIMIT ${params.get('count')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
+app.get('/api/get-accountdetails', async (req, res, next) => {
+  const params = new URLSearchParams(req.query);
+    let sql = '';
+    if (params.get('accountid')) {
+      sql = `SELECT * FROM account WHERE accountid = ${params.get('accountid')}`;
+    }
+    if (!sql) {
+      return;
+    }
+    const result = await db.query(sql);
+    res.json(result);
+});
+
 app.get('/api/get-serverlist', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';

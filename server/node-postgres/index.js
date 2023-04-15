@@ -137,11 +137,11 @@ app.post('/api/register-account', async (req, res, next) => {
     if (!username || !email || !password) {
       return res.status(400).json({ error: 'All fields not provided' });
     }
-    const sql = `INSERT INTO account (username, email, password, accountregisterdate) VALUES (${username}, ${email}, ${password}, NOW())`
+    const sql = `INSERT INTO account (username, email, password, accountregisterdate) VALUES ('${username}', '${email}', '${password}', 'NOW()')`
     const result = await db.query(sql);
     res.json(result);
   } catch (error) {
-    console.error(err);
+    console.error(error);
       res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
   }
 });

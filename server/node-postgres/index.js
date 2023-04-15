@@ -29,14 +29,20 @@ app.get('/api/get-data', async (req, res, next) => {
     res.json(result);
   });
   
-app.post('/api/execute-query', async (req, res, next) => {
-  const { sql } = req.body;
-  if (!sql) {
-    return;
-  }
-  const result = await db.query(sql);
-  res.json(result);
-});
+  app.post('/api/execute-query', async (req, res, next) => {
+    try {
+      const { sql } = req.body;
+      if (!sql) {
+        return res.status(400).json({ error: 'SQL query not provided' });
+      }
+      const result = await db.query(sql);
+      res.json(result);
+    } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+    }
+  });
+  
 
 
   // DEPRACATED ROUTES - USABLE BUT NO LONGER MAINTAINED

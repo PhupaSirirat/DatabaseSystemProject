@@ -55,7 +55,7 @@ export default function ServLocDatial() {
                 <button className='nice_dark_butt_on'>Edit location</button>
             </Link>
             <Link to={"/server-locations"}>
-                <button className='nice_dark_butt_on'>Delete location</button>
+                <button className='nice_dark_butt_on' onClick={deleteServerLocation}>Delete location</button>
             </Link>
 
             <Link to={"/server-locations"}>

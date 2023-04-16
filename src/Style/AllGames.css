@@ -8,13 +8,61 @@
     margin-left: 8%;
 }
 
-.title h1 {
+.titleag h1 {
     font-size: 33px;
     margin-top: 50px;
+    color: white;
+    text-align: center;
 }
 
 hr {
-    margin-top: 40px;
     width: 88%;
     border-top: 1px solid #d0d2d4;
+}
+
+.topbox {
+background-color: #1a1a1a;
+height: 200px;
+width: 100%;
+}
+
+.querycontainer {
+    margin-top: 50px;
+}
+
+.querybox {
+    margin: auto;
+    width: 50%;
+    background-color: #d0d2d4;
+    border-radius: 25px;
+    padding: 20px;
+    height: 110px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.querybox label {
+    margin-left: 20px;
+}
+
+.querybox input {
+    align-content: center;
+}
+
+.querybox button {
+    margin-left: 20px;
+}
+
+.buttonflex {
+    display: flex;
+    flex-direction: row;
+    margin-top: 110px;
+}
+
+.button {
+    padding: 10px;
+}
+
+.resultcontain {
+    display: grid;
+    grid-template-columns: auto auto auto;
 }

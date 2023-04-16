@@ -21,6 +21,7 @@ import CreateServerLocation from '../components/Create/CreateServLoc';
 import ServerLocationDetails from '../components/Detail/ServLocDatial';
 import EditServerLocationDetails from '../components/Edit/EditServLoc';
 import Players from '../Players';
+import AdminTools from '../AdminTools';
 
 const Routers = () => {
     return (
@@ -46,6 +47,7 @@ const Routers = () => {
                 <Route path="/server-locations/:slug" element={<ServerLocationDetails />} />
                 <Route path="/edit-serverlocation/:slug" element={<EditServerLocationDetails />} />
                 <Route path="/players" element={<Players />} />
+                <Route path="/admin-tools" element={<AdminTools />} />
             </Routes>
         </BrowserRouter>
     )

@@ -29,9 +29,9 @@ export default function AccountDetail() {
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             // if delete successfully
             .then(response => {
-                if (response.data && response.data.length > 0 && response.data[0].hasOwnProperty('error'))
+                if (response.data['error'])
                 {
-                    alert(response.data[0].error); return;
+                    alert(response.data.error); return;
                 }
                 alert("This account has been deleted successfully")
                 window.location = "/accounts";
@@ -52,7 +52,7 @@ export default function AccountDetail() {
                             <p>Username : {item.username}</p>
                             <p>Email : {item.email}</p>
                             <p>Password : {item.password}</p>
-                            <p>Account Register Date : {item.accountregisterdate}</p>
+                            <p>Account Register Date : {item.accountregisterdate.substring(0, item.accountregisterdate.indexOf("T"))}</p>
                         </div>
                     ))
                 ) : (

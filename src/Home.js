@@ -44,6 +44,13 @@ function Home() {
                         </b>
                     </div>
                 </Link>
+                <Link className='link' to={"/admin-tools"}>
+                    <div className='box'>
+                        <b className='boxtitle'>
+                            Admin Tools
+                        </b>
+                    </div>
+                </Link>
             </div>
         </div>
     );

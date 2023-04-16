@@ -91,6 +91,9 @@ export default function ServerDetail() {
             <Link to={"/allserver"}>
                 <button className='nice_dark_butt_on' onClick={deleteServer}>Delete server</button>
             </Link>
+            <Link to={`/game-detail/${server.length > 0 ? server[0].gameid : ""}`}>
+                <button className='nice_butt_on'>To game page</button>
+            </Link>
             <Link to={"/allservers"}>
                 <button className='nice_butt_on'>All servers</button>
             </Link>

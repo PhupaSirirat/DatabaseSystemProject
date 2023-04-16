@@ -216,7 +216,7 @@ app.post('/api/register-account', async (req, res, next) => {
 app.post('/api/register-player', async (req, res, next) => {
   try {
     const { accountid, gameid, gameserverid, ingamename, ingameregisterdate} = req.body;
-    if (!accountid || !gameid || !gameserverid || !ingamename || !ingameregisterdate) {
+    if (!accountid || !gameid || !gameserverid || !ingamename) {
       return res.json({ error: 'All fields not provided' });
     }
     const sql = `INSERT INTO ingame_account (accountid, gameid, gameserverid, ingamename, accountlevel, ingameregisterdate) VALUES (${accountid}, ${gameid}, '${gameserverid}', '${ingamename}', '1', 'Now()')`

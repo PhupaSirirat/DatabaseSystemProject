@@ -41,9 +41,9 @@ export default function ServerDetail() {
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             // if delete successfully
             .then(response => {
-                if (response.error)
+                if (response.data['error'])
                 {
-                    alert(error); return;
+                    alert(response.data.error); return;
                 }
                 alert("This server has been deleted successfully")
                 window.location = "/allservers";

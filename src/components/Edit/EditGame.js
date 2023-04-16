@@ -34,10 +34,10 @@ export default function EditGame() {
 
         const sql = `update game set gamename='${gamename}', description='${description}',releasedate='${releasedate}',systems='${systems}',version='${version}',genre='${genre}',agerating='${agerating}',thumbnail_link='${thumbnail}' where gameid='${gameid}'`;
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-            .then(Response => {
-                if (response.error)
+            .then(response => {
+                if (response.data['error'])
                 {
-                    alert(error); return;
+                    alert(response.data.error); return;
                 }
                 alert("Update successfully")
                 window.location = `/game-detail/${slug}`;

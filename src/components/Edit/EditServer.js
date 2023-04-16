@@ -46,6 +46,10 @@ export default function EditServer() {
         const sql = `update game_server set gameid='${gameid}', serverlocationid='${serverlocationid}', ipaddress='${ipaddress}', hostname='${hostname}', port='${port}', maxplayercount='${maxplayercount}' where gameserverid='${slug}'`;
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(response => {
+                if (response.error)
+                {
+                    alert(error); return;
+                }
                 alert("Update server successfully")
                 window.location = '/allservers';
             })

@@ -29,6 +29,10 @@ export default function EditAcc() {
         const sql = `update account set username='${username}', email='${email}', password='${password}' where accountid='${slug}'`;
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(Response => {
+                if (response.error)
+                {
+                    alert(error); return;
+                }
                 alert("Update successfully")
                 window.location = `/accounts`;
             })

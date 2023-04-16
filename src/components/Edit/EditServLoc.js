@@ -33,6 +33,10 @@ export default function EditServLoc() {
         const sql = `update server_location set region='${region}', colocation_country='${colocation_country}', colocation_company='${colocation_company}' where serverlocationid=${slug}`
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(Response => {
+                if (response.error)
+                {
+                    alert(error); return;
+                }
                 alert("Update server location successfully")
                 window.location = '/server-locations';
             })

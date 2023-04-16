@@ -9,14 +9,6 @@ const pool = new Pool({
   database: process.env.PGDATABASE,
 });
 
-// Connect postgres from railway
-// const pool = new Pool({
-//   user: 'postgres',
-//   password: 'XfaaDvXn4aYqjM8xDfy9',
-//   host: 'containers-us-west-3.railway.app',
-//   port: '6789',
-//   database: 'railway',
-// });
 
 // Function to run a query using the pool
 const query = async (sql, values) => {

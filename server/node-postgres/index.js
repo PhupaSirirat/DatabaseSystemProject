@@ -202,7 +202,8 @@ app.post('/api/register-account', async (req, res, next) => {
     if (!username || !email || !password) {
       return res.status(400).json({ error: 'All fields not provided' });
     }
-    const sql = `INSERT INTO account (username, email, password, accountregisterdate) VALUES ('${username}', '${email}', '${password}', 'NOW()')`
+    const hashedPassword = Array.from(password).reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0);
+    const sql = `INSERT INTO account (username, email, password, accountregisterdate) VALUES ('${username}', '${email}', '${hashedPassword}', 'NOW()')`
     const result = await db.query(sql);
     res.json(result);
   } catch (error) {

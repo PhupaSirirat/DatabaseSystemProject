@@ -17,6 +17,7 @@ function App() {
                 alert(response.data.error); return;
             }
             setResult(response.data)
+            alert('Query ran!');
       })
       .catch(err => alert(err));
   }
@@ -51,7 +52,7 @@ function App() {
     </ul>
   ) : (
     // Render message if no data available
-    <p>Input SQL query...</p>
+    <p>No results...</p>
   )}
       </div>
     </main>

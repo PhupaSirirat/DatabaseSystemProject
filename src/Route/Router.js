@@ -22,6 +22,9 @@ import ServerLocationDetails from '../components/Detail/ServLocDatial';
 import EditServerLocationDetails from '../components/Edit/EditServLoc';
 import Players from '../Players';
 import AdminTools from '../AdminTools';
+import EditPlayer from '../components/Edit/EditPlayer';
+import CreatePlayer from '../components/Create/CreatePlayer';
+
 
 const Routers = () => {
     return (
@@ -48,6 +51,8 @@ const Routers = () => {
                 <Route path="/edit-serverlocation/:slug" element={<EditServerLocationDetails />} />
                 <Route path="/players" element={<Players />} />
                 <Route path="/admin-tools" element={<AdminTools />} />
+                <Route path="/edit-player/:slug" element={<EditPlayer />} />
+                <Route path="/players/create-player" element={<CreatePlayer />} />
             </Routes>
         </BrowserRouter>
     )

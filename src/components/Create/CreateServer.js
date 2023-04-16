@@ -32,7 +32,10 @@ export default function CreateServer() {
         alert(`Data to create.\nGame ID: ${gameid}\nServer Location ID: ${serverlocationid}\nIP Address: ${ipaddress}\nHostname: ${hostname}\nPort: ${port}\nMax Playercount: ${maxplayercount}`);
 
         axios.post(`https://gamedb-api-service.up.railway.app/api/add-server`, {gameid: gameid, serverlocationid:serverlocationid, ipaddress:ipaddress, hostname:hostname, port:port, maxplayercount:maxplayercount })
-            .then(Response => {
+            .then(response => {
+                if (response.data['error']) {
+                    alert(response.data.error); return;
+                }
                 alert("Create server successfully")
                 window.location = '/allservers';
             })

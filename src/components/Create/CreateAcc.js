@@ -16,7 +16,10 @@ export default function CreateAcc() {
         alert(`Data to create.\nUsername: ${username}\nEmail: ${email}\nPassword: ${password}`);
 
         axios.post(`https://gamedb-api-service.up.railway.app/api/register-account`, { username: username, email: email, password: password })
-            .then(Response => {
+            .then(response => {
+                if (response.data['error']) {
+                    alert(response.data.error); return;
+                }
                 alert("Create account successfully")
                 window.location = '/accounts';
             })

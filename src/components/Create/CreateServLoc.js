@@ -16,7 +16,10 @@ export default function CreateServLoc() {
         alert(`Data to create.\nRegion: ${region}, Colocation Country: ${colocation_country}, Colocation Company: ${colocation_company}`);
 
         axios.post(`https://gamedb-api-service.up.railway.app/api/create-serverlocatiom`, {region:region, colocation_country:colocation_country, colocation_company:colocation_company})
-            .then(Response => {
+            .then(response => {
+                if (response.data['error']) {
+                    alert(response.data.error); return;
+                }
                 alert("Create server location successfully")
                 window.location = '/server-locations';
             })

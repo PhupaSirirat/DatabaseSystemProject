@@ -28,18 +28,26 @@ function App() {
           <h1 >Search all games</h1>
         </div>
       </div>
+
       <div className='buttonflex'>
         <Link to={"/addgame"} className='button'>
-          <button className='nice_butt_on'>Add Game</button>
+          <button className='nice_dark_butt_on'>Add Game</button>
         </Link>
       </div>
+
+      <div>
+        <Link to={"/"} className='button'>
+          <button className='nice_butt_on'>Home</button>
+        </Link>
+      </div>
+
       <div className='resultcontain'>
         {data.length > 0 ? (
           // Render data if available
           data.map(item => (
             <Link to={`/game-detail/${item.gameid}`}>
               <div key={item.gameid} className="GameCard">
-                <img src={item.thumbnail_link} alt=""/>
+                <img src={item.thumbnail_link} alt="" />
                 <div className='GameText'>
                   <p>Game: {item.gamename}</p>
                   {/* <p>GameID: {item.gameid}</p> */}

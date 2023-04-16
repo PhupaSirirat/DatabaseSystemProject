@@ -25,7 +25,10 @@ function AddGame() {
 
     const sql = `insert into game values (${gameid},'${gamename}','${description}','${releasedate}','${systems}','${version}','${genre}','${agerating}','${thumbnail}')`;
     axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-      .then(Response => {
+      .then(response => {
+        if (response.data['error']) {
+          alert(response.data.error); return;
+      }
         alert("Insert successfully")
         window.location = '/';
       })

@@ -211,6 +211,21 @@ app.post('/api/register-account', async (req, res, next) => {
   }
 });
 
+app.post('/api/register-player', async (req, res, next) => {
+  try {
+    const { accountid, gameid, gameserverid, ingamename, accountlevel, ingameregisterdate} = req.body;
+    if (!accountid || !gameid || !gameserverid || !ingamename || !accountlevel || !ingameregisterdate) {
+      return res.status(400).json({ error: 'All fields not provided' });
+    }
+    const sql = `INSERT INTO ingame_account (accountid, gameid, gameserverid, ingamename, accountlevel, ingameregisterdate) VALUES (${accountid}, ${gameid}, '${gameserverid}', '${ingamename}', '${accountlevel}', 'Now()')`
+    const result = await db.query(sql);
+    res.json(result);
+  } catch (error) {
+    console.error(error);
+      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+  }
+});
+
   app.post('/api/execute-query', async (req, res, next) => {
     try {
       const { sql } = req.body;

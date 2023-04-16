@@ -30,7 +30,7 @@ export default function AccountDetail() {
             // if delete successfully
             .then(response => {
                 alert("This account has been deleted successfully")
-                window.location = "/allservers";
+                window.location = "/accounts";
             })
             .catch(error => alert(error));
     }

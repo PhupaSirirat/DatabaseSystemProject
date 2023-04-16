@@ -170,14 +170,14 @@ app.post('/api/add-server', async (req, res, next) => {
   try {
     const { gameid, serverlocationid, ipaddress, hostname, port, maxplayercount} = req.body;
     if (!gameid || !serverlocationid || !ipaddress || !hostname || !port || !maxplayercount) {
-      return res.status(400).json({ error: 'All fields not provided' });
+      return res.json({ error: 'All fields not provided' });
     }
     const sql = `INSERT INTO game_server (gameid, serverlocationid, ipaddress, hostname, port, maxplayercount) VALUES (${gameid}, ${serverlocationid}, '${ipaddress}', '${hostname}', '${port}', ${maxplayercount})`
     const result = await db.query(sql);
     res.json(result);
   } catch (error) {
     console.error(error);
-      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+      res.json({ error: 'Internal server error. (Is your query correct? Does it violate constraints?)' });
   }
 });
 
@@ -185,14 +185,14 @@ app.post('/api/create-serverlocatiom', async (req, res, next) => {
   try {
     const { region, colocation_country, colocation_company } = req.body;
     if (!region || !colocation_country || !colocation_company) {
-      return res.status(400).json({ error: 'All fields not provided' });
+      return res.json({ error: 'All fields not provided' });
     }
     const sql = `INSERT INTO server_location (region, colocation_country, colocation_company) VALUES ('${region}', '${colocation_country}', '${colocation_company}')`
     const result = await db.query(sql);
     res.json(result);
   } catch (error) {
     console.error(error);
-      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+      res.json({ error: 'Internal server error. (Is your query correct? Does it violate constraints?)' });
   }
 });
 
@@ -200,7 +200,7 @@ app.post('/api/register-account', async (req, res, next) => {
   try {
     const { username, email, password } = req.body;
     if (!username || !email || !password) {
-      return res.status(400).json({ error: 'All fields not provided' });
+      return res.json({ error: 'All fields not provided' });
     }
     const hashedPassword = Array.from(password).reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0).toString(16).substring(0, 32);
     const sql = `INSERT INTO account (username, email, password, accountregisterdate) VALUES ('${username}', '${email}', '${hashedPassword}', 'NOW()')`
@@ -208,7 +208,7 @@ app.post('/api/register-account', async (req, res, next) => {
     res.json(result);
   } catch (error) {
     console.error(error);
-      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+      res.json({ error: 'Internal server error. (Is your query correct? Does it violate constraints?)' });
   }
 });
 
@@ -216,14 +216,14 @@ app.post('/api/register-player', async (req, res, next) => {
   try {
     const { accountid, gameid, gameserverid, ingamename, accountlevel, ingameregisterdate} = req.body;
     if (!accountid || !gameid || !gameserverid || !ingamename || !accountlevel || !ingameregisterdate) {
-      return res.status(400).json({ error: 'All fields not provided' });
+      return res.json({ error: 'All fields not provided' });
     }
     const sql = `INSERT INTO ingame_account (accountid, gameid, gameserverid, ingamename, accountlevel, ingameregisterdate) VALUES (${accountid}, ${gameid}, '${gameserverid}', '${ingamename}', '${accountlevel}', 'Now()')`
     const result = await db.query(sql);
     res.json(result);
   } catch (error) {
     console.error(error);
-      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+      res.json({ error: 'Internal server error. (Is your query correct? Does it violate constraints?)' });
   }
 });
 
@@ -231,13 +231,13 @@ app.post('/api/register-player', async (req, res, next) => {
     try {
       const { sql } = req.body;
       if (!sql) {
-        return res.status(400).json({ error: 'SQL query not provided' });
+        return res.json({ error: 'SQL query not provided' });
       }
       const result = await db.query(sql);
       res.json(result);
     } catch (err) {
       console.error(err);
-      res.status(500).json({ error: 'Internal server error. (Is your query correct?)' });
+      res.json({ error: 'Internal server error. (Is your query correct? Does it violate constraints?)' });
     }
   });
   

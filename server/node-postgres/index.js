@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require('cors');
+const crypto = require('crypto');
 const app = express()
 const port = process.env.PORT || 3001
 
@@ -202,8 +203,8 @@ app.post('/api/register-account', async (req, res, next) => {
     if (!username || !email || !password) {
       return res.json({ error: 'All fields not provided' });
     }
-    const hashedPassword = Array.from(password).reduce((s, c) => Math.imul(31, s) + c.charCodeAt(0) | 0, 0).toString(16).substring(0, 32);
-    const sql = `INSERT INTO account (username, email, password, accountregisterdate) VALUES ('${username}', '${email}', '${hashedPassword}', 'NOW()')`
+    const hashedPassword = crypto.createHash('sha256').update(password).digest('hex');
+    const sql = `INSERT INTO account (username, email, password, accountregisterdate) VALUES ('${username}', '${email}', '${hashedPassword.substring(0, 32)}', 'NOW()')`
     const result = await db.query(sql);
     res.json(result);
   } catch (error) {

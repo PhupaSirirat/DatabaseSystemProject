@@ -19,17 +19,17 @@ export default function ServLocDatial() {
             .catch(err => alert(err));
     }
 
-    // const deleteServerLocation = (e) => {
-    //     e.preventDefault();
-    //     const sql = `delete from server_location where serverlocationid=${slug}`;
-    //     axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-    //         // if delete successfully
-    //         .then(response => {
-    //             alert("This server location has been deleted successfully")
-    //             window.location = "/server-locations";
-    //         })
-    //         .catch(error => alert(error));
-    // }
+     const deleteServerLocation = (e) => {
+         e.preventDefault();
+         const sql = `delete from server_location where serverlocationid=${slug}`;
+         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+             // if delete successfully
+             .then(response => {
+                 alert("This server location has been deleted successfully")
+                 window.location = "/server-locations";
+             })
+             .catch(error => alert(error));
+     }
 
     return (
         <main>

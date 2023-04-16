@@ -5,8 +5,7 @@ import axios from 'axios';
 import './Style/AllGames.css';
 
 function App() {
-  const [data, setData] = useState([]); // Initialize state for accounts data
-  const [sql, setSql] = useState('');
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     getAllGames();
@@ -22,36 +21,16 @@ function App() {
       .catch(err => alert(err));
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-      .then(response => {
-        console.log(response.data);
-        getAllGames(); // Fetch updated data
-      })
-      .catch(err => alert(err));
-  }
-
   return (
     <main>
       <div className='topbox'>
         <div className='titleag'>
           <h1 >Search all games</h1>
         </div>
-        <div className='querycontainer'>
-          <div onSubmit={handleSubmit} className='querybox'>
-            <label htmlFor="sql">Execute SQL query:</label>
-            <input type="text" id="sql" name="sql" value={sql} onChange={(e) => setSql(e.target.value)} />
-            <button type="submit">Submit</button>
-          </div>
-        </div>
       </div>
       <div className='buttonflex'>
         <Link to={"/addgame"} className='button'>
           <button className='nice_butt_on'>Add Game</button>
-        </Link>
-        <Link to={"/accounts"} className='button'>
-          <button className='nice_dark_butt_on'>Accounts</button>
         </Link>
       </div>
       <div className='resultcontain'>
@@ -60,7 +39,7 @@ function App() {
           data.map(item => (
             <Link to={`/game-detail/${item.gameid}`}>
               <div key={item.gameid} className="GameCard">
-                <img src={item.thumbnail_link} alt="missing cover image" />
+                <img src={item.thumbnail_link} alt=""/>
                 <div className='GameText'>
                   <p>Game: {item.gamename}</p>
                   {/* <p>GameID: {item.gameid}</p> */}

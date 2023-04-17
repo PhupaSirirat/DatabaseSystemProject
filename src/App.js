@@ -41,8 +41,13 @@ function App() {
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value); // Update search state with the input value
-    searchData(); // Call searchData function to fetch data based on search query
   }
+  
+  useEffect(() => {
+    searchData();
+    // eslint-disable-next-line
+  }, [search]);
+  
   
   return (
     <main>

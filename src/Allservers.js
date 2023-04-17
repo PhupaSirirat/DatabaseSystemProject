@@ -87,10 +87,10 @@ export default function Allservers() {
                     {serverloc.length > 0 ? (
                         serverloc.map(item => (
                             <tr key={item.serverlocationid}>
-                                <th><Link to={`${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.region}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_country}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_company}</Link></th>
+                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
+                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.region}</Link></th>
+                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_country}</Link></th>
+                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_company}</Link></th>
                             </tr>
                         ))
                     ) : (

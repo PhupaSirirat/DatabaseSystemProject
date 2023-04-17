@@ -45,9 +45,39 @@
 }
 
 .allGames a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
+.nice_butt_on {
+  background-color: #2ea44f;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 20px;
+  padding: 12px 32px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-bottom: 20px;
+}
+
+.nice_butt_on:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background-color: #2c974b;
+  transition: 0.3s;
+}
+
+.nice_butt_on:active {
+  background-color: #268441;
+  transition: 0.3s;
+}
+
+/*
 .nice_butt_on {
   padding: 12px 24px;
   font-size: 18px;
@@ -60,6 +90,8 @@
   transition: background-image 0.3s ease;
   margin-bottom: 1.5rem;
 }
+
+
 
 .nice_dark_butt_on {
   padding: 12px 24px;
@@ -77,6 +109,7 @@
 .nice_butt_on:hover {
   background-image: linear-gradient(to right, #ff8e53, #ff6b6b);
 }
+*/
 
 .card {
   background: #fff;
@@ -126,3 +159,4 @@
 .card-body {
   padding: 1.2em;
 }
+

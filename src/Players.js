@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './Style/Common.css';
 
 export default function Players() {
   const [players, setPlayers] = useState([]);
@@ -19,14 +20,17 @@ export default function Players() {
 
   return (
     <main>
-      <h1>Players</h1>
-      <Link to={"/players/create-player"}>
-        <button className='nice_dark_butt_on'>Create new player</button>
-      </Link>
-      <Link to={"/"}>
-        <button className='nice_butt_on'>Home</button>
-      </Link>
-
+      <div className='title2'>
+        <h1>Players</h1>
+      </div>
+      <div className='buttonflex'>
+        <Link to={"/players/create-player"} className='button'>
+          <button className='nice_dark_butt_on'>Create new player</button>
+        </Link>
+        <Link to={"/"} className='button'>
+          <button className='nice_butt_on'>Home</button>
+        </Link>
+      </div>
       <div className='resultcontain'>
         {players.length > 0 ? (
           // Render data if available

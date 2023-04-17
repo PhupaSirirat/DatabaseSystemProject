@@ -4,6 +4,21 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.hzflex {
+    display: flex;
+    flex-direction: row;
+}
+
+.vtflex {
+    display: flex;
+    flex-direction: column;
+}
+
+.twogrid {
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+
 .content {
     margin-left: 8%;
 }
@@ -21,9 +36,9 @@ hr {
 }
 
 .topbox {
-background-color: #1a1a1a;
-height: 200px;
-width: 100%;
+    background-color: #1a1a1a;
+    height: 150px;
+    width: 100%;
 }
 
 .querycontainer {
@@ -55,7 +70,8 @@ width: 100%;
 .buttonflex {
     display: flex;
     flex-direction: row;
-    margin-top: 110px;
+    margin-top: 20px;
+    justify-content: center;
 }
 
 .button {
@@ -65,4 +81,5 @@ width: 100%;
 .resultcontain {
     display: grid;
     grid-template-columns: auto auto auto;
+    width: 90%;
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Style/GameCard.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './Style/AllGames.css';
+import './Style/Common.css';
 
 function App() {
   const [data, setData] = useState([]);
@@ -33,9 +33,6 @@ function App() {
         <Link to={"/addgame"} className='button'>
           <button className='nice_dark_butt_on'>Add Game</button>
         </Link>
-      </div>
-
-      <div>
         <Link to={"/"} className='button'>
           <button className='nice_butt_on'>Home</button>
         </Link>

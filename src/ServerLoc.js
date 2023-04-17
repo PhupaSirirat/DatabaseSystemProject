@@ -13,13 +13,16 @@ export default function ServerLoc() {
     const fetchServerLocation = () => {
         axios.get(`https://gamedb-api-service.up.railway.app/api/get-serverlocation`)
             .then(response => {
+                if (response.data['error']) {
+                    alert(response.data.error); return;
+                }
                 setServerloc(response.data);
             })
             .catch(err => alert(err));
     }
 
     const searchData = () => {
-        const sql = `select * from server_location where serverlocationid=${search}`; // Use search state to construct the SQL query
+        const sql = `select * from server_location where region like '${search}%' or colocation_country like '${search}%' or colocation_company like '${search}%'`; // Use search state to construct the SQL query
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(response => {
                 if (response.data['error']) {
@@ -34,11 +37,10 @@ export default function ServerLoc() {
     const handleSearchChange = (e) => {
         setSearch(e.target.value); // Update search state with the input value
     }
-
-    const handleSearchSubmit = (e) => {
-        e.preventDefault(); // Prevent form submission
-        searchData(); // Call searchData function to fetch data based on search query
-    }
+    useEffect(() => {
+        searchData();
+        // eslint-disable-next-line
+    }, [search]);
 
     return (
         <main>
@@ -46,11 +48,11 @@ export default function ServerLoc() {
                 <h1>Server Locations</h1>
             </div>
 
-            <form onSubmit={handleSearchSubmit}>
-                <label htmlFor="gsearch">Search Server Location:</label>
-                <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
-                <button type="submit">Search</button> {/* Add a submit button to trigger search */}
-            </form>
+            <div className="search-container">
+                <form>
+                    <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search Server Region or Country or Company" />
+                </form>
+            </div>
 
             <div className='buttonflex'>
                 <Link to={"create-serverlocation"} className='button'>
@@ -61,7 +63,7 @@ export default function ServerLoc() {
                     <button className='nice_butt_on'>Home</button>
                 </Link>
             </div>
-            <table class="table table-hover row-clickable">
+            <table className="table table-hover row-clickable">
                 <thead>
                     <tr>
                         <th>Server Location ID</th>
@@ -71,18 +73,18 @@ export default function ServerLoc() {
                     </tr>
                 </thead>
                 <tbody>
-                {serverloc.length > 0 ? (
-                    serverloc.map(item => (
+                    {serverloc.length > 0 ? (
+                        serverloc.map(item => (
                             <tr key={item.serverlocationid}>
                                 <th><Link to={`${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
                                 <th><Link to={`${item.serverlocationid}`}>{item.region}</Link></th>
                                 <th><Link to={`${item.serverlocationid}`}>{item.colocation_country}</Link></th>
                                 <th><Link to={`${item.serverlocationid}`}>{item.colocation_company}</Link></th>
                             </tr>
-                    ))
-                ) : (
-                    <p>Data Fetching...</p>
-                )}
+                        ))
+                    ) : (
+                        <p>Data Fetching...</p>
+                    )}
                 </tbody>
             </table>
         </main>

@@ -11,6 +11,7 @@ function App() {
 
   useEffect(() => {
     getAllGames();
+    // eslint-disable-next-line
   }, []);
 
   const getAllGames = () => {

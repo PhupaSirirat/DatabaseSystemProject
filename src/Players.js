@@ -35,11 +35,10 @@ export default function Players() {
   const handleSearchChange = (e) => {
     setSearch(e.target.value); // Update search state with the input value
   }
-
-  const handleSearchSubmit = (e) => {
-    e.preventDefault(); // Prevent form submission
-    searchData(); // Call searchData function to fetch data based on search query
-  }
+  useEffect(() => {
+    searchData();
+    // eslint-disable-next-line
+  }, [search]);
 
   return (
     <main>
@@ -47,11 +46,11 @@ export default function Players() {
         <h1>Players</h1>
       </div>
 
-      <form onSubmit={handleSearchSubmit}>
-        <label htmlFor="gsearch">Search player by name:</label>
-        <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
-        <button type="submit">Search</button> {/* Add a submit button to trigger search */}
-      </form>
+      <div className="search-container">
+        <form>
+          <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search player by In-game name" />
+        </form>
+      </div>
 
       <div className='buttonflex'>
         <Link to={"/players/create-player"} className='button'>

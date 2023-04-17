@@ -12,6 +12,7 @@
   
   input[type="search"] {
     border: none;
+    border: 1px solid #0a9dff;
     border-radius: 5px;
     padding: 10px;
     font-size: 16px;

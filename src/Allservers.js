@@ -46,11 +46,10 @@ export default function Allservers() {
     const handleSearchChange = (e) => {
         setSearch(e.target.value); // Update search state with the input value
     }
-
-    const handleSearchSubmit = (e) => {
-        e.preventDefault(); // Prevent form submission
-        searchData(); // Call searchData function to fetch data based on search query
-    }
+    useEffect(() => {
+        searchData();
+        // eslint-disable-next-line
+      }, [search]);
 
     return (
         <main>
@@ -58,11 +57,11 @@ export default function Allservers() {
                 <h1>All servers</h1>
             </div>
 
-            <form onSubmit={handleSearchSubmit}>
-                <label htmlFor="gsearch">Search Server by hostname:</label>
-                <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
-                <button type="submit">Search</button> {/* Add a submit button to trigger search */}
-            </form>
+            <div className="search-container">
+                <form>
+                    <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search server by hostname" />
+                </form>
+            </div>
 
             <div className='buttonflex'>
                 <Link to={`create-server`} className='button'>

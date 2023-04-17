@@ -86,11 +86,11 @@ export default function Allservers() {
                 <tbody>
                     {serverloc.length > 0 ? (
                         serverloc.map(item => (
-                            <tr onclick="window.location=`https://gamedb.up.railway.app/server-locations`" key={item.serverlocationid}>
-                                <th><Link to={`${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.region}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_country}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_company}</Link></th>
+                            <tr key={item.serverlocationid}>
+                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
+                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.region}</Link></th>
+                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_country}</Link></th>
+                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_company}</Link></th>
                             </tr>
                         ))
                     ) : (

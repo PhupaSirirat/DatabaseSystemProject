@@ -6,6 +6,7 @@ import './Style/AllGames.css';
 
 function App() {
   const [data, setData] = useState([]);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     getAllGames();
@@ -21,6 +22,27 @@ function App() {
       .catch(err => alert(err));
   }
 
+  const searchData = () => {
+    const sql = `select * from game where gamename like '%${search}%'`; // Use search state to construct the SQL query
+    axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+      .then(response => {
+        console.log('connected');
+        setData(response.data); // Update state with fetched data
+        console.log(data[0]);
+      })
+      .catch(err => alert(err));
+  }
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value); // Update search state with the input value
+  }
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault(); // Prevent form submission
+    searchData(); // Call searchData function to fetch data based on search query
+  }
+
+
   return (
     <main>
       <div className='topbox'>
@@ -28,6 +50,12 @@ function App() {
           <h1 >Search all games</h1>
         </div>
       </div>
+
+      <form onSubmit={handleSearchSubmit}>
+        <label htmlFor="gsearch">Search Game:</label>
+        <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
+        <button type="submit">Search</button> {/* Add a submit button to trigger search */}
+      </form>
 
       <div className='buttonflex'>
         <Link to={"/addgame"} className='button'>

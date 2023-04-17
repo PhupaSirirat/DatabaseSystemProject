@@ -3,6 +3,7 @@ import './Style/GameCard.css';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './Style/Common.css';
+import './Style/SearchBar.css';
 
 function App() {
   const [data, setData] = useState([]);
@@ -53,11 +54,19 @@ function App() {
         <h1 >Search all games</h1>
       </div>
 
-      <form onSubmit={handleSearchSubmit}>
+      {/* Add a submit button to trigger search */}
+      {/* <form onSubmit={handleSearchSubmit}>
         <label htmlFor="gsearch">Search Game by name:</label>
         <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
-        <button type="submit">Search</button> {/* Add a submit button to trigger search */}
-      </form>
+        <button type="submit">Search</button> 
+      </form> */}
+
+      <div className="search-container">
+        <form onSubmit={handleSearchSubmit}>
+          <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search..."/>
+            <button type="submit"> Enter </button>
+        </form>
+      </div>
 
       <div className='buttonflex'>
         <Link to={"/addgame"} className='button'>

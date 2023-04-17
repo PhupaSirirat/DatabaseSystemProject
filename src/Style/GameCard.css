@@ -1,6 +1,6 @@
 /* Style for All Games */
 .GameCard {
-  background-color: #e6e6e6;
+  background-color: #Ededed;
   padding: 10px;
   margin: 10px;
   border-radius: 15px;
@@ -15,7 +15,7 @@
 }
 
 .GameCard:active {
-  background-color: #cfcfcf;
+  background-color: #E4e4e4;
   transition: 0.1s;
 }
 

@@ -21,8 +21,13 @@
 }
 
 
-hr {
+.hr1 {
     margin-top: 40px;
+    width: 88%;
+    border-top: 1px solid #d0d2d4;
+}
+
+.hr2 {
     width: 88%;
     border-top: 1px solid #d0d2d4;
 }

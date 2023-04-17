@@ -46,10 +46,10 @@ hr {
 }
 
 .querybox {
-    margin: auto;
+    margin-top: 20px;
     width: 50%;
     background-color: #d0d2d4;
-    border-radius: 25px;
+    border-radius: 10px;
     padding: 20px;
     height: 110px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -82,4 +82,9 @@ hr {
     display: grid;
     grid-template-columns: auto auto auto;
     width: 90%;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }

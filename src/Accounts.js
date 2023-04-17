@@ -60,7 +60,7 @@ export default function Accounts() {
                     <button className='nice_butt_on'>Home</button>
                 </Link>
             </div>
-            <table>
+            <table class="table table-hover row-clickable">
                 <thead>
                     <tr>
                         <th>Account ID</th>

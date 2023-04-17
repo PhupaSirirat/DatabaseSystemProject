@@ -49,9 +49,9 @@ function App() {
 
   return (
     <main>
-        <div className='title2'>
-          <h1 >Search all games</h1>
-        </div>
+      <div className='title2'>
+        <h1 >Search all games</h1>
+      </div>
 
       <form onSubmit={handleSearchSubmit}>
         <label htmlFor="gsearch">Search Game by name:</label>
@@ -74,20 +74,20 @@ function App() {
         {data.length > 0 ? (
           // Render data if available
           data.map(item => (
-            <Link to={`/game-detail/${item.gameid}`}>
-              <div key={item.gameid} className="GameCard">
+            <div key={item.gameid} className="card">
+              <Link to={`/game-detail/${item.gameid}`}>
                 <img src={item.thumbnail_link} alt="" />
-                <div className='GameText'>
-                  <p>Game: {item.gamename}</p>
+                <div className='card-body'>
+                  <h2>{item.gamename}</h2>
                   {/* <p>GameID: {item.gameid}</p> */}
                   <p>Genre: {item.genre}</p>
-                  <p>Version: {item.version}</p>
+                  <h5>Version: {item.version}</h5>
                   {/* <p>Desc: {item.description}</p> */}
                   {/* <p>Release Date: {item.releasedate}</p> */}
                   {/* <p>Systems: {item.systems}</p> */}
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           ))
         ) : (
           // Render message if no data available

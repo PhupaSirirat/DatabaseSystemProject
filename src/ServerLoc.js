@@ -15,20 +15,22 @@ export default function ServerLoc() {
             })
             .catch(err => alert(err));
     }
-    
+
     return (
         <main>
-            <h1>Server Locations</h1>
+            <div className='title2'>
+                <h1>Server Locations</h1>
+            </div>
+            <div className='buttonflex'>
+                <Link to={"create-serverlocation"} className='button'>
+                    <button className='nice_dark_butt_on'>Create new location</button>
+                </Link>
 
-            <Link to={"create-serverlocation"}>
-                <button className='nice_dark_butt_on'>Create new location</button>
-            </Link>
-
-            <Link to={"/"}>
-                <button className='nice_butt_on'>Home</button>
-            </Link>
-
-            <div>
+                <Link to={"/"} className='button'>
+                    <button className='nice_butt_on'>Home</button>
+                </Link>
+            </div>
+            <div className='resultcontain'>
                 {serverloc.length > 0 ? (
                     serverloc.map(item => (
                         <Link to={`${item.serverlocationid}`}>

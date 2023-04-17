@@ -19,30 +19,35 @@ export default function Accounts() {
 
     return (
         <main>
-            <h1>Accounts</h1>
+            <div className='title2'>
+                <h1>Accounts</h1>
+            </div>
+            <div className='buttonflex'>
+                <Link to={`create-account`} className='button'>
+                    <button className='nice_dark_butt_on'>Create new account</button>
+                </Link>
 
-            <Link to={`create-account`}>
-                <button className='nice_dark_butt_on'>Create new account</button>
-            </Link>
+                <Link to={`/`} className='button'>
+                    <button className='nice_butt_on'>Home</button>
+                </Link>
+            </div>
+            <div className='resultcontain'>
+                {accounts.length > 0 ? (
+                    // Render if server available
 
-            <Link to={`/`}>
-                <button className='nice_butt_on'>Home</button>
-            </Link>
-
-            {accounts.length > 0 ? (
-                // Render if server available
-                accounts.map(item => (
-                    <Link to={`account-detail/${item.accountid}`}>
-                        <div key={item.accountid} className="game-item">
-                            <p>Username: {item.username}</p>
-                            <p>Email: {item.email}</p>
-                        </div>
-                    </Link>
-                ))
+                    accounts.map(item => (
+                        <Link to={`account-detail/${item.accountid}`}>
+                            <div key={item.accountid} className="game-item">
+                                <p>Username: {item.username}</p>
+                                <p>Email: {item.email}</p>
+                            </div>
+                        </Link>
+                    ))
             ) : (
-                // Render message if no data available
-                <p>Data Fetching...</p>
+            // Render message if no data available
+            <p>Data Fetching...</p>
             )}
-        </main>
+        </div>
+        </main >
     )
 }

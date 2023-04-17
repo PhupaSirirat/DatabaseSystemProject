@@ -16,6 +16,9 @@ function App() {
     const sql = `select * from game`;
     axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
       .then(response => {
+        if (response.data['error']) {
+          alert(response.data.error); return;
+        }
         console.log('connected');
         setData(response.data); // Update state with fetched data
       })
@@ -26,9 +29,11 @@ function App() {
     const sql = `select * from game where gamename like '%${search}%'`; // Use search state to construct the SQL query
     axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
       .then(response => {
+        if (response.data['error']) {
+          alert(response.data.error); return;
+        }
         console.log('connected');
         setData(response.data); // Update state with fetched data
-        console.log(data[0]);
       })
       .catch(err => alert(err));
   }
@@ -41,7 +46,6 @@ function App() {
     e.preventDefault(); // Prevent form submission
     searchData(); // Call searchData function to fetch data based on search query
   }
-
 
   return (
     <main>

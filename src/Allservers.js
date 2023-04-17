@@ -8,6 +8,8 @@ export default function Allservers() {
 
     const [server, setServer] = useState([]);
     const [serverloc, setServerloc] = useState([]);
+    const [search, setSearch] = useState('');
+
 
     useEffect(() => {
         fetchServers();
@@ -28,8 +30,41 @@ export default function Allservers() {
             .catch(err => alert(err));
     }
 
+    const searchData = () => {
+        const sql = `select * from game_server where hostname like '%${search}%'`; // Use search state to construct the SQL query
+        axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+          .then(response => {
+            if (response.data['error']) {
+                alert(response.data.error); return;
+            }
+            console.log('connected');
+            setServer(response.data); // Update state with fetched data
+          })
+          .catch(err => alert(err));
+      }
+    
+      const handleSearchChange = (e) => {
+        setSearch(e.target.value); // Update search state with the input value
+      }
+    
+      const handleSearchSubmit = (e) => {
+        e.preventDefault(); // Prevent form submission
+        searchData(); // Call searchData function to fetch data based on search query
+      }
+
     return (
         <main>
+            <h1>All servers</h1>
+
+            <form onSubmit={handleSearchSubmit}>
+                <label htmlFor="gsearch">Search Server Name:</label>
+                <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
+                <button type="submit">Search</button> {/* Add a submit button to trigger search */}
+            </form>
+
+            <Link to={`create-server`}>
+                <button className='nice_dark_butt_on'>Create new server</button>
+            </Link>
             <div className='title2'>
                 <h1>All servers</h1>
             </div>

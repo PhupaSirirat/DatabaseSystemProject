@@ -27,52 +27,32 @@ function App() {
   }
 
   const searchData = () => {
-    if (search.length > 0) {
-      const sql = `select * from game where gamename like '%${search}%'`; // Use search state to construct the SQL query
-      axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-        .then(response => {
-          if (response.data['error']) {
-            alert(response.data.error); return;
-          }
-          console.log('connected');
-          setData(response.data); // Update state with fetched data
-        })
-        .catch(err => alert(err));
-    }
-    else {
-      getAllGames();
-    }
+    const sql = `select * from game where gamename like '%${search}%'`; // Use search state to construct the SQL query
+    axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+      .then(response => {
+        if (response.data['error']) {
+          alert(response.data.error); return;
+        }
+        console.log('connected');
+        setData(response.data); // Update state with fetched data
+      })
+      .catch(err => alert(err));
   }
-
-  // const handleSearchChange = (e) => {
-  //   setSearch(e.target.value); // Update search state with the input value
-  // }
-  // const handleSearchSubmit = (e) => {
-  //   e.preventDefault(); // Prevent form submission
-  //   searchData(); // Call searchData function to fetch data based on search query
-  // }
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value); // Update search state with the input value
     searchData(); // Call searchData function to fetch data based on search query
   }
-
+  
   return (
     <main>
       <div className='title2'>
         <h1 >Search all games</h1>
       </div>
 
-      {/* Add a submit button to trigger search */}
-      {/* <form onSubmit={handleSearchSubmit}>
-        <label htmlFor="gsearch">Search Game by name:</label>
-        <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
-        <button type="submit">Search</button> 
-      </form> */}
-
       <div className="search-container">
         <form>
-          <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search..." />
+        <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search..." />
         </form>
       </div>
 

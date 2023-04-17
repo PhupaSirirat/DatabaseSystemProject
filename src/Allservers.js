@@ -54,7 +54,9 @@ export default function Allservers() {
 
     return (
         <main>
-            <h1>All servers</h1>
+            <div className='title2'>
+                <h1>All servers</h1>
+            </div>
 
             <form onSubmit={handleSearchSubmit}>
                 <label htmlFor="gsearch">Search Server Name:</label>
@@ -62,12 +64,6 @@ export default function Allservers() {
                 <button type="submit">Search</button> {/* Add a submit button to trigger search */}
             </form>
 
-            <Link to={`create-server`}>
-                <button className='nice_dark_butt_on'>Create new server</button>
-            </Link>
-            <div className='title2'>
-                <h1>All servers</h1>
-            </div>
             <div className='buttonflex'>
                 <Link to={`create-server`} className='button'>
                     <button className='nice_dark_butt_on'>Create new server</button>

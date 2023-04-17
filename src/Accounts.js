@@ -42,20 +42,14 @@ export default function Accounts() {
 
     return (
         <main>
-            <h1>Accounts</h1>
-
+            <div className='title2'>
+                <h1>Accounts</h1>
+            </div>
             <form onSubmit={handleSearchSubmit}>
                 <label htmlFor="gsearch">Search Game:</label>
                 <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
                 <button type="submit">Search</button> {/* Add a submit button to trigger search */}
             </form>
-
-            <Link to={`create-account`}>
-                <button className='nice_dark_butt_on'>Create new account</button>
-            </Link>
-            <div className='title2'>
-                <h1>Accounts</h1>
-            </div>
             <div className='buttonflex'>
                 <Link to={`create-account`} className='button'>
                     <button className='nice_dark_butt_on'>Create new account</button>
@@ -77,11 +71,11 @@ export default function Accounts() {
                             </div>
                         </Link>
                     ))
-            ) : (
-            // Render message if no data available
-            <p>Data Fetching...</p>
-            )}
-        </div>
+                ) : (
+                    // Render message if no data available
+                    <p>Data Fetching...</p>
+                )}
+            </div>
         </main >
     )
 }

@@ -62,7 +62,7 @@ export default function Players() {
         </Link>
       </div>
 
-      <table>
+      <table class="table table-hover row-clickable">
         <thead>
           <tr>
             <th>Game Account ID</th>

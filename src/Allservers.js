@@ -74,7 +74,7 @@ export default function Allservers() {
                 </Link>
             </div>
 
-            <table>
+            <table class="table table-hover row-clickable">
                 <thead>
                     <tr>
                         <th>Server Location ID</th>
@@ -99,7 +99,7 @@ export default function Allservers() {
                 </tbody>
             </table>
 
-            <table>
+            <table class="table table-hover row-clickable">
                 <thead>
                     <tr>
                         <th>Server ID</th>

@@ -45,39 +45,9 @@
 }
 
 .allGames a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
-.nice_butt_on {
-  background-color: #2ea44f;
-  border: none;
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  font-size: 18px;
-  font-weight: 500;
-  line-height: 20px;
-  padding: 12px 32px;
-  position: relative;
-  text-align: center;
-  text-decoration: none;
-  vertical-align: middle;
-  white-space: nowrap;
-  margin-bottom: 20px;
-}
-
-.nice_butt_on:hover {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: #2c974b;
-  transition: 0.3s;
-}
-
-.nice_butt_on:active {
-  background-color: #268441;
-  transition: 0.3s;
-}
-
-/*
 .nice_butt_on {
   padding: 12px 24px;
   font-size: 18px;
@@ -90,8 +60,6 @@
   transition: background-image 0.3s ease;
   margin-bottom: 1.5rem;
 }
-
-
 
 .nice_dark_butt_on {
   padding: 12px 24px;
@@ -110,4 +78,51 @@
   background-image: linear-gradient(to right, #ff8e53, #ff6b6b);
 }
 
-*/
+.card {
+  background: #fff;
+  width: 24em;
+  border-radius: 0.6em;
+  margin: 1em;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 13px 27px -5px hsla(240, 30.1%, 28%, 0.25), 0 8px 16px -8px hsla(0, 0%, 0%, 0.3), 0 -6px 16px -6px hsla(0, 0%, 0%, 0.03);
+  transition: all ease 200ms;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 13px 40px -5px hsla(240, 30.1%, 28%, 0.12), 0 8px 32px -8px hsla(0, 0%, 0%, 0.14), 0 -6px 32px -6px hsla(0, 0%, 0%, 0.02);
+}
+
+.card img {
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.card h2 {
+  color: #222;
+  margin-top: -0.2em;
+  line-height: 1.4;
+  font-size: 1.3em;
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  transition: all ease-in 100ms;
+}
+
+.card p {
+  color: #777;
+}
+
+.card h5 {
+  color: #bbb;
+  font-weight: 700;
+  font-size: 0.7em;
+  letter-spacing: 0.04em;
+  margin: 1.4em 0 0 0;
+  text-transform: uppercase;
+}
+
+.card-body {
+  padding: 1.2em;
+}

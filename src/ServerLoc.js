@@ -61,7 +61,7 @@ export default function ServerLoc() {
                     <button className='nice_butt_on'>Home</button>
                 </Link>
             </div>
-            <table>
+            <table class="table table-hover row-clickable">
                 <thead>
                     <tr>
                         <th>Server Location ID</th>

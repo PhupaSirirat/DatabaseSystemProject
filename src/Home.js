@@ -8,7 +8,7 @@ function Home() {
             <div className='title'>
                 <h1 className='title'>Game management system</h1>
             </div>
-            <hr></hr>
+            <hr className='hr1'></hr>
             <div className='boxcontain'>
                 <Link className='link' to={"/App"}>
                     <div className='box'>

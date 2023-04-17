@@ -35,6 +35,7 @@ function App() {
       <Link to={"/"}>
         <button className='nice_butt_on'>Home</button>
       </Link>
+      <hr className='hr2'></hr>
       <div className='resultcontain'>
         <div className="allGames">
           {result.length > 0 ? (

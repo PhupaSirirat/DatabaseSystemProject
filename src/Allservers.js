@@ -33,24 +33,24 @@ export default function Allservers() {
     const searchData = () => {
         const sql = `select * from game_server where hostname like '%${search}%'`; // Use search state to construct the SQL query
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-          .then(response => {
-            if (response.data['error']) {
-                alert(response.data.error); return;
-            }
-            console.log('connected');
-            setServer(response.data); // Update state with fetched data
-          })
-          .catch(err => alert(err));
-      }
-    
-      const handleSearchChange = (e) => {
+            .then(response => {
+                if (response.data['error']) {
+                    alert(response.data.error); return;
+                }
+                console.log('connected');
+                setServer(response.data); // Update state with fetched data
+            })
+            .catch(err => alert(err));
+    }
+
+    const handleSearchChange = (e) => {
         setSearch(e.target.value); // Update search state with the input value
-      }
-    
-      const handleSearchSubmit = (e) => {
+    }
+
+    const handleSearchSubmit = (e) => {
         e.preventDefault(); // Prevent form submission
         searchData(); // Call searchData function to fetch data based on search query
-      }
+    }
 
     return (
         <main>
@@ -73,43 +73,79 @@ export default function Allservers() {
                     <button className='nice_butt_on'>Home</button>
                 </Link>
             </div>
-            <div className="game-item">
-                {serverloc.length > 0 ? (
-                    serverloc.map(item => (
-                        <div key={item.serverlocationid}>
-                            <p>Server Location ID: {item.serverlocationid}<br />
-                                Region: {item.region}<br />
-                                Colocation country: {item.colocation_country}<br />
-                                Colocation company: {item.colocation_company}<br />
-                            </p>
-                            <br />
-                        </div>
-                    ))
-                ) : (
-                    <p>Data Fetching...</p>
-                )}
-            </div>
-            <div className='resultcontain'>
-                {server.length > 0 ? (
-                    // Render if server available
-                    server.map(item => (
-                        <Link to={`/server-detail/${item.gameserverid}`}>
-                            <div key={item.gameserverid} className="game-item">
-                                <p>Server ID: {item.gameserverid}</p>
-                                <p>Game ID: {item.gameid}</p>
-                                <p>Server Location ID: {item.serverlocationid}</p>
-                                <p>IP address: {item.ipaddress}</p>
-                                <p>Hostname: {item.hostname}</p>
-                                <p>Port: {item.port}</p>
-                                <p>Max player count: {item.maxplayercount}</p>
-                            </div>
-                        </Link>
-                    ))
-                ) : (
-                    // Render message if no data available
-                    <p>Data Fetching...</p>
-                )}
-            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Server Location ID</th>
+                        <th>Region</th>
+                        <th>Colocation country</th>
+                        <th>Colocation company</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {serverloc.length > 0 ? (
+                        serverloc.map(item => (
+                            <tr key={item.serverlocationid}>
+                                <th><Link to={`${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.region}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_country}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_company}</Link></th>
+                            </tr>
+                        ))
+                    ) : (
+                        <p>Data Fetching...</p>
+                    )}
+                </tbody>
+            </table>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Server ID</th>
+                        <th>Game ID</th>
+                        <th>Server Location ID</th>
+                        <th>IP address</th>
+                        <th>Hostname</th>
+                        <th>Port</th>
+                        <th>Max player count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {server.length > 0 ? (
+                        // Render if server available
+                        server.map(item => (
+
+                            <tr key={item.gameserverid}>
+                                <th><Link to={`/server-detail/${item.gameserverid}`}>
+                                    {item.gameserverid}
+                                </Link></th>
+                                <th><Link to={`/server-detail/${item.gameserverid}`}>
+                                    {item.gameid}
+                                </Link></th>
+                                <th><Link to={`/server-detail/${item.gameserverid}`}>
+                                    {item.serverlocationid}
+                                </Link></th>
+                                <th><Link to={`/server-detail/${item.gameserverid}`}>
+                                    {item.ipaddress}
+                                </Link></th>
+                                <th><Link to={`/server-detail/${item.gameserverid}`}>
+                                    {item.hostname}
+                                </Link></th>
+                                <th><Link to={`/server-detail/${item.gameserverid}`}>
+                                    {item.port}
+                                </Link></th>
+                                <th><Link to={`/server-detail/${item.gameserverid}`}>
+                                    {item.maxplayercount}
+                                </Link></th>
+                            </tr>
+                        ))
+                    ) : (
+                        // Render message if no data available
+                        <p>Data Fetching...</p>
+                    )}
+                </tbody>
+            </table>
         </main>
     )
 }

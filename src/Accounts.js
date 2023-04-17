@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import './Style/Table.css';
 
 export default function Accounts() {
     const [accounts, setAccounts] = useState([]);
@@ -59,23 +60,30 @@ export default function Accounts() {
                     <button className='nice_butt_on'>Home</button>
                 </Link>
             </div>
-            <div className='resultcontain'>
-                {accounts.length > 0 ? (
-                    // Render if server available
-
-                    accounts.map(item => (
-                        <Link to={`account-detail/${item.accountid}`}>
-                            <div key={item.accountid} className="game-item">
-                                <p>Username: {item.username}</p>
-                                <p>Email: {item.email}</p>
-                            </div>
-                        </Link>
-                    ))
-                ) : (
-                    // Render message if no data available
-                    <p>Data Fetching...</p>
-                )}
-            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {accounts.length > 0 ? (
+                        // Render if server available
+                        accounts.map(item => (
+                            <tr key={item.accountid}>
+                                <th><Link to={`account-detail/${item.accountid}`}>{item.accountid}</Link></th>
+                                <th><Link to={`account-detail/${item.accountid}`}>{item.username}</Link></th>
+                                <th><Link to={`account-detail/${item.accountid}`}>{item.email}</Link></th>
+                            </tr>
+                        ))
+                    ) : (
+                        // Render message if no data available
+                        <p>Data Fetching...</p>
+                    )}
+                </tbody>
+            </table>
         </main >
     )
 }

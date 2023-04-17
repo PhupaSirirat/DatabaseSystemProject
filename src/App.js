@@ -49,11 +49,9 @@ function App() {
 
   return (
     <main>
-      <div className='topbox'>
-        <div className='titleag'>
+        <div className='title2'>
           <h1 >Search all games</h1>
         </div>
-      </div>
 
       <form onSubmit={handleSearchSubmit}>
         <label htmlFor="gsearch">Search Game:</label>
@@ -69,6 +67,8 @@ function App() {
           <button className='nice_butt_on'>Home</button>
         </Link>
       </div>
+
+      <hr className='hr2'></hr>
 
       <div className='resultcontain'>
         {data.length > 0 ? (

@@ -31,29 +31,54 @@ export default function Players() {
           <button className='nice_butt_on'>Home</button>
         </Link>
       </div>
-      <div className='resultcontain'>
-        {players.length > 0 ? (
-          // Render data if available
-          players.map(item => (
-            <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
-              <div key={item.gameaccountid} className="GameCard">
-                <div className='GameText'>
-                  <p>Game Account ID: {item.gameaccountid}</p>
-                  <p>Account ID: {item.accountid}</p>
-                  <p>Game ID: {item.gameid}</p>
-                  <p>Game Server ID: {item.gameserverid}</p>
-                  <p>In game name: {item.ingamename}</p>
-                  <p>Account Level: {item.accountlevel}</p>
-                  <p>In game register date: {item.ingameregisterdate.substring(0, item.ingameregisterdate.indexOf('T'))}</p>
-                </div>
-              </div>
-            </Link>
-          ))
-        ) : (
-          // Render message if no data available
-          <p>Data fetching...</p>
-        )}
-      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Game Account ID</th>
+            <th>Account ID</th>
+            <th>Game ID</th>
+            <th>Game Server ID</th>
+            <th>In-game name</th>
+            <th>Account Level</th>
+            <th>In-game register date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {players.length > 0 ? (
+            // Render data if available
+            players.map(item => (
+              <tr key={item.gameaccountid}>
+                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                  {item.gameaccountid}
+                </Link></th>
+                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                  {item.accountid}
+                </Link></th>
+                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                  {item.gameid}
+                </Link></th>
+                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                  {item.gameserverid}
+                </Link></th>
+                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                  {item.ingamename}
+                </Link></th>
+                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                  {item.accountlevel}</Link>
+                </th>
+                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                  {item.ingameregisterdate.substring(0, item.ingameregisterdate.indexOf('T'))}
+                </Link></th>
+              </tr>
+            ))
+          ) : (
+            // Render message if no data available
+            <p>Data fetching...</p>
+          )}
+        </tbody>
+      </table>
+
     </main>
   )
 }

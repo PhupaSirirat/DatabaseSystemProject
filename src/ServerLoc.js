@@ -30,23 +30,30 @@ export default function ServerLoc() {
                     <button className='nice_butt_on'>Home</button>
                 </Link>
             </div>
-            <div className='resultcontain'>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Server Location ID</th>
+                        <th>Region</th>
+                        <th>Colocation country</th>
+                        <th>Colocation company</th>
+                    </tr>
+                </thead>
+                <tbody>
                 {serverloc.length > 0 ? (
                     serverloc.map(item => (
-                        <Link to={`${item.serverlocationid}`}>
-                            <div key={item.serverlocationid} className="game-item">
-                                <p>Server Location ID: {item.serverlocationid}<br />
-                                    Region: {item.region}<br />
-                                    Colocation country: {item.colocation_country}<br />
-                                    Colocation company: {item.colocation_company}<br />
-                                </p>
-                            </div>
-                        </Link>
+                            <tr key={item.serverlocationid}>
+                                <th><Link to={`${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.region}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_country}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_company}</Link></th>
+                            </tr>
                     ))
                 ) : (
                     <p>Data Fetching...</p>
                 )}
-            </div>
+                </tbody>
+            </table>
         </main>
     )
 }

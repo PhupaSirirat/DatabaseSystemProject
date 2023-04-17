@@ -74,7 +74,7 @@ export default function Allservers() {
                 </Link>
             </div>
 
-            <table>
+            <table class="table table-hover row-clickable">
                 <thead>
                     <tr>
                         <th>Server Location ID</th>
@@ -86,7 +86,7 @@ export default function Allservers() {
                 <tbody>
                     {serverloc.length > 0 ? (
                         serverloc.map(item => (
-                            <tr key={item.serverlocationid}>
+                            <tr onclick="window.location=`https://gamedb.up.railway.app/server-locations`" key={item.serverlocationid}>
                                 <th><Link to={`${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
                                 <th><Link to={`${item.serverlocationid}`}>{item.region}</Link></th>
                                 <th><Link to={`${item.serverlocationid}`}>{item.colocation_country}</Link></th>

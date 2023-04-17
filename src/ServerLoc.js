@@ -54,7 +54,7 @@ export default function ServerLoc() {
 
             <div className='buttonflex'>
                 <Link to={"create-serverlocation"} className='button'>
-                    <button className='nice_dark_butt_on'>Create new location</button>
+                    <button className='nice_butt_on'>Create new location</button>
                 </Link>
 
                 <Link to={"/"} className='button'>

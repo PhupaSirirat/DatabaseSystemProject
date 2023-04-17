@@ -66,7 +66,7 @@ export default function Allservers() {
 
             <div className='buttonflex'>
                 <Link to={`create-server`} className='button'>
-                    <button className='nice_dark_butt_on'>Create new server</button>
+                    <button className='nice_butt_on'>Create new server</button>
                 </Link>
 
                 <Link to={`/`} className='button'>

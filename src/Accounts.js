@@ -53,7 +53,7 @@ export default function Accounts() {
             </form>
             <div className='buttonflex'>
                 <Link to={`create-account`} className='button'>
-                    <button className='nice_dark_butt_on'>Create new account</button>
+                    <button className='nice_butt_on'>Create new account</button>
                 </Link>
 
                 <Link to={`/`} className='button'>

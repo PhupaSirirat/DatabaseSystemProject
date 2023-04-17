@@ -55,7 +55,7 @@ export default function Players() {
 
       <div className='buttonflex'>
         <Link to={"/players/create-player"} className='button'>
-          <button className='nice_dark_butt_on'>Create new player</button>
+          <button className='nice_butt_on'>Create new player</button>
         </Link>
         <Link to={"/"} className='button'>
           <button className='nice_butt_on'>Home</button>

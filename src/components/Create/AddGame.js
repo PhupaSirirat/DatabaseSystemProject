@@ -11,7 +11,6 @@ function AddGame() {
 
     // Collect input values
     const gamename = event.target.gamename.value;
-    const gameid = event.target.gameid.value;
     const genre = event.target.genre.value;
     const version = event.target.version.value;
     const description = event.target.description.value;
@@ -21,9 +20,9 @@ function AddGame() {
     const thumbnail = event.target.thumbnail.value;
 
     // Display input values in an alert
-    alert(`Data to insert.\nGame: ${gamename}\nGameID: ${gameid}\nGenre: ${genre}\nVersion: ${version}\nDescription: ${description}\nRelease Date: ${releasedate}\nSystems: ${systems}\nAge Rating: ${agerating}\nThumbnail Link: ${thumbnail}`);
+    alert(`Data to insert.\nGame: ${gamename}\nGenre: ${genre}\nVersion: ${version}\nDescription: ${description}\nRelease Date: ${releasedate}\nSystems: ${systems}\nAge Rating: ${agerating}\nThumbnail Link: ${thumbnail}`);
 
-    const sql = `insert into game values (${gameid},'${gamename}','${description}','${releasedate}','${systems}','${version}','${genre}','${agerating}','${thumbnail}')`;
+    const sql = `insert into game values ('${gamename}','${description}','${releasedate}','${systems}','${version}','${genre}','${agerating}','${thumbnail}')`;
     axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
       .then(response => {
         if (response.data['error']) {
@@ -45,10 +44,6 @@ function AddGame() {
       <form ref={formRef} onSubmit={handleSubmit}>
         <label htmlFor="gamename">Game:</label>
         <input type="text" id="gamename" name="gamename" required />
-        <br />
-
-        <label htmlFor="gameid">GameID:</label>
-        <input type="text" id="gameid" name="gameid" required />
         <br />
 
         <label htmlFor="genre">Genre:</label>

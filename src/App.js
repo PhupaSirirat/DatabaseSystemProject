@@ -54,7 +54,7 @@ function App() {
         </div>
 
       <form onSubmit={handleSearchSubmit}>
-        <label htmlFor="gsearch">Search Game:</label>
+        <label htmlFor="gsearch">Search Game by name:</label>
         <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
         <button type="submit">Search</button> {/* Add a submit button to trigger search */}
       </form>

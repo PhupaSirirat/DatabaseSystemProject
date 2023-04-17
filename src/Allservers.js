@@ -59,7 +59,7 @@ export default function Allservers() {
             </div>
 
             <form onSubmit={handleSearchSubmit}>
-                <label htmlFor="gsearch">Search Server Name:</label>
+                <label htmlFor="gsearch">Search Server by hostname:</label>
                 <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} />
                 <button type="submit">Search</button> {/* Add a submit button to trigger search */}
             </form>

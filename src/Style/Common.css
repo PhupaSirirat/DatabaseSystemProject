@@ -81,7 +81,7 @@ hr {
 .resultcontain {
     display: grid;
     grid-template-columns: auto auto auto;
-    width: 90%;
+    width: 100%;
 }
 
 a {

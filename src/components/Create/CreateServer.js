@@ -53,19 +53,31 @@ export default function CreateServer() {
         <main>
             <h1>Create New Server</h1>
             <button onClick={handleShow}>Show All Server Locations</button>
-            <div className={show? "game-item": "hidden"}>
-                {serverloc.length > 0 ? (
-                    serverloc.map(item => (
-                        <div className='servlocdata' key={item.serverlocationid}>
-                            <p className="bold">Server Location ID: {item.serverlocationid}</p>
-                            <p>Region: {item.region}</p>
-                            <p>Colocation country: {item.colocation_country}</p>
-                            <p>Colocation company: {item.colocation_company}</p>
-                        </div>
-                    ))
-                ) : (
-                    <p>Data Fetching...</p>
-                )}
+            <div className={show? "server-item": "hidden"}>
+            <table className="table table-hover row-clickable">
+                <thead>
+                    <tr>
+                        <th>Server Location ID</th>
+                        <th>Region</th>
+                        <th>Colocation country</th>
+                        <th>Colocation company</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {serverloc.length > 0 ? (
+                        serverloc.map(item => (
+                            <tr key={item.serverlocationid}>
+                                <th><Link to={`${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.region}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_country}</Link></th>
+                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_company}</Link></th>
+                            </tr>
+                        ))
+                    ) : (
+                        <p>Data Fetching...</p>
+                    )}
+                </tbody>
+            </table>
             </div>
 
             <form onSubmit={handleSubmit}>

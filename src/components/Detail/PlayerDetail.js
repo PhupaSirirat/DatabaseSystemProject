@@ -5,23 +5,13 @@ import axios from 'axios';
 export default function PlayerDetail() {
     const { gameid, slug } = useParams();
     const [playerData, setPlayerData] = useState([]);
-    // const [mainAcc, setMainAcc] = useState([]);
+    const [mainAcc, setMainAcc] = useState([]);
 
     useEffect(() => {
         fetchPlayer();
-        // fetchMainAcc();
+        fetchMainAcc();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
-
-    // const fetchMainAcc = () => {
-    //     // const sql = `select * from game_server where gameid=${slug}`
-    //     axios.get(`https://gamedb-api-service.up.railway.app/api/get-accountdetails?accountid=${playerData.length>0? playerData[0].accountid: ""}`)
-    //         // if fetching game server successfully
-    //         .then(response => {
-    //             setMainAcc(response.data);
-    //         })
-    //         .catch(err => alert(err));
-    // }
 
     const fetchPlayer = () => {
         // const sql = `select * from game_server where gameid=${slug}`
@@ -31,6 +21,16 @@ export default function PlayerDetail() {
                 setPlayerData(response.data);
             })
             .catch(err => alert(err));
+    }
+
+    const fetchMainAcc = () => {
+        // const sql = `select * from game_server where gameid=${slug}`
+        axios.get(`https://gamedb-api-service.up.railway.app/api/get-accountdetails?gameaccountid=${slug}`)
+        // if fetching game server successfully
+        .then(response => {
+            setMainAcc(response.data);
+        })
+        .catch(err => alert(err));
     }
 
     const deletePlayer = (e) => {
@@ -55,24 +55,6 @@ export default function PlayerDetail() {
         <main>
             <h1>{playerData.length>0? playerData[0].ingamename: ""}</h1>
 
-            {/* <div className="game-item">
-                {mainAcc.length > 0 ? (
-                    // Render if server available
-                    mainAcc.map(item => (
-                        <div key={item.accountid}>
-                            <p className='bold'>Account ID: {item.accountid}</p>
-                            <p>Username : {item.username}</p>
-                            <p>Email : {item.email}</p>
-                            <p>Password : {item.password}</p>
-                            <p>Account Register Date : {item.accountregisterdate.substring(0, item.accountregisterdate.indexOf("T"))}</p>
-                        </div>
-                    ))
-                ) : (
-                    // Render message if no data available
-                    <p>Data Fetching...</p>
-                )}
-            </div> */}
-
             <div className="game-item">
                 {playerData.length > 0 ? (
                     // Render if server available
@@ -82,6 +64,24 @@ export default function PlayerDetail() {
                             <p>In game name: {item.ingamename}</p>
                             <p>In game register date: {item.ingameregisterdate.substring(0, item.ingameregisterdate.indexOf("T"))}</p>
                             <p>Account level: {item.accountlevel}</p>
+                        </div>
+                    ))
+                ) : (
+                    // Render message if no data available
+                    <p>Data Fetching...</p>
+                )}
+            </div>
+
+            <div className="game-item">
+                {mainAcc.length > 0 ? (
+                    // Render if server available
+                    mainAcc.map(item => (
+                        <div key={item.accountid}>
+                            <p className='bold'>Account ID: {item.accountid}</p>
+                            <p>Username : {item.username}</p>
+                            <p>Email : {item.email}</p>
+                            <p>Password : {item.password}</p>
+                            <p>Account Register Date : {item.accountregisterdate.substring(0, item.accountregisterdate.indexOf("T"))}</p>
                         </div>
                     ))
                 ) : (

@@ -34,8 +34,12 @@ app.get('/api/get-accountlist', async (req, res, next) => {
 app.get('/api/get-accountdetails', async (req, res, next) => {
   const params = new URLSearchParams(req.query);
     let sql = '';
-    if (params.get('accountid')) {
+    if (params.get('accountid') && !params.get('gameaccountid')) {
       sql = `SELECT * FROM account WHERE accountid = ${params.get('accountid')}`;
+    }
+    else if (!params.get('accountid') && params.get('gameaccountid'))
+    {
+      sql = `SELECT * FROM account WHERE accountid = (SELECT accountid FROM ingame_account WHERE gameaccountid = ${params.get('gameaccountid')})`;
     }
     if (!sql) {
       return;

@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 const express = require('express')
 const cors = require('cors');
 const crypto = require('crypto');
@@ -215,7 +216,7 @@ app.post('/api/register-account', async (req, res, next) => {
 
 app.post('/api/register-player', async (req, res, next) => {
   try {
-    const { accountid, gameid, gameserverid, ingamename, ingameregisterdate} = req.body;
+    const { accountid, gameid, gameserverid, ingamename} = req.body;
     if (!accountid || !gameid || !gameserverid || !ingamename) {
       return res.json({ error: 'All fields not provided' });
     }

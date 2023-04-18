@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 export default function CreateServLoc() {
+    const [input, setInput] = useState('');
+    const handleInputChange = (e) => {
+        e.preventDefault();
+        setInput(e.target.value);
+      }
 
     const handleSubmit = (event) => {
         event.preventDefault(); // Prevent form submission
@@ -28,16 +33,14 @@ export default function CreateServLoc() {
 
     return (
         <main>
-            <h1>Create Server Location</h1>
+            <h1>Create Location {input.length>0? input: '[Untitled]'}</h1>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="region">Region: </label>
-                <input type="text" id="region" name="region" required />
-                <br />
+                <input type="text" id="region" name="region" onChange={handleInputChange} required />
 
                 <label htmlFor="colocation_country">Colocation Country: </label>
                 <input type="text" id="colocation_country" name="colocation_country" required />
-                <br />
 
                 <label htmlFor="colocation_company">Colocation Company: </label>
                 <input type="text" id="colocation_company" name="colocation_company" required />

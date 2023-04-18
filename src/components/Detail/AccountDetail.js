@@ -41,14 +41,14 @@ export default function AccountDetail() {
 
     return (
         <main>
-            <h1>Account Detail: Account ID = {slug}</h1>
+            <h1>{playerData.length>0? playerData[0].username: ''}</h1>
 
             <div className="game-item">
                 {playerData.length > 0 ? (
                     // Render if server available
                     playerData.map(item => (
                         <div key={item.accountid}>
-                            <p>Account ID: {item.accountid}</p>
+                            <p className='bold'>Account ID: {item.accountid}</p>
                             <p>Username : {item.username}</p>
                             <p>Email : {item.email}</p>
                             <p>Password : {item.password}</p>
@@ -63,11 +63,13 @@ export default function AccountDetail() {
 
 
             <Link to={`/edit-account/${slug}`}>
-                <button className='nice_dark_butt_on'>Edit account details</button>
+                <button className='edit-btn'>Edit account details</button>
             </Link>
+            <br/>
             <Link to={`/accounts`} onClick={deleteAccount}>
-                <button className='nice_dark_butt_on'>Delete account</button>
+                <button className='delete-btn'>Delete account</button>
             </Link>
+            <br/>
             <Link to={`/accounts`}>
                 <button className='nice_butt_on'>Back</button>
             </Link>

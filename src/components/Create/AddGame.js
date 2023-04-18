@@ -1,10 +1,14 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../../Style/AddGame.css';
+import '../../Style/HtmlElement.css';
 import axios from 'axios';
 
 function AddGame() {
-  const formRef = useRef(null);
+  const [input, setInput] = useState('');
+  const handleInputChange = (e) => {
+    e.preventDefault();
+    setInput(e.target.value);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault(); // Prevent form submission
@@ -27,52 +31,41 @@ function AddGame() {
       .then(response => {
         if (response.data['error']) {
           alert(response.data.error); return;
-      }
+        }
         alert("Insert successfully")
-        window.location = '/';
+        window.location = '/App';
       })
       .catch(error => alert(error));
-
-    // Reset the form
-    formRef.current.reset();
   };
 
   return (
     <main className='addgame'>
-      <h1 className='addgame'>Add New Game</h1>
+      <h1 className='addgame'>{input.length > 0 ? input : "[Untitled]"}</h1>
 
-      <form ref={formRef} onSubmit={handleSubmit}>
-        <label htmlFor="gamename">Game:</label>
-        <input type="text" id="gamename" name="gamename" required />
-        <br />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="gamename">Game Name:</label>
+        <input type="text" id="gamename" name="gamename" required onChange={handleInputChange} />
 
         <label htmlFor="genre">Genre:</label>
         <input type="text" id="genre" name="genre" required />
-        <br />
 
         <label htmlFor="version">Version:</label>
         <input type="text" id="version" name="version" required />
-        <br />
 
         <label htmlFor="description">Description</label>
         <input type="text" id="description" name="description" required />
-        <br />
 
         <label htmlFor="releasedate">Release Date</label>
         <input type="date" id="releasedate" name="releasedate" required />
-        <br />
 
         <label htmlFor="systems">Systems</label>
         <input type="text" id="systems" name="systems" required />
-        <br />
 
         <label htmlFor="agerating">Age Rating</label>
         <input type="text" id="agerating" name="agerating" required />
-        <br />
 
         <label htmlFor="thumbnail">Thumbnail Link:</label>
         <input type="text" id="thumbnail" name="thumbnail" required />
-        <br />
 
         <input type="submit" value="Submit" />
       </form>

@@ -48,7 +48,7 @@ export default function Players() {
 
       <div className="search-container">
         <form>
-          <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search player by In-game name" />
+          <input className='search-form' type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search player by In-game name" />
         </form>
       </div>
 
@@ -78,27 +78,46 @@ export default function Players() {
             // Render data if available
             players.map(item => (
               <tr key={item.gameaccountid}>
-                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
-                  {item.gameaccountid}
-                </Link></th>
-                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
-                  {item.accountid}
-                </Link></th>
-                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
-                  {item.gameid}
-                </Link></th>
-                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
-                  {item.gameserverid}
-                </Link></th>
-                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
-                  {item.ingamename}
-                </Link></th>
-                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
-                  {item.accountlevel}</Link>
+                <th>
+                  <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                    {item.gameaccountid}
+                  </Link>
                 </th>
-                <th><Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
-                  {item.ingameregisterdate.substring(0, item.ingameregisterdate.indexOf('T'))}
-                </Link></th>
+
+                <th>
+                  <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                    {item.accountid}
+                  </Link>
+                </th>
+
+                <th>
+                  <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                    {item.gameid}
+                  </Link>
+                </th>
+
+                <th>
+                  <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                    {item.gameserverid}
+                  </Link>
+                </th>
+
+                <th>
+                  <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                    {item.ingamename}
+                  </Link>
+                </th>
+
+                <th>
+                  <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                    {item.accountlevel}</Link>
+                </th>
+
+                <th>
+                  <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}>
+                    {item.ingameregisterdate.substring(0, item.ingameregisterdate.indexOf('T'))}
+                  </Link>
+                </th>
               </tr>
             ))
           ) : (

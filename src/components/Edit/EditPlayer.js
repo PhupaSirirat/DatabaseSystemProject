@@ -5,6 +5,11 @@ import axios from 'axios';
 export default function EditPlayer() {
     const { slug } = useParams();
     const [players, setPlayers] = useState([]);
+    const [input, setInput] = useState('');
+    const handleInputChange = (e) => {
+        e.preventDefault();
+        setInput(e.target.value);
+    }
 
     useEffect(() => {
         fetchPlayers();
@@ -45,28 +50,23 @@ export default function EditPlayer() {
 
     return (
         <main>
-            <h1>EditPlayer: Game Account ID = {slug}</h1>
+            <h1>Edit Player {input.length > 0 ? input : (players.length > 0 ? players[0].ingamename : "")}</h1>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="accountid">Account ID: </label>
                 <input type="text" id="accountid" name="accountid" defaultValue={players.length > 0 ? players[0].accountid : ""} required />
-                <br />
 
                 <label htmlFor="gameid">Game ID: </label>
                 <input type="text" id="gameid" name="gameid" defaultValue={players.length > 0 ? players[0].gameid : ""} required />
-                <br />
 
                 <label htmlFor="gameserverid">Game Server ID: </label>
                 <input type="text" id="gameserverid" name="gameserverid" defaultValue={players.length > 0 ? players[0].gameserverid : ""} required />
-                <br />
 
                 <label htmlFor="ingamename">In game name: </label>
-                <input type="text" id="ingamename" name="ingamename" defaultValue={players.length > 0 ? players[0].ingamename : ""} required />
-                <br />
+                <input type="text" id="ingamename" name="ingamename" onChange={handleInputChange} defaultValue={players.length > 0 ? players[0].ingamename : ""} required />
 
                 <label htmlFor="accountlevel">Account Level: </label>
                 <input type="text" id="accountlevel" name="accountlevel" defaultValue={players.length > 0 ? players[0].accountlevel : ""} required />
-                <br />
 
                 <input type="submit" value="Submit" />
             </form>

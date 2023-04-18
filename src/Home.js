@@ -8,48 +8,38 @@ function Home() {
             <div className='title'>
                 <h1 className='title'>Game management system</h1>
             </div>
+
             <hr className='hr1'></hr>
+
             <div className='boxcontain'>
                 <Link className='link' to={"/App"}>
                     <div className='box'>
-                        <b className='boxtitle'>
-                            Games
-                        </b>
+                        <h4>Games</h4>
                     </div>
                 </Link>
                 <Link className='link' to={"/allservers"}>
                     <div className='box'>
-                        <b className='boxtitle'>
-                            Servers
-                        </b>
+                        <h4>Servers</h4>
                     </div>
                 </Link>
                 <Link className='link' to={"/accounts"}>
                     <div className='box'>
-                        <b className='boxtitle'>
-                            Accounts
-                        </b>
+                        <h4>Accounts</h4>
                     </div>
                 </Link>
                 <Link className='link' to={"/server-locations"}>
                     <div className='box'>
-                        <b className='boxtitle'>
-                            Server Locations
-                        </b>
+                        <h4>Server Locations</h4>
                     </div>
                 </Link>
                 <Link className='link' to={"/players"}>
                     <div className='box'>
-                        <b className='boxtitle'>
-                            Players
-                        </b>
+                        <h4>Players</h4>
                     </div>
                 </Link>
                 <Link className='link' to={"/admin-tools"}>
                     <div className='box'>
-                        <b className='boxtitle'>
-                            Admin Tools
-                        </b>
+                        <h4>Admin Tools</h4>
                     </div>
                 </Link>
             </div>

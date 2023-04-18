@@ -54,13 +54,13 @@ export default function ServerDetail() {
 
     return (
         <main>
-            <h1>Server Detail Page: Game Server ID = {slug}</h1>
+            <h1>Server {server.length>0? server[0].hostname: ''}</h1>
 
             {server.length > 0 ? (
                 // Render if server available
                 server.map(item => (
                     <div key={item.gameserverid} className="game-item">
-                        <p>Server ID: {item.gameserverid}</p>
+                        <p className="bold">Server ID: {item.gameserverid}</p>
                         <p>Game ID: {item.gameid}</p>
                         <p>IP address: {item.ipaddress}</p>
                         <p>Hostname: {item.hostname}</p>
@@ -77,11 +77,11 @@ export default function ServerDetail() {
                 {serverloc.length > 0 ? (
                     serverloc.map(item => (
                         <div key={item.serverlocationid}>
-                            <p>Server Location ID: {item.serverlocationid}<br />
-                                Region: {item.region}<br />
-                                Colocation country: {item.colocation_country}<br />
-                                Colocation company: {item.colocation_company}<br />
-                            </p>
+                            <p className="bold">Server Location ID: {item.serverlocationid}</p>
+                            <p>Region: {item.region}</p>
+                            <p>Colocation country: {item.colocation_country}</p>
+                            <p>Colocation company: {item.colocation_company}</p>
+                            
                         </div>
                     ))
                 ) : (
@@ -90,17 +90,21 @@ export default function ServerDetail() {
             </div>
 
             <Link to={"edit-server"}>
-                <button className='nice_dark_butt_on'>Edit server details</button>
+                <button className='edit-btn'>Edit server details</button>
             </Link>
+            <br/>
             <Link to={"/allserver"}>
-                <button className='nice_dark_butt_on' onClick={deleteServer}>Delete server</button>
+                <button className='delete-btn' onClick={deleteServer}>Delete server</button>
             </Link>
+            <br/>
             <Link to={`/game-detail/${server.length > 0 ? server[0].gameid : ""}`}>
                 <button className='nice_butt_on'>To game page</button>
             </Link>
+            <br/>
             <Link to={"/allservers"}>
                 <button className='nice_butt_on'>All servers</button>
             </Link>
+            <br/>
             <Link to={"/"}>
                 <button className='nice_butt_on'>Home</button>
             </Link>

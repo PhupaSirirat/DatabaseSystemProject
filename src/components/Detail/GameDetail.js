@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-import '../../Style/GameDetail.css';
+import '../../Style/Detail.css';
 
 const GameDetail = () => {
     const { slug } = useParams(); // Access the 'slug' parameter from the URL
@@ -68,9 +68,9 @@ const GameDetail = () => {
 
     return (
         <main>
-            <h1>Game Detail Page: Game ID = {slug}</h1>
+            <h1>{gameData[0] ? gameData[0].gamename : ""}</h1>
 
-            <img height={"450px"} src={gameData[0] ? gameData[0].thumbnail_link : <span>Fetch thumbnail...</span>} alt="fetch thumbnail..." />
+            <img className="game-img" height={"450px"} src={gameData[0] ? gameData[0].thumbnail_link : <span>Fetch thumbnail...</span>} alt="fetch thumbnail..." />
             <br />
 
             <div className="game-item">
@@ -133,10 +133,10 @@ const GameDetail = () => {
             </div>
 
             <Link to={`/editgame/${slug}`}>
-                <button className='nice_dark_butt_on'>Edit game details</button>
+                <button className='edit-btn'>Edit game details</button>
             </Link>
             <br />
-            <button className='nice_dark_butt_on' onClick={deleteData}>Delete this game</button>
+            <button className='delete-btn' onClick={deleteData}>Delete this game</button>
             <br />
             <Link to={"/App"}>
                 <button className='nice_butt_on'>Back</button>

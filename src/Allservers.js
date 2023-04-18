@@ -54,12 +54,12 @@ export default function Allservers() {
     return (
         <main>
             <div className='title2'>
-                <h1>All servers</h1>
+                <h1>All Servers</h1>
             </div>
 
             <div className="search-container">
                 <form>
-                    <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search server by hostname" />
+                    <input className='search-form' type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search server by hostname" />
                 </form>
             </div>
 

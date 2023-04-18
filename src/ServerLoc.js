@@ -50,7 +50,7 @@ export default function ServerLoc() {
 
             <div className="search-container">
                 <form>
-                    <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search Server Region or Country or Company" />
+                    <input className='search-form' type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search Server Region or Country or Company" />
                 </form>
             </div>
 

@@ -29,7 +29,7 @@ function App() {
       <form onSubmit={handleSubmit}>
         <label htmlFor="sql">Execute SQL query:</label>
         <input type="text" id="sql" name="sql" value={sql} onChange={(e) => setSql(e.target.value)} />
-        <button type="submit">Submit</button>
+        <button className='query-submit' type="submit">Submit</button>
       </form>
 
       <Link to={"/"}>

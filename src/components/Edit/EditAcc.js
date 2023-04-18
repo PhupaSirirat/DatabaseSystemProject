@@ -49,20 +49,17 @@ export default function EditAcc() {
 
     return (
         <main>
-            <h1>Edit Game Page: Account ID = {slug}</h1>
+            <h1>Edit Account {data.length>0? data[0].username: ''}</h1>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="username">Username: </label>
                 <input type="text" id="username" name="username" defaultValue={data.length > 0 ? data[0].username: ""} required />
-                <br />
 
                 <label htmlFor="email">Email: </label>
                 <input type="text" id="email" name="email" defaultValue={data.length > 0 ? data[0].email: ""} required />
-                <br />
 
                 <label htmlFor="password">Password: </label>
                 <input type="text" id="password" name="password" defaultValue={data.length > 0 ? data[0].password: ""} required />
-                <br />
 
                 <input type="submit" value="Submit" />
             </form>

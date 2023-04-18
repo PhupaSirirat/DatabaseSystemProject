@@ -46,7 +46,7 @@ export default function PlayerDetail() {
                     // Render if server available
                     playerData.map(item => (
                         <div key={item.gameaccountid}>
-                            <p>Game Acc ID: {item.gameaccountid}</p>
+                            <p className='bold'>Game Acc ID: {item.gameaccountid}</p>
                             <p>In game name: {item.ingamename}</p>
                             <p>In game register date: {item.ingameregisterdate.substring(0, item.ingameregisterdate.indexOf("T"))}</p>
                             <p>Account level: {item.accountlevel}</p>
@@ -59,16 +59,17 @@ export default function PlayerDetail() {
             </div>
 
             <Link to={`/edit-player/${slug}`}>
-                <button className='nice_dark_butt_on'>Edit player details</button>
+                <button className='edit-btn'>Edit player details</button>
             </Link>
+            <br/>
             <Link to={`/players`}>
-                <button className='nice_dark_butt_on' onClick={deletePlayer}>Delete player</button>
+                <button className='delete-btn' onClick={deletePlayer}>Delete player</button>
             </Link>
-
+            <br/>
             <Link to={`/game-detail/${gameid}/top-player`}>
                 <button className='nice_butt_on'>Top player</button>
             </Link>
-
+            <br/>
             <Link to={`/players`}>
                 <button className='nice_butt_on'>All player</button>
             </Link>

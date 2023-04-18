@@ -37,17 +37,17 @@ export default function ServLocDatial() {
 
     return (
         <main>
-            <h1>Server Location Datials: ID = {slug}</h1>
+            <h1>Server Location {serverloc.length>0? serverloc[0].region: ''}</h1>
 
             <div>
                 {serverloc.length > 0 ? (
                     serverloc.map(item => (
                         <div key={item.serverlocationid} className="game-item">
-                            <p>Server Location ID: {item.serverlocationid}<br />
-                                Region: {item.region}<br />
-                                Colocation country: {item.colocation_country}<br />
-                                Colocation company: {item.colocation_company}<br />
-                            </p>
+                            <p className="bold">Server Location ID: {item.serverlocationid}</p>
+                            <p>Region: {item.region}</p>
+                            <p>Colocation country: {item.colocation_country}</p>
+                            <p>Colocation company: {item.colocation_company}</p>
+                            
                         </div>
                     ))
                 ) : (
@@ -56,15 +56,17 @@ export default function ServLocDatial() {
             </div>
 
             <Link to={`/edit-serverlocation/${slug}`}>
-                <button className='nice_dark_butt_on'>Edit location</button>
+                <button className='edit-btn'>Edit location</button>
             </Link>
+            <br/>
             <Link to={"/server-locations"}>
-                <button className='nice_dark_butt_on' onClick={deleteServerLocation}>Delete location</button>
+                <button className='delete-btn' onClick={deleteServerLocation}>Delete location</button>
             </Link>
-
+            <br/>
             <Link to={"/server-locations"}>
                 <button className='nice_butt_on'>All server locations</button>
             </Link>
+            <br/>
             <Link to={"/"}>
                 <button className='nice_butt_on'>Home</button>
             </Link>

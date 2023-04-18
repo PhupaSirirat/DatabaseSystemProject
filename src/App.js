@@ -53,18 +53,18 @@ function App() {
   return (
     <main>
       <div className='title2'>
-        <h1 >Search all games</h1>
+        <h1>All Games</h1>
       </div>
 
       <div className="search-container">
         <form>
-        <input type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search..." />
+        <input className='search-form' type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search..." />
         </form>
       </div>
 
       <div className='buttonflex'>
         <Link to={"/addgame"} className='button'>
-          <button className='nice_butt_on'>Add Game</button>
+          <button className='nice_butt_on'>Create new</button>
         </Link>
         <Link to={"/"} className='button'>
           <button className='nice_butt_on'>Home</button>

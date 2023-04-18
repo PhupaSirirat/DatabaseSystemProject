@@ -45,16 +45,14 @@ export default function EditServLoc() {
     
     return (
         <main>
-            <h1>Edit Server Location: ID = {slug}</h1>
+            <h1>Edit Location {serverloc.length > 0 ? serverloc[0].region : ""}</h1>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="region">Region: </label>
                 <input type="text" id="region" name="region" defaultValue={serverloc.length > 0 ? serverloc[0].region : ""} required />
-                <br />
 
                 <label htmlFor="colocation_country">Colocation Country: </label>
                 <input type="text" id="colocation_country" name="colocation_country" defaultValue={serverloc.length > 0 ? serverloc[0].colocation_country : ""} required />
-                <br />
 
                 <label htmlFor="colocation_company">Colocation Company: </label>
                 <input type="text" id="colocation_company" name="colocation_company" defaultValue={serverloc.length > 0 ? serverloc[0].colocation_company : ""} required />

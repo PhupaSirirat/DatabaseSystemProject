@@ -7,6 +7,11 @@ export default function EditServer() {
     const [server, setServer] = useState([]);
     const [serverloc, setServerloc] = useState([]);
 
+    const [show, setShow] = useState(false);
+    const handleShow = () => {
+        setShow(!show);
+    }
+
     useEffect(() => {
         fetchServer();
         fetchServerLocation();
@@ -58,9 +63,9 @@ export default function EditServer() {
 
     return (
         <main>
-            <h1>EditServer: Game Server ID: {slug}</h1>
-
-            <div className="game-item">
+            <h1>Edit Server {server.length>0? server[0].hostname: ''}</h1>
+            <button onClick={handleShow}>Show All Server Locations</button>
+            <div className={show? "game-item": "hidden"}>
                 {serverloc.length > 0 ? (
                     serverloc.map(item => (
                         <div key={item.serverlocationid}>
@@ -80,27 +85,21 @@ export default function EditServer() {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="gameid">Game ID: </label>
                 <input type="text" id="gameid" name="gameid" defaultValue={server.length>0?server[0].gameid:""} required />
-                <br />
 
                 <label htmlFor="serverlocationid">Server Location ID: </label>
                 <input type="text" id="serverlocationid" name="serverlocationid" defaultValue={server.length>0?server[0].serverlocationid:""}  required />
-                <br />
 
                 <label htmlFor="ipaddress">IP Address: </label>
                 <input type="text" id="ipaddress" name="ipaddress" defaultValue={server.length>0?server[0].ipaddress:""}  required />
-                <br />
 
                 <label htmlFor="hostname">Hostname: </label>
                 <input type="text" id="hostname" name="hostname" defaultValue={server.length>0?server[0].hostname:""}  required />
-                <br />
 
                 <label htmlFor="port">Port: </label>
                 <input type="text" id="port" name="port" defaultValue={server.length>0?server[0].port:""} required />
-                <br />
 
                 <label htmlFor="maxplayercount">Max player count: </label>
                 <input type="text" id="maxplayercount" name="maxplayercount" defaultValue={server.length>0?server[0].maxplayercount:""}  required />
-                <br />
 
                 <input type="submit" value="Submit" />
             </form>

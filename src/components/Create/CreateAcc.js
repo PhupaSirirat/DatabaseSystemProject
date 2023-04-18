@@ -35,15 +35,12 @@ export default function CreateAcc() {
 
                 <label htmlFor="username">Username: </label>
                 <input type="text" id="username" name="username" required />
-                <br />
 
                 <label htmlFor="email">Email: </label>
                 <input type="text" id="email" name="email" required />
-                <br />
 
                 <label htmlFor="password">Password: </label>
                 <input type="text" id="password" name="password" required />
-                <br />
 
                 <input type="submit" value="Submit" />
             </form>

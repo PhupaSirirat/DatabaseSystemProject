@@ -5,6 +5,11 @@ import axios from 'axios';
 export default function CreateServer() {
     const [serverloc, setServerloc] = useState([]);
 
+    const [show, setShow] = useState(false);
+    const handleShow = () => {
+        setShow(!show);
+    }
+
     useEffect(() => {
         fetchServerLocation();
     }, [])
@@ -46,18 +51,16 @@ export default function CreateServer() {
 
     return (
         <main>
-            <h1>CreateServer</h1>
-
-            <div className="game-item">
+            <h1>Create New Server</h1>
+            <button onClick={handleShow}>Show All Server Locations</button>
+            <div className={show? "game-item": "hidden"}>
                 {serverloc.length > 0 ? (
                     serverloc.map(item => (
-                        <div key={item.serverlocationid}>
-                            <p>Server Location ID: {item.serverlocationid}<br/> 
-                                Region: {item.region}<br/> 
-                                Colocation country: {item.colocation_country}<br/>
-                                Colocation company: {item.colocation_company}<br/>
-                            </p>
-                            <br/>
+                        <div className='servlocdata' key={item.serverlocationid}>
+                            <p className="bold">Server Location ID: {item.serverlocationid}</p>
+                            <p>Region: {item.region}</p>
+                            <p>Colocation country: {item.colocation_country}</p>
+                            <p>Colocation company: {item.colocation_company}</p>
                         </div>
                     ))
                 ) : (
@@ -66,29 +69,23 @@ export default function CreateServer() {
             </div>
 
             <form onSubmit={handleSubmit}>
+                <label htmlFor="hostname">Hostname: </label>
+                <input type="text" id="hostname" name="hostname" required />
+
                 <label htmlFor="gameid">Game ID: </label>
                 <input type="text" id="gameid" name="gameid" required />
-                <br />
 
                 <label htmlFor="serverlocationid">Server Location ID: </label>
                 <input type="text" id="serverlocationid" name="serverlocationid" required />
-                <br />
 
                 <label htmlFor="ipaddress">IP Address: </label>
                 <input type="text" id="ipaddress" name="ipaddress" required />
-                <br />
-
-                <label htmlFor="hostname">Hostname: </label>
-                <input type="text" id="hostname" name="hostname" required />
-                <br />
 
                 <label htmlFor="port">Port: </label>
                 <input type="text" id="port" name="port" required />
-                <br />
 
                 <label htmlFor="maxplayercount">Max player count: </label>
                 <input type="text" id="maxplayercount" name="maxplayercount" required />
-                <br />
 
                 <input type="submit" value="Submit" />
             </form>

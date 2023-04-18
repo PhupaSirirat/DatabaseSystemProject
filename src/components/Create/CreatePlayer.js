@@ -35,23 +35,18 @@ export default function CreatePlayer() {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="accountid">Account ID: </label>
                 <input type="text" id="accountid" name="accountid" required />
-                <br />
 
                 <label htmlFor="gameid">Game ID: </label>
                 <input type="text" id="gameid" name="gameid" required />
-                <br />
 
                 <label htmlFor="gameserverid">Game Server ID: </label>
                 <input type="text" id="gameserverid" name="gameserverid" required />
-                <br />
 
                 <label htmlFor="ingamename">In game name: </label>
                 <input type="text" id="ingamename" name="ingamename" required />
-                <br />
 
                 <label htmlFor="accountlevel">Account Level: </label>
                 <input type="text" id="accountlevel" name="accountlevel" defaultValue={1} readOnly />
-                <br />
 
                 <input type="submit" value="Submit" />
             </form>
@@ -59,6 +54,7 @@ export default function CreatePlayer() {
             <Link to={"/players"}>
                 <button className='nice_butt_on'>All players</button>
             </Link>
+            <br/>
             <Link to={"/"}>
                 <button className='nice_butt_on'>Home</button>
             </Link>

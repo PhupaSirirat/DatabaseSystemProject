@@ -5,7 +5,7 @@
     margin-top: 1rem;
   }
   
-  form {
+  .search-form {
     display: flex;
     align-items: center;
   }
@@ -21,19 +21,19 @@
   }
   
   button[type="submit"] {
-    background-color: #4CAF50;
+    width: 100%;
+    background-color: rgb(47, 47, 47);
     color: white;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
-    margin-left: -61px;
     font-size: 16px;
     cursor: pointer;
     transition: all 0.3s ease;
   }
   
   button[type="submit"]:hover {
-    background-color: #3e8e41;
+    background-color: rgb(59, 59, 59);
   }
 
 

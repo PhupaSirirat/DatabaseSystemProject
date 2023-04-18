@@ -58,7 +58,7 @@ function App() {
 
       <div className="search-container">
         <form>
-        <input className='search-form' type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search..." />
+        <input className='search-form' type="search" id="gsearch" name="gsearch" value={search} onChange={handleSearchChange} placeholder="Search game by gamename" />
         </form>
       </div>
 

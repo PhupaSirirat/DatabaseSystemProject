@@ -52,18 +52,20 @@ const GameDetail = () => {
 
     const deleteData = (e) => {
         e.preventDefault();
-        const sql = `delete from game where gameid=${slug}`;
-        axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-            // if delete successfully
-            .then(response => {
-                if (response.data['error'])
-                {
-                    alert(response.data.error); return;
-                }
-                alert("This game has been deleted successfully")
-                window.location = "/";
-            })
-            .catch(error => alert(error));
+        if (window.confirm("Are you sure you want to delete this game?")) {
+            const sql = `delete from game where gameid=${slug}`;
+            axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+                // if delete successfully
+                .then(response => {
+                    if (response.data['error'])
+                    {
+                        alert(response.data.error); return;
+                    }
+                    alert("This game has been deleted successfully")
+                    window.location = "/";
+                })
+                .catch(error => alert(error));
+        }
     }
 
     return (

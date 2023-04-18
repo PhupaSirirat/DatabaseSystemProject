@@ -37,18 +37,20 @@ export default function ServerDetail() {
 
     const deleteServer = (e) => {
         e.preventDefault();
-        const sql = `delete from game_server where gameserverid=${slug}`;
-        axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-            // if delete successfully
-            .then(response => {
-                if (response.data['error'])
-                {
-                    alert(response.data.error); return;
-                }
-                alert("This server has been deleted successfully")
-                window.location = "/allservers";
-            })
-            .catch(error => alert(error));
+        if (window.confirm("Are you sure you want to delete this game?")) {
+            const sql = `delete from game_server where gameserverid=${slug}`;
+            axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
+                // if delete successfully
+                .then(response => {
+                    if (response.data['error'])
+                    {
+                        alert(response.data.error); return;
+                    }
+                    alert("This server has been deleted successfully")
+                    window.location = "/allservers";
+                })
+                .catch(error => alert(error));
+        }
     }
 
 

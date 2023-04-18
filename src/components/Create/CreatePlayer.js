@@ -30,7 +30,7 @@ export default function CreatePlayer() {
 
     return (
         <main>
-            <h1>CreatePlayer</h1>
+            <h1>Create New Player</h1>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="accountid">Account ID: </label>

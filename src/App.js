@@ -64,7 +64,7 @@ function App() {
 
       <div className='buttonflex'>
         <Link to={"/addgame"} className='button'>
-          <button className='nice_butt_on'>Create new</button>
+          <button className='nice_butt_on'>Create new game</button>
         </Link>
         <Link to={"/"} className='button'>
           <button className='nice_butt_on'>Home</button>

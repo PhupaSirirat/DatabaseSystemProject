@@ -80,12 +80,12 @@ export default function AccountDetail() {
                     // Render if server available
                     playerGameAcc.map(item => (
                         <div key={item.accountid}>
-                            <p className='bold'>Game Account ID: {item.gameaccountid}</p>
+                            <Link to={`/game-detail/${item.gameid}/player-detail/${item.gameaccountid}`}><p className='bold'>Game Account ID: {item.gameaccountid}</p></Link>
                             <p>Game ID: {item.gameid}</p>
                             <p>Game Server ID: {item.gameserverid}</p>
                             <p>In-game name: {item.ingamename}</p>
                             <p>Account level: {item.accountlevel}</p>
-                            <p>Register Date: {item.ingameregisterdate}</p>
+                            <p>Register Date: {item.ingameregisterdate.substring(0, item.ingameregisterdate.indexOf("T"))}</p>
                             <br/>
                         </div>
                     ))

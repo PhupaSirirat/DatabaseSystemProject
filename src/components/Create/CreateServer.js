@@ -36,7 +36,7 @@ export default function CreateServer() {
         // Display input values in an alert
         alert(`Data to create.\nGame ID: ${gameid}\nServer Location ID: ${serverlocationid}\nIP Address: ${ipaddress}\nHostname: ${hostname}\nPort: ${port}\nMax Playercount: ${maxplayercount}`);
 
-        axios.post(`https://gamedb-api-service.up.railway.app/api/add-server`, {gameid: gameid, serverlocationid:serverlocationid, ipaddress:ipaddress, hostname:hostname, port:port, maxplayercount:maxplayercount })
+        axios.post(`https://gamedb-api-service.up.railway.app/api/add-server`, { gameid: gameid, serverlocationid: serverlocationid, ipaddress: ipaddress, hostname: hostname, port: port, maxplayercount: maxplayercount })
             .then(response => {
                 if (response.data['error']) {
                     alert(response.data.error); return;
@@ -53,31 +53,32 @@ export default function CreateServer() {
         <main>
             <h1>Create New Server</h1>
             <button onClick={handleShow}>Show All Server Locations</button>
-            <div className={show? "server-item": "hidden"}>
-            <table className="table table-hover row-clickable">
-                <thead>
-                    <tr>
-                        <th>Server Location ID</th>
-                        <th>Region</th>
-                        <th>Colocation country</th>
-                        <th>Colocation company</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {serverloc.length > 0 ? (
-                        serverloc.map(item => (
-                            <tr key={item.serverlocationid}>
-                                <th><Link to={`${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.region}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_country}</Link></th>
-                                <th><Link to={`${item.serverlocationid}`}>{item.colocation_company}</Link></th>
-                            </tr>
-                        ))
-                    ) : (
-                        <p>Data Fetching...</p>
-                    )}
-                </tbody>
-            </table>
+
+            <div className={show ? "server-item" : "hidden"}>
+                <table className="serverloc-detail table-hover row-clickable">
+                    <thead>
+                        <tr>
+                            <th>Server Location ID</th>
+                            <th>Region</th>
+                            <th>Colocation country</th>
+                            <th>Colocation company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {serverloc.length > 0 ? (
+                            serverloc.map(item => (
+                                <tr key={item.serverlocationid}>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.region}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_country}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_company}</Link></th>
+                                </tr>
+                            ))
+                        ) : (
+                            <p>Data Fetching...</p>
+                        )}
+                    </tbody>
+                </table>
             </div>
 
             <form onSubmit={handleSubmit}>

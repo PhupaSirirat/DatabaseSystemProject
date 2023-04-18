@@ -51,8 +51,7 @@ export default function EditServer() {
         const sql = `update game_server set gameid='${gameid}', serverlocationid='${serverlocationid}', ipaddress='${ipaddress}', hostname='${hostname}', port='${port}', maxplayercount='${maxplayercount}' where gameserverid='${slug}'`;
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(response => {
-                if (response.data['error'])
-                {
+                if (response.data['error']) {
                     alert(response.data.error); return;
                 }
                 alert("Update server successfully")
@@ -63,43 +62,54 @@ export default function EditServer() {
 
     return (
         <main>
-            <h1>Edit Server {server.length>0? server[0].hostname: ''}</h1>
+            <h1>Edit Server {server.length > 0 ? server[0].hostname : ''}</h1>
             <button onClick={handleShow}>Show All Server Locations</button>
-            <div className={show? "game-item": "hidden"}>
-                {serverloc.length > 0 ? (
-                    serverloc.map(item => (
-                        <div key={item.serverlocationid}>
-                            <p>Server Location ID: {item.serverlocationid}<br/> 
-                                Region: {item.region}<br/> 
-                                Colocation country: {item.colocation_country}<br/>
-                                Colocation company: {item.colocation_company}<br/>
-                            </p>
-                            <br/>
-                        </div>
-                    ))
-                ) : (
-                    <p>Data Fetching...</p>
-                )}
+
+            <div className={show ? "server-item" : "hidden"}>
+                <table className="serverloc-detail table-hover row-clickable">
+                    <thead>
+                        <tr>
+                            <th>Server Location ID</th>
+                            <th>Region</th>
+                            <th>Colocation country</th>
+                            <th>Colocation company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {serverloc.length > 0 ? (
+                            serverloc.map(item => (
+                                <tr key={item.serverlocationid}>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.region}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_country}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_company}</Link></th>
+                                </tr>
+                            ))
+                        ) : (
+                            <p>Data Fetching...</p>
+                        )}
+                    </tbody>
+                </table>
             </div>
 
             <form onSubmit={handleSubmit}>
                 <label htmlFor="gameid">Game ID: </label>
-                <input type="text" id="gameid" name="gameid" defaultValue={server.length>0?server[0].gameid:""} required />
+                <input type="text" id="gameid" name="gameid" defaultValue={server.length > 0 ? server[0].gameid : ""} required />
 
                 <label htmlFor="serverlocationid">Server Location ID: </label>
-                <input type="text" id="serverlocationid" name="serverlocationid" defaultValue={server.length>0?server[0].serverlocationid:""}  required />
+                <input type="text" id="serverlocationid" name="serverlocationid" defaultValue={server.length > 0 ? server[0].serverlocationid : ""} required />
 
                 <label htmlFor="ipaddress">IP Address: </label>
-                <input type="text" id="ipaddress" name="ipaddress" defaultValue={server.length>0?server[0].ipaddress:""}  required />
+                <input type="text" id="ipaddress" name="ipaddress" defaultValue={server.length > 0 ? server[0].ipaddress : ""} required />
 
                 <label htmlFor="hostname">Hostname: </label>
-                <input type="text" id="hostname" name="hostname" defaultValue={server.length>0?server[0].hostname:""}  required />
+                <input type="text" id="hostname" name="hostname" defaultValue={server.length > 0 ? server[0].hostname : ""} required />
 
                 <label htmlFor="port">Port: </label>
-                <input type="text" id="port" name="port" defaultValue={server.length>0?server[0].port:""} required />
+                <input type="text" id="port" name="port" defaultValue={server.length > 0 ? server[0].port : ""} required />
 
                 <label htmlFor="maxplayercount">Max player count: </label>
-                <input type="text" id="maxplayercount" name="maxplayercount" defaultValue={server.length>0?server[0].maxplayercount:""}  required />
+                <input type="text" id="maxplayercount" name="maxplayercount" defaultValue={server.length > 0 ? server[0].maxplayercount : ""} required />
 
                 <input type="submit" value="Submit" />
             </form>

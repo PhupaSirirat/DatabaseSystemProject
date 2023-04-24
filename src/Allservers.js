@@ -10,6 +10,11 @@ export default function Allservers() {
     const [serverloc, setServerloc] = useState([]);
     const [search, setSearch] = useState('');
 
+    const [show, setShow] = useState(false);
+    const handleShow = () => {
+        setShow(!show);
+    }
+
 
     useEffect(() => {
         fetchServers();
@@ -49,7 +54,7 @@ export default function Allservers() {
     useEffect(() => {
         searchData();
         // eslint-disable-next-line
-      }, [search]);
+    }, [search]);
 
     return (
         <main>
@@ -73,30 +78,34 @@ export default function Allservers() {
                 </Link>
             </div>
 
-            <table class="table table-hover row-clickable">
-                <thead>
-                    <tr>
-                        <th>Server Location ID</th>
-                        <th>Region</th>
-                        <th>Colocation country</th>
-                        <th>Colocation company</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {serverloc.length > 0 ? (
-                        serverloc.map(item => (
-                            <tr key={item.serverlocationid}>
-                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
-                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.region}</Link></th>
-                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_country}</Link></th>
-                                <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_company}</Link></th>
-                            </tr>
-                        ))
-                    ) : (
-                        <p>Data Fetching...</p>
-                    )}
-                </tbody>
-            </table>
+            <br />
+            <button onClick={handleShow}>Show All Server Locations</button>
+            <div className={show ? "server-item" : "hidden"}>
+                <table className="serverloc-detail table-hover row-clickable">
+                    <thead>
+                        <tr>
+                            <th>Server Location ID</th>
+                            <th>Region</th>
+                            <th>Colocation country</th>
+                            <th>Colocation company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {serverloc.length > 0 ? (
+                            serverloc.map(item => (
+                                <tr key={item.serverlocationid}>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.serverlocationid}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.region}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_country}</Link></th>
+                                    <th><Link to={`/server-locations/${item.serverlocationid}`}>{item.colocation_company}</Link></th>
+                                </tr>
+                            ))
+                        ) : (
+                            <p>Data Fetching...</p>
+                        )}
+                    </tbody>
+                </table>
+            </div>
 
             <table class="table table-hover row-clickable">
                 <thead>

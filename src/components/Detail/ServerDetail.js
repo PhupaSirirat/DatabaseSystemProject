@@ -72,7 +72,7 @@ export default function ServerDetail() {
                 ))
             ) : (
                 // Render message if no data available
-                <p>Data Fetching...</p>
+                <p>No data.</p>
             )}
 
             <div className="game-item">
@@ -87,7 +87,7 @@ export default function ServerDetail() {
                         </div>
                     ))
                 ) : (
-                    <p>Data Fetching...</p>
+                    <p>No data.</p>
                 )}
             </div>
 

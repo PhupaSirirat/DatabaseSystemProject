@@ -33,10 +33,10 @@
 }
 
 .boxcontain {
-  display: flex;
+  width: 85vw;
+  display: grid;
   margin-top: 30px;
-  flex-direction: row;
-  flex-wrap: wrap;
+  grid-template-columns: auto auto auto auto;
 }
 .boxcontain h4 {
   margin: 0;
@@ -52,6 +52,13 @@
   border-radius: 3px;
   min-width: 200px;
   transition: 0.3s;
+
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.box img {
+  width: 30px;
 }
 
 .box:hover {

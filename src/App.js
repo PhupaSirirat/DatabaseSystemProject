@@ -71,7 +71,7 @@ function App() {
         </Link>
       </div>
 
-      <hr className='hr2'></hr>
+      <hr className='hr3'></hr>
 
       <div className='resultcontain'>
         {data.length > 0 ? (
@@ -94,7 +94,7 @@ function App() {
           ))
         ) : (
           // Render message if no data available
-          <p>Data fetching...</p>
+          <p>No data.</p>
         )}
       </div>
     </main>

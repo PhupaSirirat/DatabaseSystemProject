@@ -62,7 +62,15 @@ function AddGame() {
         <input type="text" id="systems" name="systems" required />
 
         <label htmlFor="agerating">Age Rating</label>
-        <input type="text" id="agerating" name="agerating" required />
+        {/* <input type="text" id="agerating" name="agerating" required /> */}
+        <select htmlFor="agerating" id="agerating" name="agerating" required>
+          <option value="">--Please choose an option--</option>
+          <option value="Everyone">Everyone</option>
+          <option value="E10">10+</option>
+          <option value="Teen">15+</option>
+          <option value="Mature Content">18+</option>
+          <option value="Adults Only">20+</option>
+        </select>
 
         <label htmlFor="thumbnail">Thumbnail Link:</label>
         <input type="text" id="thumbnail" name="thumbnail" required />

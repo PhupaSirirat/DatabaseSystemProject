@@ -25,6 +25,8 @@ import AdminTools from '../AdminTools';
 import EditPlayer from '../components/Edit/EditPlayer';
 import CreatePlayer from '../components/Create/CreatePlayer';
 
+import AddServer from '../components/Create/AddServer';
+import AddPlayer from '../components/Create/AddPlayer';
 
 const Routers = () => {
     return (
@@ -53,6 +55,9 @@ const Routers = () => {
                 <Route path="/admin-tools" element={<AdminTools />} />
                 <Route path="/edit-player/:slug" element={<EditPlayer />} />
                 <Route path="/players/create-player" element={<CreatePlayer />} />
+
+                <Route path="/game-detail/:slug/add-server" element={<AddServer />} />
+                <Route path="/game-detail/:slug/add-player" element={<AddPlayer />} />
             </Routes>
         </BrowserRouter>
     )

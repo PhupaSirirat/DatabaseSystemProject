@@ -68,7 +68,7 @@ export default function PlayerDetail() {
                     ))
                 ) : (
                     // Render message if no data available
-                    <p>Data Fetching...</p>
+                    <p>No data.</p>
                 )}
             </div>
 
@@ -86,7 +86,7 @@ export default function PlayerDetail() {
                     ))
                 ) : (
                     // Render message if no data available
-                    <p>Data Fetching...</p>
+                    <p>No data.</p>
                 )}
             </div>
 

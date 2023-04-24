@@ -57,8 +57,7 @@ const GameDetail = () => {
             axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
                 // if delete successfully
                 .then(response => {
-                    if (response.data['error'])
-                    {
+                    if (response.data['error']) {
                         alert(response.data.error); return;
                     }
                     alert("This game has been deleted successfully")
@@ -92,13 +91,19 @@ const GameDetail = () => {
                     ))
                 ) : (
                     // Render message if no data available
-                    <p>Data Fetching...</p>
+                    <p>No data.</p>
                 )}
             </div>
 
             {/* All server available for this game */}
             <div className="game-item">
-                <p className="bold">Game Server(s)</p>
+                <div className="hzflex">
+                    <p className="bold">Game Server(s)</p>
+                    <Link to={`/game-detail/${slug}/add-server`}>
+                        <button>Create server</button>
+                    </Link>
+                </div>
+
                 {serverData.length > 0 ? (
                     // Render if server available
                     serverData.map(item => (
@@ -110,16 +115,21 @@ const GameDetail = () => {
                     ))
                 ) : (
                     // Render message if no data available
-                    <p>Data Fetching...</p>
+                    <p>No data.</p>
                 )}
             </div>
 
             {/* Top 5 players of this game */}
             <div className="game-item">
+                <div className="hzflex">
+                    <Link to={`top-player`}>
+                        <p className="bold">Top Player(s)</p>
+                    </Link>
+                    <Link to={`/game-detail/${slug}/add-player`}>
+                        <button>Create Player</button>
+                    </Link>
+                </div>
 
-                <Link to={`top-player`}>
-                    <p className="bold">Top Player(s)</p>
-                </Link>
 
                 {playerData.length > 0 ? (
                     // Render if server available
@@ -130,7 +140,7 @@ const GameDetail = () => {
                     ))
                 ) : (
                     // Render message if no data available
-                    <p>Data Fetching...</p>
+                    <p>No data.</p>
                 )}
             </div>
 

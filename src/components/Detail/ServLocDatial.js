@@ -52,7 +52,7 @@ export default function ServLocDatial() {
                         </div>
                     ))
                 ) : (
-                    <p>Data Fetching...</p>
+                    <p>No data.</p>
                 )}
             </div>
 

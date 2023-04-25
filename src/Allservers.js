@@ -9,6 +9,8 @@ export default function Allservers() {
     const [server, setServer] = useState([]);
     const [serverloc, setServerloc] = useState([]);
     const [search, setSearch] = useState('');
+    const [sortedField, setSortedField] = useState('serverlocationid');
+    const [sortedField2, setSortedField2] = useState('gameserverid');
 
     const [show, setShow] = useState(false);
     const handleShow = () => {
@@ -19,6 +21,7 @@ export default function Allservers() {
     useEffect(() => {
         fetchServers();
         fetchServerLocation();
+        // eslint-disable-next-line
     }, [])
     const fetchServers = () => {
         axios.get(`https://gamedb-api-service.up.railway.app/api/get-serverlist`)
@@ -28,7 +31,8 @@ export default function Allservers() {
             .catch(err => alert(err));
     }
     const fetchServerLocation = () => {
-        axios.get(`https://gamedb-api-service.up.railway.app/api/get-serverlocation`)
+        const sql = `select * from server_location ORDER BY ${sortedField}`;
+        axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(response => {
                 setServerloc(response.data);
             })
@@ -36,7 +40,7 @@ export default function Allservers() {
     }
 
     const searchData = () => {
-        const sql = `select * from game_server where hostname like '%${search}%'`; // Use search state to construct the SQL query
+        const sql = `select * from game_server where hostname like '%${search}%' ORDER BY ${sortedField2}`; // Use search state to construct the SQL query
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(response => {
                 if (response.data['error']) {
@@ -54,7 +58,11 @@ export default function Allservers() {
     useEffect(() => {
         searchData();
         // eslint-disable-next-line
-    }, [search]);
+    }, [search, sortedField2]);
+    useEffect(() => {
+        fetchServerLocation();
+        // eslint-disable-next-line
+    }, [sortedField]);
 
     return (
         <main>
@@ -84,10 +92,10 @@ export default function Allservers() {
                 <table className="serverloc-detail table-hover row-clickable">
                     <thead>
                         <tr>
-                            <th>Server Location ID</th>
-                            <th>Region</th>
-                            <th>Colocation country</th>
-                            <th>Colocation company</th>
+                        <th onClick={() => setSortedField('serverlocationid')}>Server Location ID</th>
+                        <th onClick={() => setSortedField('LOWER(region)')}>Region</th>
+                        <th onClick={() => setSortedField('LOWER(colocation_country)')}>Colocation country</th>
+                        <th onClick={() => setSortedField('LOWER(colocation_company)')}>Colocation company</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -110,13 +118,13 @@ export default function Allservers() {
             <table class="table table-hover row-clickable">
                 <thead>
                     <tr>
-                        <th>Server ID</th>
-                        <th>Game ID</th>
-                        <th>Server Location ID</th>
-                        <th>IP address</th>
-                        <th>Hostname</th>
-                        <th>Port</th>
-                        <th>Max player count</th>
+                        <th onClick={() => setSortedField2('gameserverid')}>Server ID</th>
+                        <th onClick={() => setSortedField2('gameid')}>Game ID</th>
+                        <th onClick={() => setSortedField2('serverlocationid')}>Server Location ID</th>
+                        <th onClick={() => setSortedField2('LOWER(ipaddress)')}>IP address</th>
+                        <th onClick={() => setSortedField2('LOWER(hostname)')}>Hostname</th>
+                        <th onClick={() => setSortedField2('port')}>Port</th>
+                        <th onClick={() => setSortedField2('maxplayercount DESC')}>Max player count</th>
                     </tr>
                 </thead>
                 <tbody>

@@ -101,3 +101,7 @@ table.row-clickable tbody tr th a {
   display: block;
   padding: 8px;
 }
+
+.table-hover th:hover {
+  cursor: pointer;
+}

@@ -6,6 +6,7 @@ import './Style/Table.css';
 export default function Accounts() {
     const [accounts, setAccounts] = useState([]);
     const [search, setSearch] = useState('');
+    const [sortedField, setSortedField] = useState('accountid');
 
     useEffect(() => {
         fetchAccounts();
@@ -20,7 +21,7 @@ export default function Accounts() {
     }
 
     const searchData = () => {
-        const sql = `select * from account where username like '${search}%' or email like '${search}%'`; // Use search state to construct the SQL query
+        const sql = `select * from account where username like '${search}%' or email like '${search}%' ORDER BY ${sortedField}`; // Use search state to construct the SQL query
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(response => {
                 if (response.data['error']) {
@@ -38,7 +39,7 @@ export default function Accounts() {
     useEffect(() => {
         searchData();
         // eslint-disable-next-line
-      }, [search]);
+      }, [sortedField, search]);
 
     return (
         <main>
@@ -64,9 +65,10 @@ export default function Accounts() {
             <table class="table table-hover row-clickable">
                 <thead>
                     <tr>
-                        <th>Account ID</th>
-                        <th>Username</th>
-                        <th>Email</th>
+                        <th onClick={() => setSortedField('accountid')}>Account ID</th>
+                        <th onClick={() => setSortedField('LOWER(username)')}>Username</th>
+                        <th onClick={() => setSortedField('LOWER(email)')}>Email</th>
+                        <th onClick={() => setSortedField('accountregisterdate')}>Register Date</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -77,6 +79,7 @@ export default function Accounts() {
                                 <th><Link to={`account-detail/${item.accountid}`}>{item.accountid}</Link></th>
                                 <th><Link to={`account-detail/${item.accountid}`}>{item.username}</Link></th>
                                 <th><Link to={`account-detail/${item.accountid}`}>{item.email}</Link></th>
+                                <th><Link to={`account-detail/${item.accountid}`}>{item.accountregisterdate.substring(0, item.accountregisterdate.indexOf('T'))}</Link></th>
                             </tr>
                         ))
                     ) : (

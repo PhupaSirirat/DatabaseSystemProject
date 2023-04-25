@@ -6,6 +6,7 @@ import './Style/Common.css';
 export default function Players() {
   const [players, setPlayers] = useState([]);
   const [search, setSearch] = useState('');
+  const [sortedField, setSortedField] = useState('gameaccountid');
 
   useEffect(() => {
     fetchPlayers();
@@ -20,7 +21,7 @@ export default function Players() {
   }
 
   const searchData = () => {
-    const sql = `select * from ingame_account where ingamename like '%${search}%'`; // Use search state to construct the SQL query
+    const sql = `select * from ingame_account where ingamename like '%${search}%' ORDER BY ${sortedField}`; // Use search state to construct the SQL query
     axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
       .then(response => {
         if (response.data['error']) {
@@ -38,7 +39,7 @@ export default function Players() {
   useEffect(() => {
     searchData();
     // eslint-disable-next-line
-  }, [search]);
+  }, [search, sortedField]);
 
   return (
     <main>
@@ -64,13 +65,13 @@ export default function Players() {
       <table class="table table-hover row-clickable">
         <thead>
           <tr>
-            <th>Game Account ID</th>
-            <th>Account ID</th>
-            <th>Game ID</th>
-            <th>Game Server ID</th>
-            <th>In-game name</th>
-            <th>Account Level</th>
-            <th>In-game register date</th>
+            <th onClick={() => setSortedField('gameaccountid')}>Game Account ID</th>
+            <th onClick={() => setSortedField('accountid')}>Account ID</th>
+            <th onClick={() => setSortedField('gameid')}>Game ID</th>
+            <th onClick={() => setSortedField('gameserverid')}>Game Server ID</th>
+            <th onClick={() => setSortedField('LOWER(ingamename)')}>In-game name</th>
+            <th onClick={() => setSortedField('accountlevel DESC')}>Account Level</th>
+            <th onClick={() => setSortedField('ingameregisterdate')}>In-game register date</th>
           </tr>
         </thead>
         <tbody>

@@ -28,7 +28,7 @@ function App() {
   }
 
   const searchData = () => {
-    const sql = `select * from game where gamename like '%${search}%'`; // Use search state to construct the SQL query
+    const sql = `select * from game where gamename like '%${search}%' ORDER BY gameid`; // Use search state to construct the SQL query
     axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
       .then(response => {
         if (response.data['error']) {

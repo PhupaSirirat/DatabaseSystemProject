@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 export default function ServerLoc() {
     const [serverloc, setServerloc] = useState([]);
     const [search, setSearch] = useState('');
+    const [sortedField, setSortedField] = useState('serverlocationid');
 
     useEffect(() => {
         fetchServerLocation();
@@ -22,7 +23,7 @@ export default function ServerLoc() {
     }
 
     const searchData = () => {
-        const sql = `select * from server_location where region like '${search}%' or colocation_country like '${search}%' or colocation_company like '${search}%'`; // Use search state to construct the SQL query
+        const sql = `select * from server_location where region like '${search}%' or colocation_country like '${search}%' or colocation_company like '${search}%' ORDER BY ${sortedField}`; // Use search state to construct the SQL query
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
             .then(response => {
                 if (response.data['error']) {
@@ -40,7 +41,7 @@ export default function ServerLoc() {
     useEffect(() => {
         searchData();
         // eslint-disable-next-line
-    }, [search]);
+    }, [search, sortedField]);
 
     return (
         <main>
@@ -66,10 +67,10 @@ export default function ServerLoc() {
             <table className="table table-hover row-clickable">
                 <thead>
                     <tr>
-                        <th>Server Location ID</th>
-                        <th>Region</th>
-                        <th>Colocation country</th>
-                        <th>Colocation company</th>
+                        <th onClick={() => setSortedField('serverlocationid')}>Server Location ID</th>
+                        <th onClick={() => setSortedField('LOWER(region)')}>Region</th>
+                        <th onClick={() => setSortedField('LOWER(colocation_country)')}>Colocation country</th>
+                        <th onClick={() => setSortedField('LOWER(colocation_company)')}>Colocation company</th>
                     </tr>
                 </thead>
                 <tbody>

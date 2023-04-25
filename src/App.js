@@ -10,22 +10,8 @@ function App() {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    getAllGames();
-    // eslint-disable-next-line
-  }, []);
-
-  const getAllGames = () => {
-    const sql = `select * from game`;
-    axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })
-      .then(response => {
-        if (response.data['error']) {
-          alert(response.data.error); return;
-        }
-        console.log('connected');
-        setData(response.data); // Update state with fetched data
-      })
-      .catch(err => alert(err));
-  }
+    searchData()
+  });
 
   const searchData = () => {
     const sql = `select * from game where gamename like '%${search}%' ORDER BY gameid`; // Use search state to construct the SQL query

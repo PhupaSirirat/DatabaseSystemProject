@@ -19,17 +19,10 @@ export default function Allservers() {
 
 
     useEffect(() => {
-        fetchServers();
+        searchData();
         fetchServerLocation();
-        // eslint-disable-next-line
-    }, [])
-    const fetchServers = () => {
-        axios.get(`https://gamedb-api-service.up.railway.app/api/get-serverlist`)
-            .then(response => {
-                setServer(response.data);
-            })
-            .catch(err => alert(err));
-    }
+    })
+
     const fetchServerLocation = () => {
         const sql = `select * from server_location ORDER BY ${sortedField}`;
         axios.post(`https://gamedb-api-service.up.railway.app/api/execute-query`, { sql })

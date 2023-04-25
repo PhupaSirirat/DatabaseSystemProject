@@ -9,16 +9,8 @@ export default function Players() {
   const [sortedField, setSortedField] = useState('gameaccountid');
 
   useEffect(() => {
-    fetchPlayers();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-  const fetchPlayers = () => {
-    axios.get(`https://gamedb-api-service.up.railway.app/api/get-playerlist`)
-      .then(response => {
-        setPlayers(response.data); // Update state with fetched data
-      })
-      .catch(err => alert(err));
-  }
+    searchData()
+  })
 
   const searchData = () => {
     const sql = `select * from ingame_account where ingamename like '%${search}%' ORDER BY ${sortedField}`; // Use search state to construct the SQL query

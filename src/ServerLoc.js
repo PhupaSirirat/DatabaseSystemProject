@@ -8,19 +8,8 @@ export default function ServerLoc() {
     const [sortedField, setSortedField] = useState('serverlocationid');
 
     useEffect(() => {
-        fetchServerLocation();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [])
-    const fetchServerLocation = () => {
-        axios.get(`https://gamedb-api-service.up.railway.app/api/get-serverlocation`)
-            .then(response => {
-                if (response.data['error']) {
-                    alert(response.data.error); return;
-                }
-                setServerloc(response.data);
-            })
-            .catch(err => alert(err));
-    }
+        searchData()
+    })
 
     const searchData = () => {
         const sql = `select * from server_location where region like '${search}%' or colocation_country like '${search}%' or colocation_company like '${search}%' ORDER BY ${sortedField}`; // Use search state to construct the SQL query

@@ -9,16 +9,8 @@ export default function Accounts() {
     const [sortedField, setSortedField] = useState('accountid');
 
     useEffect(() => {
-        fetchAccounts();
-    }, [])
-
-    const fetchAccounts = () => {
-        axios.get(`https://gamedb-api-service.up.railway.app/api/get-accountlist`)
-            .then(response => {
-                setAccounts(response.data);
-            })
-            .catch(error => alert(error));
-    }
+        searchData()
+    })
 
     const searchData = () => {
         const sql = `select * from account where username like '${search}%' or email like '${search}%' ORDER BY ${sortedField}`; // Use search state to construct the SQL query

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './Style/GameCard.css';
-import { Link } from 'react-router-dom';
 import './Style/Common.css'
 import axios from 'axios';
 

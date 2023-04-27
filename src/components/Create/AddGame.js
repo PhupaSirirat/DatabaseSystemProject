@@ -33,7 +33,7 @@ function AddGame() {
           alert(response.data.error); return;
         }
         alert("Insert successfully")
-        window.location = '/App';
+        window.location = '/allgames';
       })
       .catch(error => alert(error));
   };

@@ -61,7 +61,7 @@ const GameDetail = () => {
                         alert(response.data.error); return;
                     }
                     alert("This game has been deleted successfully")
-                    window.location = "/";
+                    window.location = "/allgames";
                 })
                 .catch(error => alert(error));
         }

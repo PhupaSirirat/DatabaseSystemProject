@@ -6,13 +6,13 @@ function Home() {
     return (
         <div className='content'>
             <div className='title'>
-                <h1 className='title'>Game management system</h1>
+                <h1 className='title'>Game Management System</h1>
             </div>
 
             <hr className='hr1'></hr>
 
             <div className='boxcontain'>
-                <Link className='link' to={"/App"}>
+                <Link className='link' to={"/allgames"}>
                     <div className='box'>
                         <img src="/icons/004-game-control.png" alt="" />
                         <h4>Games</h4>

@@ -105,7 +105,7 @@ export default function AccountDetail() {
             </Link>
             <br/>
             <Link to={`/accounts`}>
-                <button className='nice_butt_on'>Back</button>
+                <button className='button-79'>Back</button>
             </Link>
         </main>
     )

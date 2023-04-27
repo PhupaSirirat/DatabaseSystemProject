@@ -48,12 +48,14 @@ function App() {
         </form>
       </div>
 
-      <div className='buttonflex'>
+      {/* <div className='buttonflex'>
         <Link to={"/addgame"} className='button'>
           <button className='nice_butt_on'>Create new game</button>
         </Link>
-        <Link to={"/"} className='button'>
-          <button className='nice_butt_on'>Home</button>
+      </div> */}
+      <div className='buttonflex'>
+        <Link to={"/addgame"} className='button'>
+          <button className="button-30">Create new game</button>
         </Link>
       </div>
 

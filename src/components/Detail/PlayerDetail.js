@@ -99,11 +99,11 @@ export default function PlayerDetail() {
             </Link>
             <br/>
             <Link to={`/game-detail/${gameid}/top-player`}>
-                <button className='nice_butt_on'>Top player</button>
+                <button className='button-30'>Top player</button>
             </Link>
             <br/>
             <Link to={`/players`}>
-                <button className='nice_butt_on'>All player</button>
+                <button className='button-79'>All player</button>
             </Link>
         </main>
     )

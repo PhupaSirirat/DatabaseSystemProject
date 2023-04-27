@@ -32,16 +32,13 @@ function App() {
         <button className='query-submit' type="submit">Submit</button>
       </form>
 
-      <Link to={"/"}>
-        <button className='nice_butt_on'>Home</button>
-      </Link>
       <hr className='hr2'></hr>
-      <div className='resultcontain'>
+      <div>
         <div className="allGames">
           {result.length > 0 ? (
             <ul>
               {result.map((item, index) => (
-                <li key={index}>
+                <li key={index} className='box'>
                   <ul>
                     {Object.keys(item).map(key => (
                       <li key={key}>{key}: {item[key]}</li>

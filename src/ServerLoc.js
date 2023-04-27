@@ -46,11 +46,7 @@ export default function ServerLoc() {
 
             <div className='buttonflex'>
                 <Link to={"create-serverlocation"} className='button'>
-                    <button className='nice_butt_on'>Create new location</button>
-                </Link>
-
-                <Link to={"/"} className='button'>
-                    <button className='nice_butt_on'>Home</button>
+                    <button className='button-30'>Create new location</button>
                 </Link>
             </div>
             <table className="table table-hover row-clickable">

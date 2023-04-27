@@ -65,12 +65,9 @@ export default function ServLocDatial() {
             </Link>
             <br />
             <Link to={"/server-locations"}>
-                <button className='nice_butt_on'>All server locations</button>
+                <button className='button-30'>All server locations</button>
             </Link>
             <br />
-            <Link to={"/"}>
-                <button className='nice_butt_on'>Home</button>
-            </Link>
         </main>
     )
 }

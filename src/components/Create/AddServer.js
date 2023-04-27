@@ -105,7 +105,7 @@ export default function CreateServer() {
             </form>
 
             <Link to={`/game-detail/${slug}`}>
-                <button className='nice_butt_on'>Back</button>
+                <button className='button-79'>Back</button>
             </Link>
         </main>
     )

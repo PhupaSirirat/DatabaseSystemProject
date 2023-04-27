@@ -47,11 +47,7 @@ export default function Accounts() {
 
             <div className='buttonflex'>
                 <Link to={`create-account`} className='button'>
-                    <button className='nice_butt_on'>Create new account</button>
-                </Link>
-
-                <Link to={`/`} className='button'>
-                    <button className='nice_butt_on'>Home</button>
+                    <button className='button-30'>Create new account</button>
                 </Link>
             </div>
             <table class="table table-hover row-clickable">

@@ -100,16 +100,13 @@ export default function ServerDetail() {
             </Link>
             <br/>
             <Link to={`/game-detail/${server.length > 0 ? server[0].gameid : ""}`}>
-                <button className='nice_butt_on'>To game page</button>
+                <button className='button-30'>To game page</button>
             </Link>
             <br/>
             <Link to={"/allservers"}>
-                <button className='nice_butt_on'>All servers</button>
+                <button className='button-30'>All servers</button>
             </Link>
             <br/>
-            <Link to={"/"}>
-                <button className='nice_butt_on'>Home</button>
-            </Link>
         </main>
     );
 }

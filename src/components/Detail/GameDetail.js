@@ -150,8 +150,8 @@ const GameDetail = () => {
             <br />
             <button className='delete-btn' onClick={deleteData}>Delete this game</button>
             <br />
-            <Link to={"/App"}>
-                <button className='nice_butt_on'>Back</button>
+            <Link to={"/allgames"}>
+                <button className='button-79'>Back</button>
             </Link>
         </main>
     )

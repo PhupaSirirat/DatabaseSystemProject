@@ -115,7 +115,7 @@ export default function EditServer() {
             </form>
 
             <Link to={`/server-detail/${slug}`}>
-                <button className='nice_butt_on'>Back</button>
+                <button className='button-79'>Back</button>
             </Link>
         </main>
     )

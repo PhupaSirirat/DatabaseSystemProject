@@ -53,12 +53,13 @@ export default function CreatePlayer() {
             </form>
 
             <Link to={"/players"}>
-                <button className='nice_butt_on'>All players</button>
+                <button className='button-30'>All players</button>
+            </Link>
+            <Link to={`/game-detail/${slug}`}>
+                <br />
+                <button className='button-79'>Back</button>
             </Link>
             <br/>
-            <Link to={"/"}>
-                <button className='nice_butt_on'>Home</button>
-            </Link>
         </main>
     )
 }
